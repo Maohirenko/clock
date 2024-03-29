@@ -1,0 +1,188 @@
+.clockContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: flex-start;
+    background: linear-gradient(#b1b5ab, #5f605e);
+    border-radius: 40px;
+    position: absolute;
+    top: 4%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    padding: 16px;
+    height: 90px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.roundedBorder {
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.digitalClockContainer {
+    /* width: 100vw; */
+    /* height: 100vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+    /* background-color: red; */
+}
+
+.svgAlign {}
+
+.clockStandLeft {
+    fill: url(#clockStandLeftGradient);
+    stroke: url(#clockStandLeftGradient);
+}
+
+.clockStndLeftGradStop1 {
+    stop-color: #242423;
+}
+
+.clockStndLeftGradStop2 {
+    stop-color: #575a55;
+}
+
+.clockStndLeftGradStop3 {
+    stop-color: #0c0d0b;
+}
+
+.clockStandRight {
+    fill: url(#clockStandRightGradient);
+    stroke: url(#clockStandRightGradient);
+}
+
+.clockStndRightGradStop1 {
+    stop-color: #0c0d0b;
+}
+
+.clockStndRightGradStop2 {
+    stop-color: #575a55;
+}
+
+.clockStndRightGradStop3 {
+    stop-color: #242423;
+}
+
+.clockFrontLeftFace {
+    fill: url(#clockFrontFaceLeftGradient);
+    stroke: url(#clockBezelGradient);
+}
+
+.clockFrontLeftFaceGradStop1 {
+    stop-color: #0c0c0b;
+}
+
+.clockFrontLeftFaceGradStop2 {
+    stop-color: #131311;
+}
+
+.clockFrontLeftFaceGradStop3 {
+    stop-color: #080907;
+}
+
+.clockFrontCenterFace {
+    fill: url(#clockFrontFaceCenterGradient);
+}
+
+.clockFrontCenterFaceGradStop1 {
+    stop-color: #080907;
+}
+
+.clockFrontCenterFaceGradStop2 {
+    stop-color: #131311;
+    stop-opacity: 0.7;
+}
+
+.clockFrontCenterFaceGradStop3 {
+    stop-color: #080907;
+    /* stop-opacity: 1; */
+}
+
+.clockFrontRightFace {
+    fill: url(#clockFrontFaceRightGradient);
+    stroke: url(#clockBezelGradient);
+}
+
+.clockFrontRightFaceGradStop1 {
+    stop-color: #080907;
+}
+
+.clockFrontRightFaceGradStop2 {
+    stop-color: #131311;
+}
+
+.clockFrontRightFaceGradStop3 {
+    stop-color: #0c0c0b;
+}
+
+.clockBezel {
+    stroke: url(#clockBezelGradient);
+}
+
+
+.clockBezelGradStop1 {
+    stop-color: #0c0c0b;
+}
+
+.clockBezelGradStop2 {
+    stop-color: #30302d;
+    stop-opacity: 1;
+}
+
+.clockBezelGradStop3 {
+    stop-color: #0c0c0b;
+}
+
+.separator {
+    background: linear-gradient(60deg, #1d1e1d, #525450, #2a2a29);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgb(0 0 0 / 20%);
+}
+
+.controlButtons {
+    /* right: 0; */
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: flex-start;
+    /* background: linear-gradient(#b1b5ab, #5f605e); */
+    border-radius: 40px;
+    position: absolute;
+    top: 34%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlButtons button {
+    width: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(60deg, #818581, #bfc2bc, #efefe0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgb(0 0 0 / 20%);
+}
+
+.controlButtons span {
+    width: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(60deg, #858985, #525450, #2a2a29);
+}

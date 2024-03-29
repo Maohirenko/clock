@@ -1,0 +1,96 @@
+.digitsContainer {
+    display: flex;
+    height: 83px;
+    /* background-color: beige; */
+    /* background-color: red; */
+    /* background-color: red;s */
+    /* justify-content: flex-start; */
+}
+
+.leftSegments {
+    margin-right: -2px;
+}
+
+.leftSegments,
+.rightSegments {
+    /* margin-bottom: 4px; */
+    margin-top: 14px;
+}
+
+.centralSegments {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rightSegments {
+    margin-left: -2px;
+}
+
+.centralSegment {
+    margin-top: -0.03em;
+    ;
+}
+
+.leftSegmentsSeconds {
+    margin-right: -2px;
+}
+
+.leftSegmentsSeconds,
+.rightSegmentsSeconds {
+    /* margin-bottom: 7px; */
+    margin-top: 0.8em;
+}
+
+
+.rightSegmentsSeconds {
+    margin-left: -2px;
+}
+
+.centralSegmentSeconds {
+    /* margin-top: -0.1em; */
+}
+
+.digitsContainerSeconds {
+    display: flex;
+    /* background-color: red; */
+    /* height:4px; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+}
+
+.centralSegmentsSeconds {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    /* max-height:px; */
+    /* margin-top: -4px; */
+    /* background-color: aquamarine; */
+    /* box-sizing: border-box; */
+    /* flex-wrap: wrap; */
+}
+
+.inActiveSegment {
+    fill: transparent;
+}
+
+.activeSegment {
+    fill: url(#Gradient1);
+    stroke: url(#Gradient1);
+}
+
+.stop1 {
+    stop-color: #1d1e1d;
+}
+
+.stop2 {
+    stop-color: #525450;
+    stop-opacity: 1;
+}
+
+.stop3 {
+    stop-color: #2a2a29;
+}
