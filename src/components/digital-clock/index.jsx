@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import DigitComponent from "./digit-component";
 import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
+import LongPressButton from "../button-long-press";
 
 
 
@@ -9,24 +10,18 @@ import useClock from '../../logic/useClock'
 export default function DigitalClock() {
 
     const clockFunctions = useClock();
-    const { secondsCount, setSecondsCount,
-        minutesCount, setMinutesCount,
-        hoursCount, setHoursCount,
-        clockRunning, setClockRunning,
-        runTime,
+    const { secondsCount,
+        minutesCount,
+        hoursCount,
+        clockRunning,
         addHours,
         substractHours,
         addMinutes,
         substractMinutes,
-        setClock,
-        alertMessage } = clockFunctions;
+        setClock } = clockFunctions;
 
 
     const [tick, setTick] = useState(false);
-    
-    // const [secsCnt, setSecCnt] = useState(0);
-    // const [minsCnt, setMinCnt] = useState(0);
-    // const [hoursCnt, setHourCnt] = useState(0);
 
 
     useEffect(() => {
@@ -42,7 +37,6 @@ export default function DigitalClock() {
     }, [tick, clockRunning])
 
 
-    console.log(minutesCount)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>
@@ -97,17 +91,16 @@ export default function DigitalClock() {
                 </svg>
                 <div className={classes.controlButtons}>
                     <div>
-                        <button onClick={clockRunning ? alertMessage : addHours}>H+</button>
-                        {/* <button onClick={addHours}>H+</button> */}
+                        <LongPressButton buttonText={'H+'} clockModifier={addHours} isClockRunning={clockRunning} />
                     </div>
                     <div>
-                        <button onClick={clockRunning ? alertMessage : substractHours}>H-</button>
+                        <LongPressButton buttonText={'H-'} clockModifier={substractHours} isClockRunning={clockRunning} />
                     </div>
                     <div>
-                        <button onClick={clockRunning ? alertMessage : addMinutes}>M+</button>
+                        <LongPressButton buttonText={'M+'} clockModifier={addMinutes} isClockRunning={clockRunning} />
                     </div>
                     <div>
-                        <button onClick={clockRunning ? alertMessage : substractMinutes}>M-</button>
+                        <LongPressButton buttonText={'M-'} clockModifier={substractMinutes} isClockRunning={clockRunning} />
                     </div>
                     <div>
                         <button onClick={setClock}>SET</button>
@@ -117,14 +110,14 @@ export default function DigitalClock() {
                     time ? */}
 
 
-                                <div className={classes.clockContainer}>
+                <div className={classes.clockContainer}>
 
-                    <DigitComponent digit={hoursCount < 10 ? "0"  : ("" + hoursCount)[0]} />
-                    <DigitComponent digit={hoursCount < 10 ? ("" + hoursCount)[0] : ("" + hoursCount)[1]}  />
+                    <DigitComponent digit={hoursCount < 10 ? "0" : ("" + hoursCount)[0]} />
+                    <DigitComponent digit={hoursCount < 10 ? ("" + hoursCount)[0] : ("" + hoursCount)[1]} />
                     <span className={classes.separator} style={{ marginTop: "-8px", marginBottom: "", backgroundColor: "", fontSize: "72px", visibility: `${tick ? "visible" : "hidden"}` }}>:</span>
-                    <DigitComponent digit={minutesCount < 10 ? "0"  : ("" + minutesCount)[0]} />
-                    <DigitComponent digit={minutesCount < 10 ? ("" + minutesCount)[0] : ("" + minutesCount)[1]}  />
-                    <DigitComponent digit={secondsCount < 10 ? "0"  : ("" + secondsCount)[0]} isSeconds={true} />
+                    <DigitComponent digit={minutesCount < 10 ? "0" : ("" + minutesCount)[0]} />
+                    <DigitComponent digit={minutesCount < 10 ? ("" + minutesCount)[0] : ("" + minutesCount)[1]} />
+                    <DigitComponent digit={secondsCount < 10 ? "0" : ("" + secondsCount)[0]} isSeconds={true} />
                     <DigitComponent digit={secondsCount < 10 ? ("" + secondsCount)[0] : ("" + secondsCount)[1]} isSeconds={true} />
                 </div>
 
@@ -134,29 +127,3 @@ export default function DigitalClock() {
 }
 
 
-
-// Array.prototype.sameStructureAs = function (other) {
-//     // Return 'true' if and only if 'other' has the same
-//     // nesting structure as 'this'.
-//     //     console.log(this)
-//     let ans = true;
-//     for (let i = 0; i < this.length; i++) {
-//         //     console.log(this[i].typeof())
-//         if (Array.isArray(this[i])) {
-//             if (Array.isArray(other[i])) {
-//                 console.log(this[i] + "this " + this[i].length + other[i] + " other " + other[i].length)
-//                 if (this[i].length !== other[i].length) {
-//                     //       console.log("this " + this[i].length + " other " + other[i].length)
-//                     ans = false;
-//                     //       return;
-//                 }
-//             }
-//             else {
-//                 ans = false;
-//             }
-//         }
-//     }
-//     return ans;
-//     // Note: You are given a function isArray(o) that returns
-//     // whether its argument is an array.
-// };

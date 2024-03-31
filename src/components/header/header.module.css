@@ -1,0 +1,26 @@
+.headerContainer {
+    display: grid;
+    /* background-color: red; */
+    /* justify-content:flex-start; */
+    align-items: center;
+    grid-template-columns: 20% 80%;
+}
+
+.navLinks {
+    display: flex;
+    /* background-color: red; */
+    justify-content: space-around;
+    /* background-color: rebeccapurple; */
+}
+
+.link {
+    text-decoration: none;
+    background-color:aqua;
+    border-radius: 12px;
+    padding: 2px 12px;
+}
+
+.link:hover {
+    opacity: 0.7;
+}
+

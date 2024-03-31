@@ -3,21 +3,26 @@
     justify-content: center;
     align-items: center;
     margin-top: 80px;
+    border-radius: 300px;
+    /* background-color: red; */
+    z-index: 1;
 }
 
 .outerRound {
+    /* display: none; */
     width: 300px;
     height: 300px;
     border-radius: 300px;
     background: linear-gradient(#999696, #dbdbe2);
-    ;
     border: 4px solid rgba(37, 36, 35, 0.847);
     position: relative;
+    z-index: 1;
 }
 
 .digitsContainer {
     width: 300px;
     height: 300px;
+    border-radius: 300px;
     position: relative;
     font-weight: 800;
     font-size: 24pt;
@@ -212,6 +217,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* z-index: -11; */
 }
 
 .controlButtons>div {
@@ -224,6 +230,7 @@
     transform-origin: center;
     position: absolute;
     display: flex;
+    /* background-color: red; */
 }
 
 .controlButtons button {
@@ -233,46 +240,52 @@
     border-radius: 10px;
     font-weight: 800;
     box-shadow: 8px 4px 4px #595959bb;
+    /* z-index: 4; */
 }
 
 .buttonHPlus {
-    margin-top: -116px;
-    margin-left: 0px;
-    transform: rotateZ(33deg);
+    margin-top: -100px;
+    margin-left: -360px;
+    transform: rotateZ(28deg);
 }
 
 .buttonHMinus {
-    margin-top: 80px;
-    margin-left: 0px;
-    transform: rotateZ(-33deg);
+    margin-top: 60px;
+    margin-left: -360px;
+    transform: rotateZ(-28deg);
 }
 
 .buttonMPlus {
-    margin-top: -116px;
-    margin-left: -40px;
-    transform: rotateZ(-33deg);
+    margin-top: -100px;
+    margin-left: -28px;
+    transform: rotateZ(-28deg);
+}
+
+.buttonMPlus > button, .buttonMMinus > button {
+    text-align: end;
 }
 
 .buttonMMinus {
-    margin-top: 80px;
-    margin-left: -40px;
-    transform: rotateZ(33deg);
+    margin-top: 60px;
+    margin-left: -30px;
+    transform: rotateZ(28deg);
 }
 
 .buttonSet {
     margin-top: -20px;
-    margin-left: -8px;
+    margin-left: -4px;
 }
 
 .clockBody {
     padding: 0px;
     border: 4px solid rgba(37, 36, 35, 0.847);
     border-radius: 600px;
-    height: 330px;
-    width: 330px;
+    height: 340px;
+    width: 340px;
     background: linear-gradient(rgb(184, 177, 177) 0%, rgb(90, 88, 85) 10%, rgb(109, 104, 96) 30%, rgb(86, 86, 84) 50%, rgb(59, 59, 54) 70%, rgb(52, 53, 52) 90%, rgb(58, 60, 58) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 8px 4px 4px #595959bb;
+    /* z-index: 1; */
 }

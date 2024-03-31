@@ -2,34 +2,26 @@ import { useEffect, useState } from 'react';
 import classes from './analogue-clock.module.css';
 import Dial from './dial';
 import useClock from '../../logic/useClock'
+import LongPressButton from '../button-long-press';
 
 export default function AnalogueClock() {
 
     const clockFunctions = useClock();
-    const { secondsCount, setSecondsCount,
-        minutesCount, setMinutesCount,
-        hoursCount, setHoursCount,
-        clockRunning, setClockRunning,
-        runTime,
+    const { secondsCount,
+        minutesCount,
+        hoursCount,
+        clockRunning,
         addHours,
         substractHours,
         addMinutes,
         substractMinutes,
-        setClock,
-        alertMessage } = clockFunctions;
+        setClock } = clockFunctions;
 
-
+    // console.log(clockRunning)
     return (
         <div className={classes.mainContainer}>
 
-            <div className={classes.controlButtons}>
-                <div className={classes.buttonHPlus}>
-                    <button style={{ textAlign: "start" }} onClick={clockRunning ? alertMessage : addHours}>H+</button>
-                </div>
-                <div className={classes.buttonHMinus}>
-                    <button style={{ textAlign: "start" }} onClick={clockRunning ? alertMessage : substractHours}>H-</button>
-                </div>
-            </div>
+
             <div className={classes.clockBody}>
                 <div className={classes.outerRound}>
 
@@ -57,11 +49,19 @@ export default function AnalogueClock() {
                 </div>
             </div>
             <div className={classes.controlButtons}>
+                <div className={classes.buttonHPlus}>
+                    <LongPressButton buttonText={'H+'} clockModifier={addHours} isClockRunning={clockRunning} />
+                </div>
+                <div className={classes.buttonHMinus}>
+                    <LongPressButton buttonText={'H-'} clockModifier={substractHours} isClockRunning={clockRunning} />
+                </div>
+            </div>
+            <div className={classes.controlButtons}>
                 <div className={classes.buttonMPlus}>
-                    <button style={{ textAlign: "end" }} onClick={clockRunning ? alertMessage : addMinutes}>M+</button>
+                    <LongPressButton buttonText={'M+'} clockModifier={addMinutes} isClockRunning={clockRunning} />
                 </div>
                 <div className={classes.buttonMMinus}>
-                    <button style={{ textAlign: "end" }} onClick={clockRunning ? alertMessage : substractMinutes}>M-</button>
+                    <LongPressButton buttonText={'M-'} clockModifier={substractMinutes} isClockRunning={clockRunning} />
                 </div>
                 <div className={classes.buttonSet}>
                     <button onClick={setClock}>SET</button>
