@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useClock from "../../logic/useClock";
 
 
-export default function LongPressButton({ buttonText, clockModifier, isClockRunning }) {
+export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation }) {
 
     const [longPress, setLongPress] = useState(false);
     const clockFunctions = useClock();
@@ -11,7 +11,8 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     function mouseDownHandle() {
         console.log("down")
         if (isClockRunning) {
-            alertMessage();
+            setShowWarning(true);
+            setWarningOperation({ operation: buttonText[1], entity: buttonText[0] })
         }
         else {
             setLongPress(true);
@@ -37,8 +38,6 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     }, [longPress])
 
     return (
-        <button onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}
-        // onClick={clockRunning ? alertMessage : substractHours}
-        >{buttonText}</button>
+        <button onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}>{buttonText}</button>
     )
 }

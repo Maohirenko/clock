@@ -3,13 +3,22 @@ import classes from './analogue-clock.module.css';
 import Dial from './dial';
 import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
+import ModalWarning from '../modal';
 
-export default function AnalogueClock() {
+export default function AnalogueClock({minIncoming = 0, hourIncoming = 0}) {
+
+    useEffect(() => {
+        setHoursCount(hourIncoming);
+        setMinutesCount(minIncoming);
+    }, []);
+
+    const [showWarning, setShowWarning] = useState(false);
+    const [warningOperation, setWarningOperation] = useState(null);
 
     const clockFunctions = useClock();
     const { secondsCount,
-        minutesCount,
-        hoursCount,
+        minutesCount, setMinutesCount,
+        hoursCount, setHoursCount,
         clockRunning,
         addHours,
         substractHours,
@@ -18,6 +27,9 @@ export default function AnalogueClock() {
         setClock } = clockFunctions;
 
     // console.log(clockRunning)
+    function closeModal() {
+        setShowWarning(false);
+    }
     return (
         <div className={classes.mainContainer}>
 
@@ -50,23 +62,28 @@ export default function AnalogueClock() {
             </div>
             <div className={classes.controlButtons}>
                 <div className={classes.buttonHPlus}>
-                    <LongPressButton buttonText={'H+'} clockModifier={addHours} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} />
                 </div>
                 <div className={classes.buttonHMinus}>
-                    <LongPressButton buttonText={'H-'} clockModifier={substractHours} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={substractHours} isClockRunning={clockRunning} />
                 </div>
             </div>
             <div className={classes.controlButtons}>
                 <div className={classes.buttonMPlus}>
-                    <LongPressButton buttonText={'M+'} clockModifier={addMinutes} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={addMinutes} isClockRunning={clockRunning} />
                 </div>
                 <div className={classes.buttonMMinus}>
-                    <LongPressButton buttonText={'M-'} clockModifier={substractMinutes} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={substractMinutes} isClockRunning={clockRunning} />
                 </div>
                 <div className={classes.buttonSet}>
                     <button onClick={setClock}>SET</button>
                 </div>
             </div>
+            {
+                showWarning ? 
+                <ModalWarning onClose={closeModal} warningOperation={warningOperation}/>
+                : null
+            }
         </div>
     )
 }

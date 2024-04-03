@@ -7,7 +7,7 @@ export default function useClock() {
     const [secondsCount, setSecondsCount] = useState(55);
     const [minutesCount, setMinutesCount] = useState(29);
     const [hoursCount, setHoursCount] = useState(14);
-    const [clockRunning, setClockRunning] = useState(true);
+    const [clockRunning, setClockRunning] = useState(false);
 
 
     useEffect(() => {

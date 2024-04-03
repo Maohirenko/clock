@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import DigitComponent from "./digit-component";
 import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
@@ -6,13 +6,12 @@ import LongPressButton from "../button-long-press";
 
 
 
-
-export default function DigitalClock() {
+export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHoursDigital, setMinsDigital}) {
 
     const clockFunctions = useClock();
     const { secondsCount,
-        minutesCount,
-        hoursCount,
+        minutesCount, setMinutesCount,
+        hoursCount, setHoursCount,
         clockRunning,
         addHours,
         substractHours,
@@ -22,6 +21,19 @@ export default function DigitalClock() {
 
 
     const [tick, setTick] = useState(false);
+
+    useEffect(() => {
+        setHoursCount(hourIncoming);
+        setMinutesCount(minIncoming);
+    }, []);
+
+    useEffect(()=> {
+        setHoursDigital(hoursCount)
+    }, [hoursCount]);
+
+    useEffect(()=> {
+        setMinsDigital(minutesCount)
+    }, [minutesCount]);
 
 
     useEffect(() => {
