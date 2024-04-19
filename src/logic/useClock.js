@@ -4,12 +4,12 @@ import {useState, useEffect} from 'react';
 export default function useClock() {
 
 
-    const [secondsCount, setSecondsCount] = useState(55);
-    const [minutesCount, setMinutesCount] = useState(29);
-    const [hoursCount, setHoursCount] = useState(14);
+    const [secondsCount, setSecondsCount] = useState(0);
+    const [minutesCount, setMinutesCount] = useState(0);
+    const [hoursCount, setHoursCount] = useState(0);
     const [clockRunning, setClockRunning] = useState(false);
 
-
+    // console.log(hoursCount)
     useEffect(() => {
         let clockItnerval;
         if (clockRunning) {
@@ -19,7 +19,7 @@ export default function useClock() {
             },1000)
         }
         else {
-
+            // clearInterval(clockItnerval);
         }
         return () => {
             clearInterval(clockItnerval);
@@ -58,6 +58,7 @@ export default function useClock() {
     function setClock() {
         setClockRunning(!clockRunning);
         setSecondsCount(0);
+        console.log('setclockcalled')
     }
 
     function alertMessage() {

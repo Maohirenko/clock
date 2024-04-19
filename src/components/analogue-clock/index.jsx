@@ -5,13 +5,15 @@ import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
 import ModalWarning from '../modal';
 
-export default function AnalogueClock({minIncoming = 0, hourIncoming = 0}) {
+export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, isEnabled }) {
 
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
+        console.log('called useeffect')
     }, []);
 
+    const [firstClockLauch, setFirstClockLaunch] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
 
@@ -30,6 +32,40 @@ export default function AnalogueClock({minIncoming = 0, hourIncoming = 0}) {
     function closeModal() {
         setShowWarning(false);
     }
+
+    useEffect(() => {
+        setHoursAnalogue(hoursCount);
+    }, [hoursCount])
+
+
+    useEffect(() => {
+        setMinsAnalogue(minutesCount);
+    }, [minutesCount])
+
+    // useEffect(() => {
+    //     if (runClock) {
+    //         setClock();
+    //         // console.log('useeffect')
+    //     }
+    //     else {
+
+    //     }
+    // }, [runClock]);
+
+    useEffect(() => {
+        if (!firstClockLauch) {
+            if (runClock) {
+                setFirstClockLaunch(true);
+                setClock();
+            }
+        }
+        else {
+            setClock();
+        }
+    }, [runClock]);
+
+    console.log(hoursCount)
+
     return (
         <div className={classes.mainContainer}>
 
@@ -47,6 +83,9 @@ export default function AnalogueClock({minIncoming = 0, hourIncoming = 0}) {
                             <span style={{ transform: `rotateZ(${((hoursCount % 12 + minutesCount / 60 + secondsCount / 3600) * 30) + "deg"})` }} className={classes.hourNeedle}></span>
                             <span style={{ transform: `rotateZ(${(minutesCount + secondsCount / 60) * 6 + "deg"})` }} className={classes.minuteNeedle}></span>
                             <span style={{ transform: `rotateZ(${parseInt(secondsCount) * 6 + "deg"})` }} className={classes.secondNeedle}></span>
+                            {/* <span style={{ transform: `rotateZ(${((hoursCount % 12) * 30) + "deg"})` }} className={classes.hourNeedle}></span>
+                            <span style={{ transform: `rotateZ(${(minutesCount) * 6 + "deg"})` }} className={classes.minuteNeedle}></span>
+                            <span style={{ transform: `rotateZ(${parseInt(secondsCount) * 6 + "deg"})` }} className={classes.secondNeedle}></span> */}
                             <div className={classes.dot}></div>
                             {
                                 Array.from({ length: 12 }, ((_, i) => (
@@ -62,27 +101,29 @@ export default function AnalogueClock({minIncoming = 0, hourIncoming = 0}) {
             </div>
             <div className={classes.controlButtons}>
                 <div className={classes.buttonHPlus}>
-                    <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
                 <div className={classes.buttonHMinus}>
-                    <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={substractHours} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
             </div>
             <div className={classes.controlButtons}>
                 <div className={classes.buttonMPlus}>
-                    <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={addMinutes} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
                 <div className={classes.buttonMMinus}>
-                    <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation}  clockModifier={substractMinutes} isClockRunning={clockRunning} />
+                    <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
                 <div className={classes.buttonSet}>
-                    <button onClick={setClock}>SET</button>
+                    <button onClick={isEnabled ?  setClock : null}>
+                        <span>SET</span>
+                    </button>
                 </div>
             </div>
             {
-                showWarning ? 
-                <ModalWarning onClose={closeModal} warningOperation={warningOperation}/>
-                : null
+                showWarning ?
+                    <ModalWarning onClose={closeModal} warningOperation={warningOperation} />
+                    : null
             }
         </div>
     )

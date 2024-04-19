@@ -1,22 +1,25 @@
 import './App.css';
-import DigitalClock from './components/digital-clock';
-import AnalogueClock from './components/analogue-clock';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/header';
-import DigitalToAnalogueComponent from './pages/DigitalToAnalogue';
+import AnalogueAdjustmentComponent from './pages/AnalogueAdjustment/index';
+import DigitalAdjustmentComponent from './pages/DigitalAdjustment/index';
+import CurrentTimeComponent from './pages/CurrentTime/index';
 
 function App() {
   return (
     <div className='mainContainer'>
       <Header />
-      {/* <Routes>
-        <Route path='/d-a' element={<DigitalToAnalogue />} />
-        <Route path='/a-d' element={<AnalogueToDigital />} />
-        <Route path='time' element={<PresentTime />} />
-      </Routes> */}
-      {/* <DigitalClock />
-      <AnalogueClock /> */}
-      <DigitalToAnalogueComponent />
+      <Routes>
+        {/* <Route path='/'/> */}
+        <Route path="/">
+          <Route index element={<Navigate to="/digital" replace />} />
+          <Route path='/digital' element={<DigitalAdjustmentComponent />} />
+          <Route path='/analogue' element={<AnalogueAdjustmentComponent />} />
+          <Route path='/time' element={<CurrentTimeComponent/>} />
+        </Route>
+        {/* <Route path='/time' element={<PresentTime />} /> */}
+        {/* <Redirect to='/analogue'/> */}
+      </Routes>
     </div>
   );
 }

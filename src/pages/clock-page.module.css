@@ -3,4 +3,20 @@
     flex-direction: row;
     align-items: center;
      justify-content: space-around;
+     width: 100vw;
+     /* margin: 4px; */
+     /* background-color: rgb(46, 171, 199); */
+  }
+
+  .pageContainer {
+    background: linear-gradient(#37b6e4, #65b2ae);
+  }
+
+  @media screen and (max-width: 800px) {
+    
+    .clockPageContainer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
   }

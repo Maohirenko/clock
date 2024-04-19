@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.mainContainer {
+  background: linear-gradient(#37b6e4, #65b2ae);
+}
+
 
 @font-face {
   font-family: "Monserrat";

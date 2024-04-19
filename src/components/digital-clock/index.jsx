@@ -3,10 +3,16 @@ import DigitComponent from "./digit-component";
 import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
 import LongPressButton from "../button-long-press";
+import ModalWarning from '../modal';
 
 
 
-export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHoursDigital, setMinsDigital}) {
+export default function DigitalClock({minIncoming = 0, hourIncoming = 0, runClock, isEnabled}) {
+
+
+    const [firstClockLauch, setFirstClockLaunch] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
+    const [warningOperation, setWarningOperation] = useState(null);
 
     const clockFunctions = useClock();
     const { secondsCount,
@@ -25,15 +31,7 @@ export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHour
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-    }, []);
-
-    useEffect(()=> {
-        setHoursDigital(hoursCount)
-    }, [hoursCount]);
-
-    useEffect(()=> {
-        setMinsDigital(minutesCount)
-    }, [minutesCount]);
+    }, [hourIncoming, minIncoming]);
 
 
     useEffect(() => {
@@ -48,12 +46,29 @@ export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHour
         }
     }, [tick, clockRunning])
 
+    useEffect(() => {
+        if (!firstClockLauch) {
+            if (runClock) {
+                setFirstClockLaunch(true);
+                setClock();
+            }
+        }
+        else {
+            setClock();
+        }
+    }, [runClock]);
 
+    function closeModal() {
+        setShowWarning(false);
+    }
+
+    console.log(hourIncoming, minIncoming)
+    console.log(hoursCount, minutesCount)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>
 
-                <svg className={classes.svgAlign} height="500" width="500" xmlns="http://www.w3.org/2000/svg">
+                <svg className={classes.svgAlign} height="500" width="360" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="clockStandLeftGradient">
                             <stop className={classes.clockStndLeftGradStop1} offset="0%" />
@@ -85,37 +100,43 @@ export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHour
                             <stop className={classes.clockBezelGradStop2} offset="50%" />
                             <stop className={classes.clockBezelGradStop3} offset="100%" />
                         </linearGradient>
+                        <linearGradient id="clockBezelHorizontalGradient">
+                            <stop className={classes.clockBezelHorizontalGradStop1} offset="0%" />
+                            <stop className={classes.clockBezelHorizontalGradStop2} offset="50%" />
+                            <stop className={classes.clockBezelHorizontalGradStop3} offset="100%" />
+                        </linearGradient>
                     </defs>
 
-                    <path className={classes.clockFrontLeftFace} d="M 100 360 q -100 -200 0 -200" strokeWidth="10" />
-                    <path className={classes.clockFrontRightFace} d="M 400 360 q 100 -200 0 -200" strokeWidth="10" />
-                    <rect className={classes.clockFrontCenterFace} width="302" height="200" x="99" y="160" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="302" height="10" x="99" y="155" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="302" height="10" x="99" y="350" rx="0" ry="0" />
-                    {/* <path className={classes.clockBezel} d="M 90 355 l 320 0" stroke="yellow" strokeWidth="16" />
-                    <path className={classes.clockBezel} d="M 99 160 l 302 0" stroke="yellow" strokeWidth="10" /> */}
+                    <path className={classes.clockFrontLeftFace} d="M 50 300 q -90 -130 0 -140" strokeWidth="10" />
+                    <path className={classes.clockFrontRightFace} d="M 310 300 q 90 -130 0 -140" strokeWidth="10" />
+                    <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="164" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="262" height="10" x="49" y="155" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="299" rx="0" ry="0" /> 
+                    {/* {/* <path className={classes.clockBezel} d="M 90 355 l 320 0" stroke="yellow" strokeWidth="16" /> */}
+                    {/* <path className={classes.clockBezel} d="M 99 160 l 302 0" stroke="yellow" strokeWidth="10" /> */}
                     {/* <!-- Holder --> */}
-                    <path className={classes.clockStandLeft} d="M 101 360 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 99 360 q 140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandLeft} d="M 401 360 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 399 360 q 140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandLeft} d="M 76 310 q -140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandRight} d="M 74 310 q 140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandLeft} d="M 286 310 q -140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandRight} d="M 284 310 q 140 30 0 10" strokeWidth="4" />
                     Sorry, your browser does not support inline SVG.
                 </svg>
                 <div className={classes.controlButtons}>
                     <div>
-                        <LongPressButton buttonText={'H+'} clockModifier={addHours} isClockRunning={clockRunning} />
+                        <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <LongPressButton buttonText={'H-'} clockModifier={substractHours} isClockRunning={clockRunning} />
+                        <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
+                        {/* <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} /> */}
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M+'} clockModifier={addMinutes} isClockRunning={clockRunning} />
+                        <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M-'} clockModifier={substractMinutes} isClockRunning={clockRunning} />
+                        <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <button onClick={setClock}>SET</button>
+                        <button onClick={isEnabled ?  setClock : null}>SET</button>
                     </div>
                 </div>
                 {/* {
@@ -134,6 +155,11 @@ export default function DigitalClock({minIncoming = 0, hourIncoming = 0, setHour
                 </div>
 
             </div>
+            {
+                showWarning ?
+                    <ModalWarning onClose={closeModal} warningOperation={warningOperation} />
+                    : null
+            }
         </div>
     )
 }
