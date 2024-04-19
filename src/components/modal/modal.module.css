@@ -1,0 +1,34 @@
+.modalContainer {
+    /* background-color: red; */
+    background: linear-gradient(#999696, #dbdbe2);
+    width: 80vw;
+    height: 80vh;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 16px;
+    border-top-right-radius: 0;
+    /* margin: auto; */
+}
+
+.closeButtonContainer {
+    /* position: relative; */
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    margin-top: -2px;
+    right: 0;
+}
+
+.closeButton:hover {
+}
