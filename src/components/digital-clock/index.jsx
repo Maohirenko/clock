@@ -7,7 +7,7 @@ import ModalWarning from '../modal';
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled }) {
+export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent =  false }) {
 
 
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
@@ -63,7 +63,12 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
 
 
     function timeSetting() {
-        setAllowRun(true);
+        if(isIndependent) {
+            setClock();
+        }
+        else {
+            setAllowRun(true);
+        }
         console.log('timesetpressed')
     }
 
@@ -71,9 +76,9 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         setShowWarning(false);
     }
 
-    console.log(isEnabled)
-    console.log(hourIncoming, minIncoming)
-    console.log(hoursCount, minutesCount)
+    // console.log(isEnabled)
+    // console.log(hourIncoming, minIncoming)
+    // console.log(hoursCount, minutesCount)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>

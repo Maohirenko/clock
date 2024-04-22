@@ -7,7 +7,6 @@ import generateRandomTime from '../../logic/genrateRandomTime';
 
 export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
 
-
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
     const [minsAnalogue, setMinsAnalogue] = useState(0);
     const [hoursDigital, setHoursDigital] = useState(0);
@@ -57,21 +56,20 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         const randomTime = generateRandomTime();
         let initalVal = 0;
         console.log(randomTime);
-            if (anaglogueEnable) {
-                setStartHourDigital(randomTime.hours);
-                setStartMinuteDigital(randomTime.minutes);
-                setStartHourAnalogue(initalVal);
-                setStartMinuteAnalogue(initalVal);
-            }
-            else {
-                setStartHourAnalogue(randomTime.hours);
-                setStartMinuteAnalogue(randomTime.minutes);
-                setStartHourDigital(initalVal);
-                setStartMinuteDigital(initalVal);
-            }
+        if (anaglogueEnable) {
+            setStartHourDigital(randomTime.hours);
+            setStartMinuteDigital(randomTime.minutes);
+            setStartHourAnalogue(initalVal);
+            setStartMinuteAnalogue(initalVal);
+        }
+        else {
+            setStartHourAnalogue(randomTime.hours);
+            setStartMinuteAnalogue(randomTime.minutes);
+            setStartHourDigital(initalVal);
+            setStartMinuteDigital(initalVal);
+        }
     }
-    // console.log(hoursAnalogue, minsAnalogue)
-    console.log(digitalEnable, anaglogueEnable)
+
     return (
         <div className={classes.pageContainer}>
             {runClock ? null
