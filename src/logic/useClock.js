@@ -9,7 +9,11 @@ export default function useClock() {
     const [hoursCount, setHoursCount] = useState(0);
     const [clockRunning, setClockRunning] = useState(false);
 
-    // console.log(hoursCount)
+    useEffect(() => {
+        // setMinutesCount(initialMin);
+        // setHoursCount(initialHour);
+    }, []);
+
     useEffect(() => {
         let clockItnerval;
         if (clockRunning) {
@@ -19,7 +23,7 @@ export default function useClock() {
             },1000)
         }
         else {
-            // clearInterval(clockItnerval);
+            clearInterval(clockItnerval);
         }
         return () => {
             clearInterval(clockItnerval);

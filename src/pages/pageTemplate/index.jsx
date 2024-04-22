@@ -3,46 +3,77 @@ import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
-import {Link} from 'react-router-dom'
 
 
+export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
 
-export default function PageTemplateComponent() {
-    
 
-    const [hoursAnalogue, setHoursAnalogue] = useState(null);
-    const [minsAnalogue, setMinsAnalogue] = useState(null);
-    const [hoursDigital, setHoursDigital] = useState(null);
-    const [minsDigital, setMinsDigital] = useState(null);
+    const [hoursAnalogue, setHoursAnalogue] = useState(0);
+    const [minsAnalogue, setMinsAnalogue] = useState(0);
+    const [hoursDigital, setHoursDigital] = useState(0);
+    const [minsDigital, setMinsDigital] = useState(0);
     const [runClock, setRunClock] = useState(false);
+    const [allowRun, setAllowRun] = useState(false);
+    const [isAnalogueEnabled, setIsAnalogueEnabled] = useState(null);
+    const [isDigitalEnabled, setIsDigitalEnabled] = useState(null);
+    const [startHourAnalogue, setStartHourAnalogue] = useState(null);
+    const [startMinuteAnalogue, setStartMinuteAnalogue] = useState(null);
+    const [startHourDigital, setStartHourDigital] = useState(null);
+    const [startMinuteDigital, setStartMinuteDigital] = useState(null);
 
 
     useEffect(() => {
-        const randomTime = generateRandomTime();
-        setHoursDigital(randomTime.hours);
-        setMinsDigital(randomTime.minutes);
+        setRandomTime();
+        setIsAnalogueEnabled(anaglogueEnable);
+        setIsDigitalEnabled(digitalEnable);
 
     }, []);
 
     useEffect(() => {
-        if (hoursAnalogue % 12 === hoursDigital % 12 && minsAnalogue === minsDigital) {
-            console.log("works");
-            setRunClock(true);
+        if (!runClock) {
+            if (allowRun) {
+                if (hoursAnalogue % 12 === hoursDigital % 12 && minsAnalogue === minsDigital) {
+                    console.log(hoursAnalogue, minsAnalogue, hoursDigital, minsDigital)
+                    setRunClock(true);
+                    setIsAnalogueEnabled(false);
+                    setIsDigitalEnabled(false);
+                }
+            }
         }
-    }, [hoursAnalogue, minsAnalogue])
+        setAllowRun(false);
 
-    console.log("digit " + hoursDigital % 12 + "  " + minsDigital)
-    console.log("analogue " + minsAnalogue + "  " + hoursAnalogue)
+    }, [allowRun])
+
 
     function resetTask() {
         setRunClock(false);
-        const randomTime = generateRandomTime();
-        setHoursDigital(randomTime.hours);
-        setMinsDigital(randomTime.minutes);
+        setAllowRun(false);
+        setRandomTime();
+        setIsAnalogueEnabled(anaglogueEnable);
+        setIsDigitalEnabled(digitalEnable);
     }
 
+    const setRandomTime = () => {
+        const randomTime = generateRandomTime();
+        let initalVal = 0;
+        console.log(randomTime);
+            if (anaglogueEnable) {
+                setStartHourDigital(randomTime.hours);
+                setStartMinuteDigital(randomTime.minutes);
+                setStartHourAnalogue(initalVal);
+                setStartMinuteAnalogue(initalVal);
+            }
+            else {
+                setStartHourAnalogue(randomTime.hours);
+                setStartMinuteAnalogue(randomTime.minutes);
+                setStartHourDigital(initalVal);
+                setStartMinuteDigital(initalVal);
+            }
+    }
+    // console.log(hoursAnalogue, minsAnalogue)
+    console.log(digitalEnable, anaglogueEnable)
     return (
-        <div>
+        <div className={classes.pageContainer}>
             {runClock ? null
                 : <div>
                     <h2>Usage</h2>
@@ -50,22 +81,21 @@ export default function PageTemplateComponent() {
                 </div>}
             <div className={classes.clockPageContainer}>
                 {
-                    hoursAnalogue !== null && minsAnalogue !== null ?
-                        <AnalogueClock hourIncoming={6} minIncoming={13} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} isEnabled={true} />
+                    hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
+                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} />
                         : null
                 }
                 {
-                    hoursDigital !== null && minsDigital !== null ?
-                        <DigitalClock hourIncoming={hoursDigital} minIncoming={minsDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} isEnabled={false} />
+                    hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
+                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} />
                         : null
                 }
-            {
-                runClock ? 
-                    // <Link to={'/d-a'}>Next training</Link>
-                    <button onClick={resetTask}>Next training</button>
-                : null
-            }
             </div>
+            {
+                runClock ?
+                    <button className={classes.resetButton} onClick={resetTask}>Next training</button>
+                    : null
+            }
         </div>
     )
 }

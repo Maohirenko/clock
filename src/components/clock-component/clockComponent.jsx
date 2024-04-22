@@ -7,7 +7,7 @@ import ModalWarning from '../modal';
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled }) {
+export default function DigitalClock({minIncoming = 0, hourIncoming = 0, runClock, isEnabled}) {
 
 
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
@@ -31,19 +31,20 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        console.log('called useeffect')
-    }, [minIncoming, hourIncoming]);
-
-    useEffect(() => {
-        setHoursDigital(hoursCount);
-    }, [hoursCount])
+    }, [hourIncoming, minIncoming]);
 
 
     useEffect(() => {
-        setMinsDigital(minutesCount);
-    }, [minutesCount])
-
-
+        let tickItnerval;
+        if (clockRunning) {
+            tickItnerval = setInterval(function () {
+                setTick(!tick)
+            }, 500)
+        }
+        return () => {
+            clearInterval(tickItnerval);
+        }
+    }, [tick, clockRunning])
 
     useEffect(() => {
         if (!firstClockLauch) {
@@ -55,25 +56,15 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         else {
             setClock();
         }
-        if(!runClock && isEnabled) {
-            setHoursCount(0);
-            setMinutesCount(0);
-        }
     }, [runClock]);
-
-
-    function timeSetting() {
-        setAllowRun(true);
-        console.log('timesetpressed')
-    }
 
     function closeModal() {
         setShowWarning(false);
     }
 
     console.log(isEnabled)
-    console.log(hourIncoming, minIncoming)
-    console.log(hoursCount, minutesCount)
+    // console.log(hourIncoming, minIncoming)
+    // console.log(hoursCount, minutesCount)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>
@@ -121,7 +112,7 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                     <path className={classes.clockFrontRightFace} d="M 310 300 q 90 -130 0 -140" strokeWidth="10" />
                     <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="164" rx="0" ry="0" />
                     <rect className={classes.clockFrontCenterFace} width="262" height="10" x="49" y="155" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="299" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="299" rx="0" ry="0" /> 
                     {/* {/* <path className={classes.clockBezel} d="M 90 355 l 320 0" stroke="yellow" strokeWidth="16" /> */}
                     {/* <path className={classes.clockBezel} d="M 99 160 l 302 0" stroke="yellow" strokeWidth="10" /> */}
                     {/* <!-- Holder --> */}
@@ -133,20 +124,20 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                 </svg>
                 <div className={classes.controlButtons}>
                     <div>
-                        <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                         {/* <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} /> */}
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled}/>
                     </div>
                     <div>
-                        <button onClick={isEnabled ? timeSetting : null}>SET</button>
+                        <button onClick={isEnabled ?  setClock : null}>SET</button>
                     </div>
                 </div>
                 {/* {

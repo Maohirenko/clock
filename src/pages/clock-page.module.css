@@ -4,12 +4,32 @@
     align-items: center;
      justify-content: space-around;
      width: 100vw;
+     position: relative;
      /* margin: 4px; */
      /* background-color: rgb(46, 171, 199); */
   }
 
   .pageContainer {
     background: linear-gradient(#37b6e4, #65b2ae);
+  }
+
+  .resetButton {
+    position: absolute;
+    background: linear-gradient(#b1b5ab, #5f605e);
+    border-radius: 16px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 30vw;
+    height: 10vh;
+    z-index: 5;
+    margin: auto;
+  }
+
+  .resetButton:hover {
+    background: linear-gradient(rgb(77, 79, 73), #5f605e);
+    border-color: crimson;
   }
 
   @media screen and (max-width: 800px) {
