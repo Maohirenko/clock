@@ -7,12 +7,14 @@ import ModalWarning from '../modal';
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent =  false }) {
+export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false }) {
 
-
+    let tickInterval;
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
+    const [isRunningIndependently, setIsRunningIndependently] = useState(null)
+    const [isFirstIndependentLaunch, setIsFirstIndependentLaunch] = useState(false);
 
     const clockFunctions = useClock();
     const { secondsCount,
@@ -29,9 +31,34 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
     const [tick, setTick] = useState(false);
 
     useEffect(() => {
+
+        if(isIndependent) {
+            setIsRunningIndependently(true);
+        }
+
+        if (runClock) {
+            tickInterval = setInterval(function () {
+                setTick(prevTick => !prevTick);
+            }, 500)
+        }
+        else {
+
+            clearInterval(tickInterval);
+            setTick(false);
+
+        }
+        return () => {
+            clearInterval(tickInterval);
+            setTick(false);
+        }
+    }, [runClock])
+
+
+
+    useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        console.log('called useeffect')
+        // console.log('called useeffect')
     }, [minIncoming, hourIncoming]);
 
     useEffect(() => {
@@ -55,28 +82,55 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         else {
             setClock();
         }
-        if(!runClock && isEnabled) {
+        if (!runClock && isEnabled) {
             setHoursCount(0);
             setMinutesCount(0);
         }
     }, [runClock]);
 
+    useEffect(() => {
+
+        if (isIndependent) {
+            if (isRunningIndependently === true) {
+                setClock();
+                // setIsRunningIndependently(true)
+                // setIsFirstIndependentLaunch(true);
+                tickInterval = setInterval(function () {
+                    setTick(prevTick => !prevTick);
+                }, 500)
+            }
+            else if (isRunningIndependently === false) {
+
+                clearInterval(tickInterval);
+                setTick(false);
+                setClock();
+
+            }
+        }
+        return () => {
+            clearInterval(tickInterval);
+            setTick(false);
+        }
+    }, [isRunningIndependently])
+
 
     function timeSetting() {
-        if(isIndependent) {
-            setClock();
+        if (isIndependent) {
+            // setClock();
+            setIsRunningIndependently(prev => !prev);
         }
         else {
             setAllowRun(true);
         }
-        console.log('timesetpressed')
+        // console.log('timesetpressed')
     }
 
     function closeModal() {
         setShowWarning(false);
     }
 
-    // console.log(isEnabled)
+    // console.log(runClock)
+    console.log(isRunningIndependently)
     // console.log(hourIncoming, minIncoming)
     // console.log(hoursCount, minutesCount)
     return (

@@ -32,7 +32,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         if (!runClock) {
             if (allowRun) {
                 if (hoursAnalogue % 12 === hoursDigital % 12 && minsAnalogue === minsDigital) {
-                    console.log(hoursAnalogue, minsAnalogue, hoursDigital, minsDigital)
+                    // console.log(hoursAnalogue, minsAnalogue, hoursDigital, minsDigital)
                     setRunClock(true);
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
@@ -55,7 +55,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const setRandomTime = () => {
         const randomTime = generateRandomTime();
         let initalVal = 0;
-        console.log(randomTime);
+        // console.log(randomTime);
         if (anaglogueEnable) {
             setStartHourDigital(randomTime.hours);
             setStartMinuteDigital(randomTime.minutes);
@@ -75,7 +75,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             {runClock ? null
                 : <div>
                     <h2>Usage</h2>
-                    <p>You have to syncronize <b>Analogue</b> with digital via adding or substracting hours and minutes untill time on analogue clock won't be the same as on digital</p>
+                    <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}</p>
                 </div>}
             <div className={classes.clockPageContainer}>
                 {

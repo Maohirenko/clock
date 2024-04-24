@@ -35,17 +35,17 @@ export default function useClock() {
     }
 
     function addHours() {
-        console.log("h add called")
+        // console.log("h add called")
         setHoursCount((prev) => prev >= 23 ? prev = 0 : prev + 1)
     }
 
     function substractHours() {
-        console.log("h sub called")
+        // console.log("h sub called")
         setHoursCount((prev) => prev <= 0 ? prev = 23 : prev - 1)
     }
 
     function addMinutes() {
-        console.log("min add called")
+        // console.log("min add called")
         if (clockRunning) {
             setMinutesCount((prev) => prev >= 59 ? (addHours(), prev = 0) : prev + 1)
         }
@@ -55,14 +55,14 @@ export default function useClock() {
     }
 
     function substractMinutes() {
-        console.log("min sub called")
+        // console.log("min sub called")
         setMinutesCount((prev) => prev <= 0 ? prev = 59 : prev - 1)
     }
 
     function setClock() {
         setClockRunning(!clockRunning);
         setSecondsCount(0);
-        console.log('setclockcalled')
+        // console.log('setclockcalled')
     }
 
     function alertMessage() {

@@ -5,12 +5,12 @@ import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
 import ModalWarning from '../modal';
 
-export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled }) {
+export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent =  false }) {
 
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        console.log('called useeffect')
+        // console.log('called useeffect')
     }, [minIncoming, hourIncoming]);
 
     useEffect(() => {
@@ -61,12 +61,17 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
 
 
     function timeSetting() {
-        setAllowRun(true);
-        console.log('timesetpressed')
+        if(isIndependent) {
+            setClock();
+        }
+        else {
+            setAllowRun(true);
+        }
+        // console.log('timesetpressed')
     }
 
-    console.log(hoursCount, minutesCount)
-    console.log(isEnabled)
+    // console.log(hoursCount, minutesCount)
+    // console.log(isEnabled)
 
     return (
         <div className={classes.mainContainer}>
