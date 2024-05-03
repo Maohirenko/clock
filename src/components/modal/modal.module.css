@@ -1,21 +1,23 @@
 .modalContainer {
-    /* background-color: red; */
+    background-color: red;
     background: linear-gradient(#999696, #dbdbe2);
-    width: 80vw;
-    height: 80vh;
+    width: 60vw;
+    height: 60vh;
     position: absolute;
     z-index: 3;
-    top: 0;
-    bottom: 0;
+    /* top: 0; */
+    /* bottom: 0; */
     left: 0;
     right: 0;
     margin: auto;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid;
     border-radius: 16px;
-    border-top-right-radius: 0;
+    border-top-right-radius: 5px;
+    /* border-top-right-radius: 0; */
     /* margin: auto; */
 }
 
@@ -31,4 +33,12 @@
 }
 
 .closeButton:hover {
+}
+
+
+@media screen and (max-width: 800px) {
+    .modalContainer {
+        width: 90vw;
+        /* top: 100%; */
+    }
 }

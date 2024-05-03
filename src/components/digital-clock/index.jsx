@@ -3,16 +3,18 @@ import DigitComponent from "./digit-component";
 import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
 import LongPressButton from "../button-long-press";
-import ModalWarning from '../modal';
+import ModalMessage from '../modal';
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false }) {
+export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false
+    , showWarning, setShowWarning, warningOperation, setWarningOperation
+ }) {
 
     let tickInterval;
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
-    const [showWarning, setShowWarning] = useState(false);
-    const [warningOperation, setWarningOperation] = useState(null);
+    // const [showWarning, setShowWarning] = useState(false);
+    // const [warningOperation, setWarningOperation] = useState(null);
     const [isRunningIndependently, setIsRunningIndependently] = useState(null)
     const [isFirstIndependentLaunch, setIsFirstIndependentLaunch] = useState(false);
 
@@ -137,7 +139,7 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>
 
-                <svg className={classes.svgAlign} height="500" width="360" xmlns="http://www.w3.org/2000/svg">
+                <svg className={classes.svgAlign} height="250" width="360" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="clockStandLeftGradient">
                             <stop className={classes.clockStndLeftGradStop1} offset="0%" />
@@ -176,18 +178,18 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                         </linearGradient>
                     </defs>
 
-                    <path className={classes.clockFrontLeftFace} d="M 50 300 q -90 -130 0 -140" strokeWidth="10" />
-                    <path className={classes.clockFrontRightFace} d="M 310 300 q 90 -130 0 -140" strokeWidth="10" />
-                    <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="164" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="262" height="10" x="49" y="155" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="299" rx="0" ry="0" />
+                    <path className={classes.clockFrontLeftFace} d="M 50 180 q -90 -130 0 -140" strokeWidth="10" />
+                    <path className={classes.clockFrontRightFace} d="M 310 180 q 90 -130 0 -140" strokeWidth="10" />
+                    <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="44" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="262" height="10" x="49" y="35" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="179" rx="0" ry="0" />
                     {/* {/* <path className={classes.clockBezel} d="M 90 355 l 320 0" stroke="yellow" strokeWidth="16" /> */}
                     {/* <path className={classes.clockBezel} d="M 99 160 l 302 0" stroke="yellow" strokeWidth="10" /> */}
                     {/* <!-- Holder --> */}
-                    <path className={classes.clockStandLeft} d="M 76 310 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 74 310 q 140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandLeft} d="M 286 310 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 284 310 q 140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandLeft} d="M 76 190 q -140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandRight} d="M 74 190 q 140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandLeft} d="M 286 190 q -140 30 0 10" strokeWidth="4" />
+                    <path className={classes.clockStandRight} d="M 284 190 q 140 30 0 10" strokeWidth="4" />
                     Sorry, your browser does not support inline SVG.
                 </svg>
                 <div className={classes.controlButtons}>
@@ -224,11 +226,11 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                 </div>
 
             </div>
-            {
+            {/* {
                 showWarning ?
-                    <ModalWarning onClose={closeModal} warningOperation={warningOperation} />
+                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
-            }
+            } */}
         </div>
     )
 }

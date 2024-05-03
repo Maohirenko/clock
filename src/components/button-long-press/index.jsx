@@ -8,7 +8,9 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     function mouseDownHandle() {
         if (isClockRunning) {
             setShowWarning(true);
-            setWarningOperation({ operation: buttonText[1], entity: buttonText[0] })
+            let operation = buttonText[1] == '-' ? 'substract' : 'add';
+            let entity = buttonText[0] == 'M' ? 'minutes' : 'hours';
+            setWarningOperation(`To ${operation} ${entity} you need to stop a clock by pressing 'SET' button!`);
         }
         else {
             setLongPress(true);

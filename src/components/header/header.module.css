@@ -3,20 +3,24 @@
     /* margin: 8px; */
     padding: 4px;
     border-radius: 8px;
+    text-align: center;
     /* position:fixed; */
     /* background-color: red; */
     /* justify-content:flex-start; */
-    align-items: center;
+    /* align-items: center; */
     grid-template-columns: 50% 50%;
-    text-align: center;
+    /* text-align: center; */
     /* background: linear-gradient(#4c5457, #6e6f6f); */
-    background: linear-gradient(#b1b5ab, #5f605e);
+    /* background: linear-gradient(#b1b5ab, #5f605e); */
+    /* height: 10vh; */
 }
 
 .navLinks {
     display: flex;
     /* background-color: red; */
     justify-content: space-around;
+    /* align-content: center; */
+    align-items: center;
     /* background-color: rebeccapurple; */
 }
 
@@ -24,20 +28,30 @@
     text-decoration: none;
     background-color:aqua;
     border-radius: 12px;
-    padding: 2px 12px;
+    padding: 0px 12px;
     border-color: black;
     border: 1px solid;
-    text-align: center;
+    color: black;
+    background: linear-gradient(#b1b5ab, #5f605e);
+    /* text-align: center; */
+    /* line-height: 24px; */
+    height: 48px;
+    /* text-align: center; */
+        line-height: 16px;
 }
 
 .activeLink {
     text-decoration: none;
     background-color:aqua;
     border-radius: 12px;
-    padding: 2px 12px;
-    border-color: black;
-    border: 4px solid;
-    text-align: center;
+    padding: 0px 12px;
+    color: yellow;
+    border: 2px solid;
+    height: 48px;
+    line-height: 16px;
+    background: linear-gradient(#b1b5ab, #5f605e);
+    /* text-align: center; */
+    /* transform: scale(1.1); */
 }
 
 .link:hover {
@@ -52,5 +66,13 @@
     .navLinks {
         flex-direction: column;
         gap: 8px;
+    }
+    .link, .activeLink {
+        /* width: 60vh; */
+        width: 80%;
+        height: 36px;
+        /* padding: 0; */
+        line-height: 4px;
+        /* text-align: center; */
     }
 }

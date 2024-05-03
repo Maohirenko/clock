@@ -3,14 +3,15 @@ import classes from './analogue-clock.module.css';
 import Dial from './dial';
 import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
-import ModalWarning from '../modal';
+import ModalMessage from '../modal';
 
-export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent =  false }) {
+export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent =  false,
+    showWarning, setShowWarning, warningOperation, setWarningOperation
+}) {
 
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        // console.log('called useeffect')
     }, [minIncoming, hourIncoming]);
 
     useEffect(() => {
@@ -31,8 +32,8 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
 
 
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
-    const [showWarning, setShowWarning] = useState(false);
-    const [warningOperation, setWarningOperation] = useState(null);
+    // const [showWarning, setShowWarning] = useState(false);
+    // const [warningOperation, setWarningOperation] = useState(null);
 
     const clockFunctions = useClock();
     const { secondsCount,
@@ -127,11 +128,11 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
                     </button>
                 </div>
             </div>
-            {
+            {/* {
                 showWarning ?
-                    <ModalWarning onClose={closeModal} warningOperation={warningOperation} />
+                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
-            }
+            } */}
         </div>
     )
 }

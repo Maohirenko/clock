@@ -3,6 +3,7 @@ import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
+import ModalMessage from "../../components/modal";
 
 
 export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
@@ -19,6 +20,9 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [startMinuteAnalogue, setStartMinuteAnalogue] = useState(null);
     const [startHourDigital, setStartHourDigital] = useState(null);
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
+    const [showMistakeMessage, setShowMistakeMessage] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
+    const [warningOperation, setWarningOperation] = useState(null);
 
 
     useEffect(() => {
@@ -37,13 +41,23 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
                 }
+                else {
+                    setShowMistakeMessage(true);
+                }
             }
         }
         setAllowRun(false);
 
     }, [allowRun])
 
+    function closeModal() {
+        setShowWarning(false);
+    }
 
+    function closeMistakeMessage() {
+        console.log('close called')
+        setShowMistakeMessage(false);
+    }
     function resetTask() {
         setRunClock(false);
         setAllowRun(false);
@@ -69,23 +83,38 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             setStartMinuteDigital(initalVal);
         }
     }
-
+    console.log(showMistakeMessage)
     return (
         <div className={classes.pageContainer}>
+            {showMistakeMessage ?
+                <ModalMessage onClose={closeMistakeMessage} messageText={"Your adjustment are wrong, try again"} />
+                : null
+            }
+                        {
+                showWarning ?
+                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
+                    : null
+            }
             {runClock ? null
-                : <div>
+                : <div className={classes.usageExplanation}>
                     <h2>Usage</h2>
-                    <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}</p>
+                    <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p>
                 </div>}
+
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
-                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} />
+                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled}
+                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                        />
                         : null
                 }
                 {
                     hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
-                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} />
+                <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled}
+                 showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                 />
+
                         : null
                 }
             </div>

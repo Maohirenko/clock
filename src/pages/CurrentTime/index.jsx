@@ -10,6 +10,7 @@ import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
+import ModalMessage from "../../components/modal";
 
 
 export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable }) {
@@ -26,6 +27,8 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
     const [startMinuteAnalogue, setStartMinuteAnalogue] = useState(null);
     const [startHourDigital, setStartHourDigital] = useState(null);
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
+    const [showWarning, setShowWarning] = useState(false);
+    const [warningOperation, setWarningOperation] = useState(null);
 
 
     useEffect(() => {
@@ -37,23 +40,38 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
         setRunClock(true);
     }, []);
 
+    function closeModal() {
+        setShowWarning(false);
+    }
+
 
     return (
         <div className={classes.pageContainer}>
-            {runClock ? null
-                : <div>
+                                    {
+                showWarning ?
+                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
+                    : null
+            }
+            {/* {runClock ? null */}
+                {/* :  */}
+                <div className={classes.usageExplanation}>
                     <h2>Usage</h2>
-                    <p>You have to syncronize <b>Analogue</b> with digital via adding or substracting hours and minutes untill time on analogue clock won't be the same as on digital</p>
-                </div>}
+                    <p>You can adust both clocks as you wish</p>
+                </div>
+                {/* } */}
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
-                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} isIndependent={true} />
+                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} isIndependent={true}
+                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                        />
                         : null
                 }
                 {
                     hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
-                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true} />
+                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true} 
+                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                        />
                         : null
                 }
             </div>
