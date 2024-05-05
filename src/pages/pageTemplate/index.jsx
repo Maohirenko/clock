@@ -4,6 +4,7 @@ import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
 import ModalMessage from "../../components/modal";
+import { Trans, useTranslation } from "react-i18next";
 
 
 export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
@@ -23,6 +24,8 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [showMistakeMessage, setShowMistakeMessage] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
+
+    const {t, i18n} = useTranslation();
 
 
     useEffect(() => {
@@ -87,7 +90,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     return (
         <div className={classes.pageContainer}>
             {showMistakeMessage ?
-                <ModalMessage onClose={closeMistakeMessage} messageText={"Your adjustment are wrong, try again"} />
+                <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
                 : null
             }
                         {
@@ -95,11 +98,20 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
             }
-            {runClock ? null
-                : <div className={classes.usageExplanation}>
-                    <h2>Usage</h2>
-                    <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p>
-                </div>}
+                        {/* // classes.usageExplanation */}
+            {/* {runClock ? null */}
+
+                {/* :  */}
+                <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>
+                    <h2>{t('usageTitle')}</h2>
+                    {/* <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p> */}
+                    <p>
+                        <Trans>
+                        {t('usageDescription', {toSync: anaglogueEnable ? t('analogueLabel') : t('digitalLabel'), setted: anaglogueEnable ? t('digitalLabel') : t('analogueLabel')})}
+                        </Trans>
+                        </p>
+                </div>
+                {/* } */}
 
             <div className={classes.clockPageContainer}>
                 {
@@ -120,7 +132,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             </div>
             {
                 runClock ?
-                    <button className={classes.resetButton} onClick={resetTask}>Next training</button>
+                    <button className={classes.resetButton} onClick={resetTask}>{t('nextTraining')}</button>
                     : null
             }
         </div>

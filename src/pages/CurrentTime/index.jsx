@@ -11,6 +11,7 @@ import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
 import ModalMessage from "../../components/modal";
+import { useTranslation } from "react-i18next";
 
 
 export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable }) {
@@ -29,6 +30,8 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
+
+    const { t } = useTranslation();
 
 
     useEffect(() => {
@@ -55,8 +58,8 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
             {/* {runClock ? null */}
                 {/* :  */}
                 <div className={classes.usageExplanation}>
-                    <h2>Usage</h2>
-                    <p>You can adust both clocks as you wish</p>
+                    <h2>{t('usageTitle')}</h2>
+                    <p>{t('freeUsageDescription')}</p>
                 </div>
                 {/* } */}
             <div className={classes.clockPageContainer}>

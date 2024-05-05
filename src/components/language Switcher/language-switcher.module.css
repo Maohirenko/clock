@@ -1,0 +1,46 @@
+.languagesButtons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* align-items: flex-start; */
+
+
+}
+
+.languagesButtons button {
+    /* font-size: 16pt; */
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 2px;
+    margin: 4px;
+    padding: 0 4px;
+    /* width: 30px; */
+    /* background: linear-gradient(#b1b5ab, #5f605e); */
+    /* vertical-align: middle; */
+
+}
+
+.nativeNameText {
+    font-size: 12pt;
+    line-height: 20pt;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* background-color: red; */
+}
+
+.languageEmoji {
+    font-size: 16pt;
+    /* text-align: left; */
+    float: left;
+}
+
+.languagesButtons:hover button {
+    width: 120px;
+    background-color: whitesmoke;
+}
+
+
+/* .othersLanguages {
+    visibility: hidden;
+} */

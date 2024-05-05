@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/Montserrat/Montserrat-VariableFont_wght.ttf';
 import { BrowserRouter } from 'react-router-dom';
+import LanguageState from './components/context';
+
+import './i18n';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <LanguageState>
+      <Suspense fallback={"loading"}>
       <App />
-    </BrowserRouter>
+      </Suspense>
+    </LanguageState>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 

@@ -4,8 +4,10 @@ import Header from './components/header';
 import AnalogueAdjustmentComponent from './pages/AnalogueAdjustment/index';
 import DigitalAdjustmentComponent from './pages/DigitalAdjustment/index';
 import CurrentTimeComponent from './pages/CurrentTime/index';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
   return (
     <div className='mainContainer'>
       <Header />
