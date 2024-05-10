@@ -5,22 +5,34 @@
     text-align: center;
     grid-template-columns: 2% 40% 58%;
     grid-template-rows: 1fr;
+    /* background-color: yellow; */
 }
 
 .appHeading {
+    grid-column: 2/3;
+    /* background-color: red; */
+    /* text-align: center; */   
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.appHeadingText {
     font-size: 20pt;
+    /* background-color: darkorange; */
 }
 
 .languageSwitch {
+    grid-column: 1/2;
     margin-top: auto;
     margin-bottom: auto;
     width: 40px;
     height: 40px;
+    /* background-color: aqua; */
 }
 
 .navLinks {
     display: flex;
     /* background-color: red; */
+    grid-column: 3/4;
     justify-content: space-around;
     /* align-content: center; */
     align-items: center;
@@ -74,13 +86,22 @@
 
 @media screen and (max-width: 800px) {
     .headerContainer {
-        /* grid-template-columns: 50px 1fr;
-        grid-template-rows: ; */
-        /* grid-template-rows:  1fr 1fr ;
-        grid-template-columns: 50px 1fr; */
+        grid-template-rows:  1fr 1fr ;
+        grid-template-columns: 50px 1fr;
+    }
+
+    .appHeading {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+    .languageSwitch {
+        grid-column: 1/2;
+        grid-row: 1/2;
     }
     .navLinks {
         flex-direction: column;
+        grid-column: 1/3;
+        grid-row: 2/3;
         gap: 8px;
     }
     .link, .activeLink {

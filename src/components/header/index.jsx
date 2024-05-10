@@ -22,7 +22,9 @@ export default function Header() {
                         <LanguageSwticherComponent />
                     </div>
                 </div>
-                <h1 className={classes.appHeading}>{t('headerTitle')}</h1>
+                <div className={classes.appHeading}>
+                <h1 className={classes.appHeadingText}>{t('headerTitle')}</h1>
+                </div>
             {/* </div> */}
             <div className={classes.navLinks}>
                 <Link className={`${pathname === '/analogue' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/analogue'}>
