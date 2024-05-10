@@ -5,14 +5,14 @@ export const GlobalContext = createContext(null);
 export default function LanguageState({ children }) {
 
     const [selectedLanguage, setSelectedLanguage] = useState('en');
-    const [isModalShown, setisModalShown] = useState(false);
+    const [isModalShown, setiSModalShown] = useState(false);
 
     return <GlobalContext.Provider
         value={{
             selectedLanguage,
             setSelectedLanguage,
             isModalShown, 
-            setisModalShown
+            setiSModalShown
         }}
     >{children}</GlobalContext.Provider>
 
