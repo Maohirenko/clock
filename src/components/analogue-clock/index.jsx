@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classes from './analogue-clock.module.css';
 import Dial from './dial';
 import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
-import ModalMessage from '../modal';
+import { GlobalContext } from '../context';
 
-export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent =  false,
-    showWarning, setShowWarning, warningOperation, setWarningOperation
+export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
 
     useEffect(() => {
@@ -24,7 +23,7 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
         else {
             setClock();
         }
-        if(!runClock && isEnabled) {
+        if (!runClock && isEnabled) {
             setHoursCount(0);
             setMinutesCount(0);
         }
@@ -32,8 +31,6 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
 
 
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
-    // const [showWarning, setShowWarning] = useState(false);
-    // const [warningOperation, setWarningOperation] = useState(null);
 
     const clockFunctions = useClock();
     const { secondsCount,
@@ -46,10 +43,7 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
         substractMinutes,
         setClock } = clockFunctions;
 
-    // console.log(clockRunning)
-    function closeModal() {
-        setShowWarning(false);
-    }
+    const { isModalShown } = useContext(GlobalContext)
 
     useEffect(() => {
         setHoursAnalogue(hoursCount);
@@ -62,17 +56,13 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
 
 
     function timeSetting() {
-        if(isIndependent) {
+        if (isIndependent) {
             setClock();
         }
         else {
             setAllowRun(true);
         }
-        // console.log('timesetpressed')
     }
-
-    // console.log(hoursCount, minutesCount)
-    // console.log(isEnabled)
 
     return (
         <div className={classes.mainContainer}>
@@ -123,16 +113,11 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
                     <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
                 <div className={classes.buttonSet}>
-                    <button onClick={isEnabled ?  timeSetting : null}>
+                    <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : null}>
                         <span>SET</span>
                     </button>
                 </div>
             </div>
-            {/* {
-                showWarning ?
-                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
-                    : null
-            } */}
         </div>
     )
 }

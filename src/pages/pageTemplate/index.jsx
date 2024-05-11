@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
@@ -25,8 +25,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
 
-    const {t, i18n} = useTranslation();
-
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         setRandomTime();
@@ -39,7 +38,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         if (!runClock) {
             if (allowRun) {
                 if (hoursAnalogue % 12 === hoursDigital % 12 && minsAnalogue === minsDigital) {
-                    // console.log(hoursAnalogue, minsAnalogue, hoursDigital, minsDigital)
                     setRunClock(true);
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
@@ -58,7 +56,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     }
 
     function closeMistakeMessage() {
-        console.log('close called')
         setShowMistakeMessage(false);
     }
     function resetTask() {
@@ -72,7 +69,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const setRandomTime = () => {
         const randomTime = generateRandomTime();
         let initalVal = 0;
-        // console.log(randomTime);
         if (anaglogueEnable) {
             setStartHourDigital(randomTime.hours);
             setStartMinuteDigital(randomTime.minutes);
@@ -86,46 +82,40 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             setStartMinuteDigital(initalVal);
         }
     }
-    console.log(showMistakeMessage)
     return (
         <div className={classes.pageContainer}>
             {showMistakeMessage ?
                 <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
                 : null
             }
-                        {
+            {
                 showWarning ?
                     <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
             }
-                        {/* // classes.usageExplanation */}
-            {/* {runClock ? null */}
-
-                {/* :  */}
-                <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>
-                    <h2>{t('usageTitle')}</h2>
-                    {/* <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p> */}
-                    <p>
-                        <Trans>
-                        {t('usageDescription', {toSync: anaglogueEnable ? t('analogueLabel') : t('digitalLabel'), setted: anaglogueEnable ? t('digitalLabel') : t('analogueLabel')})}
-                        </Trans>
-                        </p>
-                </div>
-                {/* } */}
+            <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>
+                <h2>{t('usageTitle')}</h2>
+                {/* <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p> */}
+                <p>
+                    <Trans>
+                        {t('usageDescription', { toSync: anaglogueEnable ? t('analogueLabel') : t('digitalLabel'), setted: anaglogueEnable ? t('digitalLabel') : t('analogueLabel') })}
+                    </Trans>
+                </p>
+            </div>
 
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
                         <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled}
-                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                            showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
                         : null
                 }
                 {
                     hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
-                <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled}
-                 showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
-                 />
+                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled}
+                            showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
+                        />
 
                         : null
                 }

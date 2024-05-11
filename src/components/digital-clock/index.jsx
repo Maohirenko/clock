@@ -4,19 +4,17 @@ import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
 import LongPressButton from "../button-long-press";
 import ModalMessage from '../modal';
+import { GlobalContext } from "../context";
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false
-    , showWarning, setShowWarning, warningOperation, setWarningOperation
- }) {
+
+export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
+}) {
 
     let tickInterval;
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
-    // const [showWarning, setShowWarning] = useState(false);
-    // const [warningOperation, setWarningOperation] = useState(null);
     const [isRunningIndependently, setIsRunningIndependently] = useState(null)
-    const [isFirstIndependentLaunch, setIsFirstIndependentLaunch] = useState(false);
 
     const clockFunctions = useClock();
     const { secondsCount,
@@ -29,12 +27,12 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         substractMinutes,
         setClock } = clockFunctions;
 
-
+    const { isModalShown } = useContext(GlobalContext);
     const [tick, setTick] = useState(false);
 
     useEffect(() => {
 
-        if(isIndependent) {
+        if (isIndependent) {
             setIsRunningIndependently(true);
         }
 
@@ -60,7 +58,6 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        // console.log('called useeffect')
     }, [minIncoming, hourIncoming]);
 
     useEffect(() => {
@@ -95,8 +92,6 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         if (isIndependent) {
             if (isRunningIndependently === true) {
                 setClock();
-                // setIsRunningIndependently(true)
-                // setIsFirstIndependentLaunch(true);
                 tickInterval = setInterval(function () {
                     setTick(prevTick => !prevTick);
                 }, 500)
@@ -118,23 +113,14 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
 
     function timeSetting() {
         if (isIndependent) {
-            // setClock();
             setIsRunningIndependently(prev => !prev);
         }
         else {
             setAllowRun(true);
         }
-        // console.log('timesetpressed')
     }
 
-    function closeModal() {
-        setShowWarning(false);
-    }
 
-    // console.log(runClock)
-    console.log(isRunningIndependently)
-    // console.log(hourIncoming, minIncoming)
-    // console.log(hoursCount, minutesCount)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>
@@ -198,7 +184,6 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                     </div>
                     <div>
                         <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
-                        {/* <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} /> */}
                     </div>
                     <div>
                         <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
@@ -207,12 +192,9 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                         <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                     </div>
                     <div>
-                        <button onClick={isEnabled ? timeSetting : null}>SET</button>
+                        <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : null}>SET</button>
                     </div>
                 </div>
-                {/* {
-                    time ? */}
-
 
                 <div className={classes.clockContainer}>
 
@@ -226,11 +208,6 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                 </div>
 
             </div>
-            {/* {
-                showWarning ?
-                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
-                    : null
-            } */}
         </div>
     )
 }

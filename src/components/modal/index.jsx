@@ -20,14 +20,10 @@ export default function ModalMessage({ messageText, onClose }) {
         }
     }, []);
 
-    console.log(isModalShown)
-
     return (
         <div className={classes.modalContainer}>
-            {/* <p>modal</p> */}
             <div className={classes.closeButtonContainer}></div>
             <div className={classes.closeButton} onClick={onClose}
-                // onMouseEnter={setCloseButtonHover(true)} onMouseLeave={setCloseButtonHover(false)} 
                 onMouseEnter={handleCloseButtonHover} onMouseLeave={handleCloseButtonHover}
             >
                 <FaRectangleXmark size={30} color={closeButtonHover ? 'red' : 'black'} />

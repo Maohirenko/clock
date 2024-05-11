@@ -6,7 +6,6 @@
 
 .languagesButtons button {
     background-color: transparent;
-    /* border: 1px solid whitesmoke;; */
     border: none;
     border-radius: 4px;
     padding: 2px;
@@ -28,17 +27,12 @@
     float: left;
 }
 
-.languagesButtons:hover {
-    
-}
-
 .languagesButtons:hover button {
     width: 120px;
     background-color: whitesmoke;
     border-color: black;
 }
 
-
-/* .othersLanguages {
-    visibility: hidden;
-} */
+.disabledButton {
+    pointer-events: none;
+}
