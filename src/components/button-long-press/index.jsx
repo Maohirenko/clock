@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { GlobalContext } from "../context";
 
@@ -10,7 +10,24 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     const { t } = useTranslation();
     const { isModalShown } = useContext(GlobalContext);
 
-    function mouseDownHandle() {
+    const ref = useRef();
+
+    useEffect(() => {
+        const buttonRef = ref.current;
+        buttonRef.addEventListener('mousedown', mouseDownHandle);
+        buttonRef.addEventListener('mouseup', mouseUpHandle);
+        buttonRef.addEventListener('touchstart', touchDownHandle);
+        buttonRef.addEventListener('touchend', touchUpHandle);
+        return () => {
+            buttonRef.removeEventListener('mousedown', mouseDownHandle);
+            buttonRef.removeEventListener('mouseup', mouseUpHandle);
+            buttonRef.removeEventListener('touchstart', touchDownHandle);
+            buttonRef.removeEventListener('touchend', touchUpHandle);
+        }
+    }, [])
+
+    function mouseDownHandle(event) {
+        event.preventDefault();
         if (isClockRunning) {
             setShowWarning(true);
             setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
@@ -24,7 +41,8 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         setLongClick(false)
     }
 
-    function touchDownHandle() {
+    function touchDownHandle(event) {
+        event.preventDefault();
         if (isClockRunning) {
             setShowWarning(true);
             setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
@@ -88,7 +106,9 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     return (
         <div>
             <button style={isModalShown ? { pointerEvents: "none" } : null}
-                onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle} onTouchStart={touchDownHandle} onTouchEnd={touchUpHandle}
+            ref={ref}
+                // onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}
+                //  onTouchStart={touchDownHandle} onTouchEnd={touchUpHandle}
             >{buttonText}</button>
         </div>
     )
