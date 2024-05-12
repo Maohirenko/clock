@@ -238,8 +238,10 @@
     background: linear-gradient(rgb(51, 50, 50) 0%, rgb(122, 121, 118) 10% 30%, rgb(36, 36, 34) 50% 70%, rgb(22, 23, 22) 90% 100%);
     /* width: 100%; */
     border-radius: 10px;
+    border: 1px solid black;
     font-weight: 600;
     box-shadow: 4px 2px 2px #595959bb;
+    cursor: pointer;
     /* text-align: end; */
     /* text-align:; */
     /* margin-left: auto; */

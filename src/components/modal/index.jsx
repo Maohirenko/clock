@@ -1,13 +1,16 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { FaRectangleXmark } from 'react-icons/fa6';
 import classes from './modal.module.css';
 import { GlobalContext } from '../context';
+import useOutsideClick from '../../logic/outsideClick';
 
 
 export default function ModalMessage({ messageText, onClose }) {
 
     const [closeButtonHover, setCloseButtonHover] = useState(false);
-    const { isModalShown, setiSModalShown } = useContext(GlobalContext)
+    const { setiSModalShown } = useContext(GlobalContext);
+    const ref = useRef();
+    useOutsideClick(ref, () => onClose());
 
     function handleCloseButtonHover() {
         setCloseButtonHover(!closeButtonHover)
@@ -21,7 +24,7 @@ export default function ModalMessage({ messageText, onClose }) {
     }, []);
 
     return (
-        <div className={classes.modalContainer}>
+        <div className={classes.modalContainer} ref={ref}>
             <div className={classes.closeButtonContainer}></div>
             <div className={classes.closeButton} onClick={onClose}
                 onMouseEnter={handleCloseButtonHover} onMouseLeave={handleCloseButtonHover}
@@ -33,7 +36,6 @@ export default function ModalMessage({ messageText, onClose }) {
                     <p>{messageText}</p>
                     : null
             }
-
         </div>
     )
 }

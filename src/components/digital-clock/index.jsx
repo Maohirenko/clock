@@ -172,11 +172,10 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
                     {/* {/* <path className={classes.clockBezel} d="M 90 355 l 320 0" stroke="yellow" strokeWidth="16" /> */}
                     {/* <path className={classes.clockBezel} d="M 99 160 l 302 0" stroke="yellow" strokeWidth="10" /> */}
                     {/* <!-- Holder --> */}
-                    <path className={classes.clockStandLeft} d="M 76 190 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 74 190 q 140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandLeft} d="M 286 190 q -140 30 0 10" strokeWidth="4" />
-                    <path className={classes.clockStandRight} d="M 284 190 q 140 30 0 10" strokeWidth="4" />
-                    Sorry, your browser does not support inline SVG.
+                    <path id="leftStand" className={classes.clockStandLeft} d="M 76 190 q -140 30 0 10" strokeWidth="4" />
+                    <path id="rightStand" className={classes.clockStandRight} d="M 74 190 q 140 30 0 10" strokeWidth="4" />
+                    <use href="#leftStand" x="210" fill="white" stroke="red" />
+                    <use href="#rightStand" x="210" fill="white" stroke="red" />
                 </svg>
                 <div className={classes.controlButtons}>
                     <div>

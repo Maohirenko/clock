@@ -18,6 +18,11 @@ export default function LanguageSwticherComponent() {
         setDisplayOtherLanguages(false);
     }
 
+    function languageButtonPress(lng) {
+        i18n.changeLanguage(lng);
+        unHoverCurrentLanguage();
+    }
+
     return (
         <div className={classes.languagesButtons}>
             <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
@@ -39,7 +44,7 @@ export default function LanguageSwticherComponent() {
                         displayOtherLanguages ? <div key={lng} className={classes.othersLanguages}>
                             {lng !== i18n.resolvedLanguage ? <button
                                 className={isModalShown ? classes.disabledButton : null}
-                                onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>
+                                onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
                                 <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
                                 <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
                             </button>

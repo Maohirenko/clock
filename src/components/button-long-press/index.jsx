@@ -5,7 +5,8 @@ import { GlobalContext } from "../context";
 
 export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation, isEnabledButton }) {
 
-    const [longPress, setLongPress] = useState(false);
+    const [longClick, setLongClick] = useState(false);
+    const [longTouch, setLongTouch] = useState(false);
     const { t } = useTranslation();
     const { isModalShown } = useContext(GlobalContext);
 
@@ -15,41 +16,79 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
             setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
         }
         else {
-            setLongPress(true);
+            setLongClick(true);
         }
     }
 
     function mouseUpHandle() {
-        setLongPress(false)
+        setLongClick(false)
+    }
+
+    function touchDownHandle() {
+        if (isClockRunning) {
+            setShowWarning(true);
+            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
+        }
+        else {
+            setLongTouch(true);
+        }
+    }
+
+    function touchUpHandle() {
+        setLongTouch(false)
     }
 
     useEffect(() => {
-        let longPressInterval;
+        let longClickInterval;
         if (isEnabledButton) {
-            if (longPress) {
+            if (longClick) {
                 clockModifier();
-                longPressInterval = setInterval(() => {
+                longClickInterval = setInterval(() => {
                     clockModifier();
-                }, 150)
+                }, 250)
             }
             else {
-                clearInterval(longPressInterval);
-                setLongPress(false);
+                clearInterval(longClickInterval);
+                setLongClick(false);
             }
         }
         else {
-            clearInterval(longPressInterval);
-            setLongPress(false);
+            clearInterval(longClickInterval);
+            setLongClick(false);
         }
         return () => {
-            clearInterval(longPressInterval);
+            clearInterval(longClickInterval);
         }
-    }, [longPress, isEnabledButton])
+    }, [longClick, isEnabledButton])
+
+
+    useEffect(() => {
+        let longTouchInterval;
+        if (isEnabledButton) {
+            if (longTouch) {
+                clockModifier();
+                longTouchInterval = setInterval(() => {
+                    clockModifier();
+                }, 500)
+            }
+            else {
+                clearInterval(longTouchInterval);
+                setLongTouch(false);
+            }
+        }
+        else {
+            clearInterval(longTouchInterval);
+            setLongTouch(false);
+        }
+        return () => {
+            clearInterval(longTouchInterval);
+        }
+    }, [longTouch, isEnabledButton])
 
     return (
         <div>
             <button style={isModalShown ? { pointerEvents: "none" } : null}
-                onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}
+                onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle} onTouchStart={touchDownHandle} onTouchEnd={touchUpHandle}
             >{buttonText}</button>
         </div>
     )
