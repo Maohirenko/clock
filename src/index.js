@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/Montserrat/Montserrat-VariableFont_wght.ttf';
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import LanguageState from './components/context';
 
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
+  <HelmetProvider>
     <LanguageState>
       <Suspense fallback={"loading"}>
       <App />
       </Suspense>
     </LanguageState>
+    </HelmetProvider>
   </BrowserRouter>
   // </React.StrictMode>
 );

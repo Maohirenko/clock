@@ -17,6 +17,10 @@
     justify-content: center;
     /* margin-top: -8px; */
     align-items: center;
+        user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -194,11 +198,12 @@
 }
 
 .controlButtons button {
-    width: 40px;
+    width: 50px;
     text-align: center;
+
     border-radius: 20px;
     border: 2px solid rgba(87, 84, 84, 0.547);
-    background: linear-gradient(60deg, #818581, #bfc2bc, #efefe0);
+    /* background: linear-gradient(60deg, #818581, #bfc2bc, #efefe0); */
     background-clip: text;
     -webkit-background-clip: text;
     color: rgb(0 0 0 / 20%);
@@ -206,7 +211,7 @@
 }
 
 .controlButtons span {
-    width: 40px;
+    width: 30px;
     text-align: center;
     border-radius: 20px;
     background: linear-gradient(60deg, #858985, #525450, #2a2a29);

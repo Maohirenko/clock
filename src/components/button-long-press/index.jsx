@@ -18,13 +18,19 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         buttonRef.addEventListener('mouseup', mouseUpHandle);
         buttonRef.addEventListener('touchstart', touchDownHandle);
         buttonRef.addEventListener('touchend', touchUpHandle);
+        buttonRef.addEventListener('mouseleave', endfocus);
         return () => {
             buttonRef.removeEventListener('mousedown', mouseDownHandle);
             buttonRef.removeEventListener('mouseup', mouseUpHandle);
             buttonRef.removeEventListener('touchstart', touchDownHandle);
             buttonRef.removeEventListener('touchend', touchUpHandle);
+            buttonRef.removeEventListener('mouseleave', endfocus);
         }
-    }, [])
+    }, []);
+
+    function endfocus() {
+        setLongClick(false);
+    }
 
     function mouseDownHandle(event) {
         event.preventDefault();
@@ -107,6 +113,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         <div>
             <button style={isModalShown ? { pointerEvents: "none" } : null}
             ref={ref}
+            // onClick={(e)=>console.log(e)}
                 // onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}
                 //  onTouchStart={touchDownHandle} onTouchEnd={touchUpHandle}
             >{buttonText}</button>

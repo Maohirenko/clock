@@ -12,6 +12,7 @@ import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
 import ModalMessage from "../../components/modal";
 import { useTranslation } from "react-i18next";
+import SEO from "../../logic/SEO";
 
 
 export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable }) {
@@ -50,30 +51,37 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
 
     return (
         <div className={classes.pageContainer}>
-                                    {
+            <SEO
+                title={t('freeUseTitle')}
+                description={t('descriptionMeta')}
+                type="website"
+                name="Mykhailo Ohirenko"
+                keywords={t('keyWordsMeta')}
+            />
+            {
                 showWarning ?
                     <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
             }
             {/* {runClock ? null */}
-                {/* :  */}
-                <div className={classes.usageExplanation}>
-                    <h2>{t('usageTitle')}</h2>
-                    <p>{t('freeUsageDescription')}</p>
-                </div>
-                {/* } */}
+            {/* :  */}
+            <div className={classes.usageExplanation}>
+                <h2>{t('usageTitle')}</h2>
+                <p>{t('freeUsageDescription')}</p>
+            </div>
+            {/* } */}
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
                         <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} isIndependent={true}
-                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                            showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
                         : null
                 }
                 {
                     hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
-                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true} 
-                        showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation} 
+                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true}
+                            showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
                         : null
                 }

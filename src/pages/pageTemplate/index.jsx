@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
 import generateRandomTime from '../../logic/genrateRandomTime';
 import ModalMessage from "../../components/modal";
 import { Trans, useTranslation } from "react-i18next";
+import SEO from "../../logic/SEO";
 
 
-export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
+export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
 
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
     const [minsAnalogue, setMinsAnalogue] = useState(0);
@@ -84,6 +86,13 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     }
     return (
         <div className={classes.pageContainer}>
+            <SEO 
+            title={t('pageTitle', { toSync: anaglogueEnable? t('analogueLabel') : t('digitalLabel') })}
+            description={t('descriptionMeta')}
+            type="website"
+            name="Mykhailo Ohirenko"
+            keywords={t('keyWordsMeta')}
+            />
             {showMistakeMessage ?
                 <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
                 : null

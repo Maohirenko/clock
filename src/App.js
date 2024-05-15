@@ -5,11 +5,16 @@ import AnalogueAdjustmentComponent from './pages/AnalogueAdjustment/index';
 import DigitalAdjustmentComponent from './pages/DigitalAdjustment/index';
 import CurrentTimeComponent from './pages/CurrentTime/index';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 function App() {
   const { t } = useTranslation();
   return (
     <div className='mainContainer'>
+                  <Helmet>
+                <title>Learning analogue clock</title>
+                <meta name="viewport" content="initial-scale=1, viewport-fit=cover"></meta>
+            </Helmet>
       <Header />
       <Routes>
         {/* <Route path='/'/> */}

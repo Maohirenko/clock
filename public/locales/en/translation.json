@@ -13,5 +13,9 @@
     "substract": "substract",
     "add": "add",
     "wrongAdjustmentMessage": "Your adjustment are wrong, try again",
-    "nextTraining": "Next training!"
+    "nextTraining": "Next training!",
+    "pageTitle": "Adjust {{toSync}}",
+    "descriptionMeta": "Learn how to use analogue clock",
+    "keyWordsMeta": "Analogue Clock, clock learining, clock, studying",
+    "freeUseTitle": "Free setting"
 }
