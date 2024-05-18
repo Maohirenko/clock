@@ -31,7 +31,9 @@
 .languagesButtons:hover button {
     width: 120px;
     background-color: whitesmoke;
-    border-color: black;
+    border:  1px solid black;
+    color: black;
+
 }
 
 .disabledButton {
