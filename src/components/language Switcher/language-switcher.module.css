@@ -37,3 +37,12 @@
 .disabledButton {
     pointer-events: none;
 }
+
+
+@media screen and (max-width: 800px) {
+    .languagesButtons:hover button {
+        width: 120px;
+        /* background-color: rgb(111, 47, 47); */
+        border-color: black;
+    }
+}

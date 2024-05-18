@@ -32,7 +32,9 @@ export default function LanguageSwticherComponent() {
                         <div key={lng} className={classes.currentLanguage}>
                             {lng === i18n.resolvedLanguage ? <button
                                 className={isModalShown ? classes.disabledButton : null}
-                                onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>
+                                onClick={() => i18n.changeLanguage(lng)} 
+                                // disabled={i18n.resolvedLanguage === lng}
+                                >
                                 <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
                                 {displayOtherLanguages ? <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span> : null}</button>
                                 : null}

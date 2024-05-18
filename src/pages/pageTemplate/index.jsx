@@ -9,7 +9,7 @@ import { Trans, useTranslation } from "react-i18next";
 import SEO from "../../logic/SEO";
 
 
-export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
+export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
 
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
     const [minsAnalogue, setMinsAnalogue] = useState(0);
@@ -26,6 +26,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
     const [showMistakeMessage, setShowMistakeMessage] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const { t, i18n } = useTranslation();
 
@@ -52,6 +53,13 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
         setAllowRun(false);
 
     }, [allowRun])
+
+    useEffect(() => {
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+            setShowSuccessMessage(false);
+        }, 7000)
+    }, [runClock])
 
     function closeModal() {
         setShowWarning(false);
@@ -86,12 +94,12 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
     }
     return (
         <div className={classes.pageContainer}>
-            <SEO 
-            title={t('pageTitle', { toSync: anaglogueEnable? t('analogueLabel') : t('digitalLabel') })}
-            description={t('descriptionMeta')}
-            type="website"
-            name="Mykhailo Ohirenko"
-            keywords={t('keyWordsMeta')}
+            <SEO
+                title={t('pageTitle', { toSync: anaglogueEnable ? t('analogueLabel') : t('digitalLabel') })}
+                description={t('descriptionMeta')}
+                type="website"
+                name="Mykhailo Ohirenko"
+                keywords={t('keyWordsMeta')}
             />
             {showMistakeMessage ?
                 <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
@@ -131,7 +139,14 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable  }) {
             </div>
             {
                 runClock ?
-                    <button className={classes.resetButton} onClick={resetTask}>{t('nextTraining')}</button>
+                    <div className={classes.rightAnswerContainer}>
+                        {
+                            showSuccessMessage ?
+
+                                <p className={classes.rightAnswerMessage}>Excellent You got it Right</p> :
+                                <button className={classes.resetButton} onClick={resetTask}>{t('nextTraining')}</button>
+                        }
+                    </div>
                     : null
             }
         </div>
