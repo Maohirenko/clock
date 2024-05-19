@@ -24,14 +24,14 @@ export default function LanguageSwticherComponent() {
     }
 
     return (
-        <div className={classes.languagesButtons}>
+        <div className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
             <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
                 {
                     Object.keys(lngs).map((lng) => (
 
-                        <div key={lng} className={classes.currentLanguage}>
+                        <div key={lng} className={`${classes.currentLanguage}  ${displayOtherLanguages ? classes.currentSelectionLanguage : null}`}>
                             {lng === i18n.resolvedLanguage ? <button
-                                className={isModalShown ? classes.disabledButton : null}
+                                className={`${isModalShown ? classes.disabledButton : null}`}
                                 onClick={() => i18n.changeLanguage(lng)} 
                                 // disabled={i18n.resolvedLanguage === lng}
                                 >
@@ -43,7 +43,7 @@ export default function LanguageSwticherComponent() {
                 }
                 {
                     Object.keys(lngs).map((lng) => (
-                        displayOtherLanguages ? <div key={lng} className={classes.othersLanguages}>
+                        displayOtherLanguages ? <div key={lng} className={classes.otherLanguages}>
                             {lng !== i18n.resolvedLanguage ? <button
                                 className={isModalShown ? classes.disabledButton : null}
                                 onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
