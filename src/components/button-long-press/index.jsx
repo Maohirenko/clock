@@ -5,6 +5,8 @@ import { GlobalContext } from "../context";
 
 export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation, isEnabledButton }) {
 
+    const LONG_TOUCH_TIME = 200;
+    const LONG_CLICK_TIME = 200;
     const [longClick, setLongClick] = useState(false);
     const [longTouch, setLongTouch] = useState(false);
     const { t } = useTranslation();
@@ -69,7 +71,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
                 clockModifier();
                 longClickInterval = setInterval(() => {
                     clockModifier();
-                }, 250)
+                }, LONG_CLICK_TIME)
             }
             else {
                 clearInterval(longClickInterval);
@@ -93,7 +95,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
                 clockModifier();
                 longTouchInterval = setInterval(() => {
                     clockModifier();
-                }, 500)
+                }, LONG_TOUCH_TIME)
             }
             else {
                 clearInterval(longTouchInterval);

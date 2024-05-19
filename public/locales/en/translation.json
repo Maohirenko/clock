@@ -17,5 +17,6 @@
     "pageTitle": "Adjust {{toSync}}",
     "descriptionMeta": "Learn how to use analogue clock",
     "keyWordsMeta": "Analogue Clock, clock learining, clock, studying",
-    "freeUseTitle": "Free setting"
+    "freeUseTitle": "Free setting",
+    "successMessage": "Excellent You got it Right"
 }

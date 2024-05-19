@@ -143,7 +143,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                         {
                             showSuccessMessage ?
 
-                                <p className={classes.rightAnswerMessage}>Excellent You got it Right</p> :
+                                <p className={classes.rightAnswerMessage}>{t('successMessage')}</p> :
                                 <button className={classes.resetButton} onClick={resetTask}>{t('nextTraining')}</button>
                         }
                     </div>
