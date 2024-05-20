@@ -204,7 +204,7 @@
 .controlButtons button {
     width: 50px;
     text-align: center;
-
+    margin-bottom: 4px;
     border-radius: 20px;
     border: 2px solid rgba(87, 84, 84, 0.547);
     /* background: linear-gradient(60deg, #818581, #bfc2bc, #efefe0); */
@@ -219,4 +219,21 @@
     text-align: center;
     border-radius: 20px;
     background: linear-gradient(60deg, #858985, #525450, #2a2a29);
+}
+
+.controlButtons button:active {
+    transform: scale(95%);
+    margin-bottom: -4px;
+ }
+
+ @media (hover: hover) {
+    .controlButtons button:hover {
+        transform: scale(105%);
+        margin-bottom: 12px;
+     }
+     
+     .controlButtons button:active {
+        transform: scale(95%);
+        margin-bottom: -4px;
+     }
 }

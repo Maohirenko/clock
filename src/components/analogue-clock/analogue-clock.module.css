@@ -32,6 +32,10 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+.hourNeedle, .minuteNeedle, .secondNeedle {
+    z-index: 1;
+}
+
 
 .dials {
     position: relative;
@@ -148,6 +152,7 @@
     justify-self: center;
 }
 
+
 .hourNeedle {
     transform-origin: bottom center;
     width: 12px;
@@ -195,6 +200,7 @@
     bottom: 50%;
     background: linear-gradient(#fc2003, #e8640b);
     position: absolute;
+    /* z-index: 1; */
     
 }
 
@@ -214,6 +220,7 @@
     background: linear-gradient(217deg, rgba(10, 10, 10, 0.8), rgba(83, 80, 80, 0.7) 70.71%),
         linear-gradient(127deg, rgba(40, 42, 40, 0.8), rgba(10, 10, 10, 0.7) 50.71%),
         linear-gradient(336deg, rgba(34, 34, 35, 0.8), rgba(236, 236, 243, 0.8) 70.71%);
+        z-index: 2;
 }
 
 .controlButtons {
@@ -305,4 +312,49 @@ margin-left: 4px;
     align-items: center;
     box-shadow: 8px 4px 4px #595959bb;
     /* z-index: 1; */
+}
+
+
+.controlButtons button:active {
+    transform: scale(99%);
+ }
+
+ @media (hover: hover) {
+    .controlButtons button:hover {
+        transform: scale(105%);
+        /* margin-bottom: 12px; */
+     }
+     
+     .controlButtons button:active {
+        transform: scale(99%);
+
+     }
+}
+
+.buttonHPlus:active {
+
+    margin-left: -332px;
+    margin-top: -98px;
+}
+
+.buttonHMinus:active  {
+
+    margin-left: -332px;
+    margin-top: 62px;
+}
+
+
+
+.buttonMPlus:active {
+    margin-top: -98px;
+    margin-left: -28px;
+}
+
+.buttonMMinus:active {
+    margin-top: 62px;
+    margin-left: -28px;
+}
+
+.buttonSet:active {
+    margin-left: -16px;
 }
