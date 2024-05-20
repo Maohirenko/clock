@@ -1,10 +1,6 @@
 .digitsContainer {
     display: flex;
-    height: 83px;
-    /* background-color: beige; */
-    /* background-color: red; */
-    /* background-color: red;s */
-    /* justify-content: flex-start; */
+    height: 84px;
 }
 
 .leftSegments {
@@ -13,7 +9,6 @@
 
 .leftSegments,
 .rightSegments {
-    /* margin-bottom: 4px; */
     margin-top: 14px;
 }
 
@@ -38,7 +33,6 @@
 
 .leftSegmentsSeconds,
 .rightSegmentsSeconds {
-    /* margin-bottom: 7px; */
     margin-top: 0.8em;
 }
 
@@ -47,30 +41,8 @@
     margin-left: -2px;
 }
 
-.centralSegmentSeconds {
-    /* margin-top: -0.1em; */
-}
-
 .digitsContainerSeconds {
     display: flex;
-    /* background-color: red; */
-    /* height:4px; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* flex-wrap: wrap; */
-}
-
-.centralSegmentsSeconds {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
-    /* max-height:px; */
-    /* margin-top: -4px; */
-    /* background-color: aquamarine; */
-    /* box-sizing: border-box; */
-    /* flex-wrap: wrap; */
 }
 
 .inActiveSegment {

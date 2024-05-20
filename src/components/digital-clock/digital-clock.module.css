@@ -7,7 +7,6 @@
     border-radius: 30px;
     position: absolute;
     top: 30%;
-    /* bottom: 0; */
     left: 0;
     right: 0;
     margin: auto;
@@ -15,14 +14,12 @@
     padding: 0px 24px;
     height: 90px;
     justify-content: center;
-    /* margin-top: -8px; */
     align-items: center;
-        user-select: none;
+    user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
-
 
 .roundedBorder {
     position: relative;
@@ -32,19 +29,10 @@
 }
 
 .digitalClockContainer {
-    /* width: 100vw; */
-    /* height: 100vh; */
-    /* margin-top: auto; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: red; */
     height: 300px;
-}
-
-.svgAlign {
-    /* background-color: red; */
-    /* margin-top: 20px; */
 }
 
 .clockStandLeft {
@@ -177,16 +165,13 @@
 }
 
 .controlButtons {
-    /* right: 0; */
     display: flex;
     flex-direction: row;
     gap: 4px;
     align-items: flex-start;
-    /* background: linear-gradient(#b1b5ab, #5f605e); */
     border-radius: 40px;
     position: absolute;
     top: 20%;
-    /* bottom: 0; */
     left: 0;
     right: 0;
     margin-left: auto;
@@ -207,7 +192,6 @@
     margin-bottom: 4px;
     border-radius: 20px;
     border: 2px solid rgba(87, 84, 84, 0.547);
-    /* background: linear-gradient(60deg, #818581, #bfc2bc, #efefe0); */
     background-clip: text;
     -webkit-background-clip: text;
     color: rgb(0 0 0 / 20%);
@@ -224,16 +208,16 @@
 .controlButtons button:active {
     transform: scale(95%);
     margin-bottom: -4px;
- }
+}
 
- @media (hover: hover) {
+@media (hover: hover) {
     .controlButtons button:hover {
         transform: scale(105%);
         margin-bottom: 12px;
-     }
-     
-     .controlButtons button:active {
+    }
+
+    .controlButtons button:active {
         transform: scale(95%);
         margin-bottom: -4px;
-     }
+    }
 }

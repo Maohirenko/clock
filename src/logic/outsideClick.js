@@ -23,5 +23,5 @@ export default function useOutsideClick(ref, handler) {
             document.removeEventListener('touchstart', listener);
         }
 
-    },[ref, handler])
+    }, [ref, handler])
 }

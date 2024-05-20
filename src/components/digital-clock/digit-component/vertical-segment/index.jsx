@@ -22,8 +22,6 @@ export default function VerticalSegment({ active, isSeconds = false, lowerSegmen
                         <polygon points="2,1 3,7 3,13 2,19 1,13 1,7"
                             className={active ? classes.activeSegment : classes.inActiveSegment}
                             style={{
-                                // fill: `${active ? "#535d46" : "transparent"}`,
-                                //  stroke: `${active ? "#535d46" : "transparent"}`,
                                 strokeWidth: "1"
                             }} />
 
@@ -33,16 +31,10 @@ export default function VerticalSegment({ active, isSeconds = false, lowerSegmen
                         <polygon points="4,1 7,11 7,21 4,31 1,21 1,11"
                             className={active ? classes.activeSegment : classes.inActiveSegment}
                             style={{
-                                // fill: `${active ? "#535d46" : "transparent"}`, stroke: `${active ? "#535d46" : "transparent"}`,
                                 strokeWidth: "3"
                             }} />
-
                     </svg>
             }
-
         </div>
     )
 }
-
-{/* <polygon points="150,75 258,137 258,262 150,325 42,262 42,137"
-                    style={{fill:"lime", stroke:"purple", strokeWidth:"3"}} /> */}

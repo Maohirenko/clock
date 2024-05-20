@@ -6,7 +6,6 @@ import { GlobalContext } from '../context/index';
 import LanguageSwticherComponent from "../language Switcher";
 
 
-
 export default function Header() {
     const { isModalShown } = useContext(GlobalContext)
     const { t } = useTranslation();

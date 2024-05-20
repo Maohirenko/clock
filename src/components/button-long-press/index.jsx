@@ -114,12 +114,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     console.log(isEnabledButton)
     return (
         <div>
-            <button style={isModalShown || !isEnabledButton ? { pointerEvents: "none" } : null}
-            ref={ref}
-            // onClick={(e)=>console.log(e)}
-                // onMouseDown={mouseDownHandle} onMouseUp={mouseUpHandle}
-                //  onTouchStart={touchDownHandle} onTouchEnd={touchUpHandle}
-            >{buttonText}</button>
+            <button style={isModalShown || !isEnabledButton ? { pointerEvents: "none" } : null} ref={ref}>{buttonText}</button>
         </div>
     )
 }

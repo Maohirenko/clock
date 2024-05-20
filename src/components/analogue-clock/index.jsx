@@ -70,7 +70,7 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
             setAllowRun(true);
         }
     }
-    // console.log(secondsIncoming)
+
     return (
         <div className={classes.mainContainer}>
 
@@ -88,9 +88,6 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
                             <span style={{ transform: `rotateZ(${((hoursCount % 12 + minutesCount / 60 + secondsCount / 3600) * 30) + "deg"})` }} className={classes.hourNeedle}></span>
                             <span style={{ transform: `rotateZ(${(minutesCount + secondsCount / 60) * 6 + "deg"})` }} className={classes.minuteNeedle}></span>
                             <span style={{ transform: `rotateZ(${parseInt(secondsCount) * 6 + "deg"})` }} className={classes.secondNeedle}></span>
-                            {/* <span style={{ transform: `rotateZ(${((hoursCount % 12) * 30) + "deg"})` }} className={classes.hourNeedle}></span>
-                            <span style={{ transform: `rotateZ(${(minutesCount) * 6 + "deg"})` }} className={classes.minuteNeedle}></span>
-                            <span style={{ transform: `rotateZ(${parseInt(secondsCount) * 6 + "deg"})` }} className={classes.secondNeedle}></span> */}
                             <div className={classes.dot}></div>
                             {
                                 Array.from({ length: 12 }, ((_, i) => (

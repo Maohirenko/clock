@@ -1,21 +1,13 @@
-// import PageTemplate from "../pageTemplate";
-
-// export default function CurrentTimeComponent() {
-//     return <PageTemplate anaglogueEnable={true} digitalEnable={true} />
-// }
-
-
 import { useState, useEffect } from "react";
 import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
-import generateRandomTime from '../../logic/genrateRandomTime';
 import ModalMessage from "../../components/modal";
 import { useTranslation } from "react-i18next";
 import SEO from "../../logic/SEO";
 
 
-export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable }) {
+export default function CurrentTimeComponent() {
 
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
     const [minsAnalogue, setMinsAnalogue] = useState(0);
@@ -35,7 +27,6 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
 
     const { t } = useTranslation();
 
-
     useEffect(() => {
         let currentTime = new Date;
         setStartHourAnalogue(currentTime.getHours());
@@ -49,7 +40,6 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
     function closeModal() {
         setShowWarning(false);
     }
-
 
     return (
         <div className={classes.pageContainer}>
@@ -65,13 +55,10 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
                     <ModalMessage onClose={closeModal} messageText={warningOperation} />
                     : null
             }
-            {/* {runClock ? null */}
-            {/* :  */}
             <div className={classes.usageExplanation}>
                 <h2>{t('usageTitle')}</h2>
                 <p>{t('freeUsageDescription')}</p>
             </div>
-            {/* } */}
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
@@ -88,7 +75,6 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
                         : null
                 }
             </div>
-
         </div>
     )
 }

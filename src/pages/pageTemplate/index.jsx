@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react";
-import { Helmet } from "react-helmet-async";
+import { useState, useEffect } from "react";
 import AnalogueClock from "../../components/analogue-clock";
 import DigitalClock from "../../components/digital-clock";
 import classes from "../clock-page.module.css";
@@ -28,13 +27,14 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [warningOperation, setWarningOperation] = useState(null);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const SUCCESS_MESSAGE_DISPLAY_TIME = 7000;
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         setRandomTime();
         setIsAnalogueEnabled(anaglogueEnable);
         setIsDigitalEnabled(digitalEnable);
-
     }, []);
 
     useEffect(() => {
@@ -51,14 +51,13 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             }
         }
         setAllowRun(false);
-
     }, [allowRun])
 
     useEffect(() => {
         setShowSuccessMessage(true);
         setTimeout(() => {
             setShowSuccessMessage(false);
-        }, 7000)
+        }, SUCCESS_MESSAGE_DISPLAY_TIME)
     }, [runClock])
 
     function closeModal() {
@@ -112,7 +111,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             }
             <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>
                 <h2>{t('usageTitle')}</h2>
-                {/* <p>You have to syncronize <b>{anaglogueEnable ? 'Analogue' : 'Digital'}</b> with digital via adding or substracting hours and minutes untill time on {anaglogueEnable ? 'analogue' : 'digital'} clock won't be the same as on {anaglogueEnable ? 'digital' : 'analogue'}, then press 'SET' on adjusted clock</p> */}
                 <p>
                     <Trans>
                         {t('usageDescription', { toSync: anaglogueEnable ? t('analogueLabel') : t('digitalLabel'), setted: anaglogueEnable ? t('digitalLabel') : t('analogueLabel') })}
@@ -133,7 +131,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                         <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled}
                             showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
-
                         : null
                 }
             </div>
@@ -142,7 +139,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     <div className={classes.rightAnswerContainer}>
                         {
                             showSuccessMessage ?
-
                                 <p className={classes.rightAnswerMessage}>{t('successMessage')}</p> :
                                 <button className={classes.resetButton} onClick={resetTask}>{t('nextTraining')}</button>
                         }

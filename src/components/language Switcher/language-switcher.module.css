@@ -18,8 +18,6 @@
 
 .currentSelectionLanguage button {
     background-color: rgb(205, 205, 205);
-    /* border: 20px; */
-    /* border-width: 2px; */
     pointer-events: none;
 }
 
@@ -29,12 +27,9 @@
 
 .languagesButtonsHover button {
     width: 120px;
-
-    border:  1px solid black;
+    border: 1px solid black;
     color: black;
 }
-
-
 
 .nativeNameText {
     font-size: 12pt;
@@ -47,24 +42,7 @@
     font-size: 16pt;
     float: left;
 }
-/* 
-.languagesButtons:hover button {
-    width: 120px;
-    background-color: whitesmoke;
-    border:  1px solid black;
-    color: black;
-
-} */
 
 .disabledButton {
     pointer-events: none;
-}
-
-
-@media screen and (max-width: 800px) {
-    .languagesButtons:hover button {
-        /* width: 120px; */
-        /* background-color: rgb(111, 47, 47); */
-        /* border-color: black; */
-    }
 }

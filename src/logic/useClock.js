@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function useClock() {
@@ -12,17 +12,11 @@ export default function useClock() {
     const [startFromCurrentTime, setStartFromCurrentTime] = useState(false);
 
     useEffect(() => {
-        // setMinutesCount(initialMin);
-        // setHoursCount(initialHour);
-    }, []);
-
-    useEffect(() => {
         let clockItnerval;
         if (clockRunning) {
             clockItnerval = setInterval(function () {
                 runTime()
-                // setSecondsCount((prev) => prev >= 59 ? (addMinutes(), prev = 0) : prev + 1);
-            },1000)
+            }, 1000)
         }
         else {
             clearInterval(clockItnerval);
@@ -37,17 +31,14 @@ export default function useClock() {
     }
 
     function addHours() {
-        // console.log("h add called")
         setHoursCount((prev) => prev >= 23 ? prev = 0 : prev + 1)
     }
 
     function substractHours() {
-        // console.log("h sub called")
         setHoursCount((prev) => prev <= 0 ? prev = 23 : prev - 1)
     }
 
     function addMinutes() {
-        // console.log("min add called")
         if (clockRunning) {
             setMinutesCount((prev) => prev >= 59 ? (addHours(), prev = 0) : prev + 1)
         }
@@ -57,44 +48,35 @@ export default function useClock() {
     }
 
     function substractMinutes() {
-        // console.log("min sub called")
         setMinutesCount((prev) => prev <= 0 ? prev = 59 : prev - 1)
     }
 
     function setClock() {
         setClockRunning(!clockRunning);
-        if(startFromCurrentTime){
-            if(!firstLaunchIndependent){
+        if (startFromCurrentTime) {
+            if (!firstLaunchIndependent) {
                 setFirstLaunchIndependent(true);
             }
             else {
                 setSecondsCount(0);
-                
             }
         }
         else {
             setSecondsCount(0);
         }
-
-        // console.log('setclockcalled')
     }
 
-    function alertMessage() {
-        alert("Firstly to modify clock you need to stop clock by pressing set button")
-    }
-    console.log(secondsCount)
     return {
         setStartFromCurrentTime,
         secondsCount, setSecondsCount,
         minutesCount, setMinutesCount,
         hoursCount, setHoursCount,
-        clockRunning, setClockRunning, 
+        clockRunning, setClockRunning,
         runTime,
         addHours,
         substractHours,
         addMinutes,
         substractMinutes,
-        setClock,
-        alertMessage
+        setClock
     }
 }

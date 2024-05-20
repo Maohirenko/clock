@@ -5,19 +5,16 @@
     text-align: center;
     grid-template-columns: 2% 40% 58%;
     grid-template-rows: 1fr;
-    /* background-color: yellow; */
 }
 
 .appHeading {
     grid-column: 2/3;
-    /* background-color: red; */
-    /* text-align: center; */   
     margin-top: auto;
     margin-bottom: auto;
 }
+
 .appHeadingText {
     font-size: 20pt;
-    /* background-color: darkorange; */
 }
 
 .languageSwitch {
@@ -26,67 +23,46 @@
     margin-bottom: auto;
     width: 40px;
     height: 40px;
-    /* background-color: aqua; */
 }
 
 .navLinks {
     display: flex;
-    /* background-color: red; */
     grid-column: 3/4;
     justify-content: space-around;
-    /* align-content: center; */
     align-items: center;
-    /* background-color: rebeccapurple; */
 }
 
 .link {
     text-decoration: none;
-    /* background-color:aqua; */
-    /* border-radius: 28px; */
     padding: 0px 8px;
-    /* border-color: black; */
-    /* border: 1px solid; */
     font-size: small;
     color: black;
     border-bottom: 1px solid;
     margin: 2px;
-    /* background: linear-gradient(#b1b5ab, #5f605e); */
-    /* text-align: center; */
-    /* line-height: 24px; */
-    /* height: 60px; */
-    /* text-align: center; */
-        line-height: 16px;
+    line-height: 16px;
 }
 
 .activeLink {
     text-decoration: none;
     margin: 2px;
-    /* background-color:aqua; */
-    /* border-radius: 12px; */
     padding: 0px 8px;
     color: whitesmoke;
     border-bottom: 2px solid;
-    /* border: 2px solid; */
     font-size: smaller;
-    /* height: 60px; */
     line-height: 16px;
-    /* background: linear-gradient(#b1b5ab, #5f605e); */
-    /* text-align: center; */
-    /* transform: scale(1.1); */
 }
-
 
 .disabledButton {
     pointer-events: none;
 }
+
 .link:hover {
     opacity: 0.7;
 }
 
-
 @media screen and (max-width: 800px) {
     .headerContainer {
-        grid-template-rows:  1fr 1fr ;
+        grid-template-rows: 1fr 1fr;
         grid-template-columns: 50px 1fr 50px;
     }
 
@@ -94,22 +70,22 @@
         grid-column: 2/3;
         grid-row: 1/2;
     }
+
     .languageSwitch {
         grid-column: 1/2;
         grid-row: 1/2;
     }
+
     .navLinks {
         flex-direction: column;
         grid-column: 1/4;
         grid-row: 2/3;
         gap: 8px;
     }
-    .link, .activeLink {
-        /* width: 60vh; */
+
+    .link,
+    .activeLink {
         width: 80%;
-        /* height: 36px; */
-        /* padding: 0; */
         line-height: 4px;
-        /* text-align: center; */
     }
 }
