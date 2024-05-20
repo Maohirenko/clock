@@ -8,6 +8,8 @@ export default function useClock() {
     const [minutesCount, setMinutesCount] = useState(0);
     const [hoursCount, setHoursCount] = useState(0);
     const [clockRunning, setClockRunning] = useState(false);
+    const [firstLaunchIndependent, setFirstLaunchIndependent] = useState(false);
+    const [startFromCurrentTime, setStartFromCurrentTime] = useState(false);
 
     useEffect(() => {
         // setMinutesCount(initialMin);
@@ -61,15 +63,28 @@ export default function useClock() {
 
     function setClock() {
         setClockRunning(!clockRunning);
-        setSecondsCount(0);
+        if(startFromCurrentTime){
+            if(!firstLaunchIndependent){
+                setFirstLaunchIndependent(true);
+            }
+            else {
+                setSecondsCount(0);
+                
+            }
+        }
+        else {
+            setSecondsCount(0);
+        }
+
         // console.log('setclockcalled')
     }
 
     function alertMessage() {
         alert("Firstly to modify clock you need to stop clock by pressing set button")
     }
-
+    console.log(secondsCount)
     return {
+        setStartFromCurrentTime,
         secondsCount, setSecondsCount,
         minutesCount, setMinutesCount,
         hoursCount, setHoursCount,

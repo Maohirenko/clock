@@ -5,13 +5,15 @@ import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
 import { GlobalContext } from '../context';
 
-export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
+export default function AnalogueClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
 
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-    }, [minIncoming, hourIncoming]);
+        setSecondsCount(secondsIncoming);
+
+    }, [minIncoming, hourIncoming, secondsIncoming]);
 
     useEffect(() => {
         if (!firstClockLauch) {
@@ -33,7 +35,8 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
     const [firstClockLauch, setFirstClockLaunch] = useState(false);
 
     const clockFunctions = useClock();
-    const { secondsCount,
+    const { setStartFromCurrentTime,
+        secondsCount, setSecondsCount,
         minutesCount, setMinutesCount,
         hoursCount, setHoursCount,
         clockRunning,
@@ -54,6 +57,10 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
         setMinsAnalogue(minutesCount);
     }, [minutesCount])
 
+    useEffect(() => {
+        setStartFromCurrentTime(isStartFromCurrentTime)
+    }, [isStartFromCurrentTime])
+
 
     function timeSetting() {
         if (isIndependent) {
@@ -63,7 +70,7 @@ export default function AnalogueClock({ minIncoming = 0, hourIncoming = 0, setMi
             setAllowRun(true);
         }
     }
-
+    // console.log(secondsIncoming)
     return (
         <div className={classes.mainContainer}>
 

@@ -9,7 +9,7 @@ import { GlobalContext } from "../context";
 
 
 
-export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
+export default function DigitalClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
 
     let tickInterval;
@@ -17,7 +17,8 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
     const [isRunningIndependently, setIsRunningIndependently] = useState(null)
 
     const clockFunctions = useClock();
-    const { secondsCount,
+    const { setStartFromCurrentTime,
+        secondsCount, setSecondsCount,
         minutesCount, setMinutesCount,
         hoursCount, setHoursCount,
         clockRunning,
@@ -58,7 +59,8 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-    }, [minIncoming, hourIncoming]);
+        setSecondsCount(secondsIncoming)
+    }, [minIncoming, hourIncoming, secondsIncoming]);
 
     useEffect(() => {
         setHoursDigital(hoursCount);
@@ -69,7 +71,9 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         setMinsDigital(minutesCount);
     }, [minutesCount])
 
-
+    useEffect(() => {
+        setStartFromCurrentTime(isStartFromCurrentTime)
+    }, [isStartFromCurrentTime])
 
     useEffect(() => {
         if (!firstClockLauch) {
@@ -120,7 +124,7 @@ export default function DigitalClock({ minIncoming = 0, hourIncoming = 0, setMin
         }
     }
 
-
+    console.log(secondsIncoming)
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.roundedBorder}>

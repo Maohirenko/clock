@@ -29,6 +29,7 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
     const [startMinuteAnalogue, setStartMinuteAnalogue] = useState(null);
     const [startHourDigital, setStartHourDigital] = useState(null);
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
+    const [startSeconds, setStartSeconds] = useState(0);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
 
@@ -41,6 +42,7 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
         setStartMinuteAnalogue(currentTime.getMinutes());
         setStartHourDigital(currentTime.getHours());
         setStartMinuteDigital(currentTime.getMinutes());
+        setStartSeconds(currentTime.getSeconds());
         setRunClock(true);
     }, []);
 
@@ -73,14 +75,14 @@ export default function CurrentTimeComponent({ anaglogueEnable, digitalEnable })
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?
-                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} isIndependent={true}
+                        <AnalogueClock hourIncoming={startHourAnalogue} minIncoming={startMinuteAnalogue} secondsIncoming={startSeconds} isStartFromCurrentTime={true} setMinsAnalogue={setMinsAnalogue} setHoursAnalogue={setHoursAnalogue} runClock={runClock} setAllowRun={setAllowRun} isEnabled={isAnalogueEnabled} isIndependent={true}
                             showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
                         : null
                 }
                 {
                     hoursDigital !== null && minsDigital !== null && isDigitalEnabled !== null ?
-                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true}
+                        <DigitalClock hourIncoming={startHourDigital} minIncoming={startMinuteDigital} secondsIncoming={startSeconds} isStartFromCurrentTime={true} setMinsDigital={setMinsDigital} setHoursDigital={setHoursDigital} runClock={false} setAllowRun={setAllowRun} isEnabled={isDigitalEnabled} isIndependent={true}
                             showWarning={showWarning} setShowWarning={setShowWarning} warningOperation={warningOperation} setWarningOperation={setWarningOperation}
                         />
                         : null
