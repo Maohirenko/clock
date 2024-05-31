@@ -28,6 +28,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
     const { isModalShown } = useContext(GlobalContext);
     const [tick, setTick] = useState(false);
 
+    // eslint-disable-next-line
     useEffect(() => {
 
         if (isIndependent) {
@@ -35,6 +36,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         }
 
         if (runClock) {
+            // eslint-disable-next-line
             tickInterval = setInterval(function () {
                 setTick(prevTick => !prevTick);
             }, 500)
@@ -54,19 +56,23 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
-        setSecondsCount(secondsIncoming)
+        setSecondsCount(secondsIncoming);
+        // eslint-disable-next-line
     }, [minIncoming, hourIncoming, secondsIncoming]);
 
     useEffect(() => {
         setHoursDigital(hoursCount);
+        // eslint-disable-next-line
     }, [hoursCount])
 
     useEffect(() => {
         setMinsDigital(minutesCount);
+        // eslint-disable-next-line
     }, [minutesCount])
 
     useEffect(() => {
         setStartFromCurrentTime(isStartFromCurrentTime)
+        // eslint-disable-next-line
     }, [isStartFromCurrentTime])
 
     useEffect(() => {
@@ -83,13 +89,16 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
             setHoursCount(0);
             setMinutesCount(0);
         }
+        // eslint-disable-next-line
     }, [runClock]);
+
 
     useEffect(() => {
 
         if (isIndependent) {
             if (isRunningIndependently === true) {
                 setClock();
+                // eslint-disable-next-line
                 tickInterval = setInterval(function () {
                     setTick(prevTick => !prevTick);
                 }, 500)

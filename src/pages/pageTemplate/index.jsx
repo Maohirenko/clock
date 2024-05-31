@@ -35,6 +35,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         setRandomTime();
         setIsAnalogueEnabled(anaglogueEnable);
         setIsDigitalEnabled(digitalEnable);
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
@@ -51,6 +52,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             }
         }
         setAllowRun(false);
+        // eslint-disable-next-line
     }, [allowRun])
 
     useEffect(() => {

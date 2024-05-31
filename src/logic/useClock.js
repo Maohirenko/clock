@@ -24,6 +24,7 @@ export default function useClock() {
         return () => {
             clearInterval(clockItnerval);
         }
+        // eslint-disable-next-line 
     }, [clockRunning])
 
     function runTime() {

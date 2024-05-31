@@ -21,7 +21,7 @@ export default function ModalMessage({ messageText, onClose }) {
         return () => {
             setiSModalShown(false);
         }
-    }, []);
+    }, [setiSModalShown]);
 
     return (
         <div className={classes.modalContainer} ref={ref}>

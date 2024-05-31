@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/header';
 import AnalogueAdjustmentComponent from './pages/AnalogueAdjustment/index';
 import DigitalAdjustmentComponent from './pages/DigitalAdjustment/index';
-import CurrentTimeComponent from './pages/CurrentTime/index';
+import FreeUseComponent from './pages/FreeUse/index';
 import { Helmet } from 'react-helmet-async';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route index element={<Navigate to="/digital" replace />} />
           <Route path='/digital' element={<DigitalAdjustmentComponent />} />
           <Route path='/analogue' element={<AnalogueAdjustmentComponent />} />
-          <Route path='/time' element={<CurrentTimeComponent />} />
+          <Route path='/time' element={<FreeUseComponent />} />
         </Route>
       </Routes>
     </div>
