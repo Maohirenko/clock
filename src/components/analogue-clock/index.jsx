@@ -12,7 +12,7 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
         setSecondsCount(secondsIncoming);
-
+        // eslint-disable-next-line
     }, [minIncoming, hourIncoming, secondsIncoming]);
 
     useEffect(() => {
@@ -29,6 +29,7 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
             setHoursCount(0);
             setMinutesCount(0);
         }
+        // eslint-disable-next-line
     }, [runClock]);
 
 
@@ -50,15 +51,18 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
 
     useEffect(() => {
         setHoursAnalogue(hoursCount);
+        // eslint-disable-next-line
     }, [hoursCount])
 
 
     useEffect(() => {
         setMinsAnalogue(minutesCount);
+        // eslint-disable-next-line
     }, [minutesCount])
 
     useEffect(() => {
         setStartFromCurrentTime(isStartFromCurrentTime)
+        // eslint-disable-next-line
     }, [isStartFromCurrentTime])
 
 

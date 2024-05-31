@@ -110,9 +110,8 @@ export default function DigitComponent({ digit, isSeconds }) {
     const [activeSegments, setActiveSegments] = useState(dimmedSegments);
 
     useEffect(() => {
-        digit = parseInt(digit);
-        let segs = {};
-        switch (digit) {
+        let digitInt = parseInt(digit);
+        switch (digitInt) {
 
             case 0:
                 setActiveSegments(segmentsForDigit.digit_0);
@@ -148,7 +147,6 @@ export default function DigitComponent({ digit, isSeconds }) {
                 setActiveSegments(dimmedSegments);
                 break;
         }
-        // console.log(segs)
         return () => {
             setActiveSegments(dimmedSegments);
         }

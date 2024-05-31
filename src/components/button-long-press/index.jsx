@@ -28,6 +28,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
             buttonRef.removeEventListener('touchend', touchUpHandle);
             buttonRef.removeEventListener('mouseleave', endfocus);
         }
+        // eslint-disable-next-line
     }, [isClockRunning]);
 
     function endfocus() {
@@ -38,7 +39,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         event.preventDefault();
         if (isClockRunning) {
             setShowWarning(true);
-            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
+            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
         }
         else {
             setLongClick(true);
@@ -53,7 +54,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         event.preventDefault();
         if (isClockRunning) {
             setShowWarning(true);
-            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] == '-' ? t('substract') : t('add'), entity: buttonText[0] == 'M' ? t('minutes') : t('hours') }));
+            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
         }
         else {
             setLongTouch(true);
@@ -85,6 +86,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         return () => {
             clearInterval(longClickInterval);
         }
+        // eslint-disable-next-line
     }, [longClick, isEnabledButton])
 
 
@@ -109,6 +111,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         return () => {
             clearInterval(longTouchInterval);
         }
+        // eslint-disable-next-line
     }, [longTouch, isEnabledButton])
 
     console.log(isEnabledButton)
