@@ -5,8 +5,10 @@ import { GlobalContext } from "../context";
 
 export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation, isEnabledButton }) {
 
+    // Time of longpress detection
     const LONG_TOUCH_TIME = 200;
     const LONG_CLICK_TIME = 200;
+    // Long press detection
     const [longClick, setLongClick] = useState(false);
     const [longTouch, setLongTouch] = useState(false);
     const { t } = useTranslation();
@@ -14,6 +16,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
 
     const ref = useRef();
 
+    // Listen evenets on the button
     useEffect(() => {
         const buttonRef = ref.current;
         buttonRef.addEventListener('mousedown', mouseDownHandle);
@@ -31,12 +34,14 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         // eslint-disable-next-line
     }, [isClockRunning]);
 
+    // Remove focus from the button
     function endfocus() {
         setLongClick(false);
     }
 
     function mouseDownHandle(event) {
         event.preventDefault();
+        // Show warning if user is trying to modyfy clock before stopping it
         if (isClockRunning) {
             setShowWarning(true);
             setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
@@ -50,6 +55,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         setLongClick(false)
     }
 
+    // Treating mobile press
     function touchDownHandle(event) {
         event.preventDefault();
         if (isClockRunning) {
@@ -65,6 +71,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         setLongTouch(false)
     }
 
+    // Setting of long click
     useEffect(() => {
         let longClickInterval;
         if (isEnabledButton) {
@@ -89,7 +96,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         // eslint-disable-next-line
     }, [longClick, isEnabledButton])
 
-
+    // In case of mobile device - setting on touch
     useEffect(() => {
         let longTouchInterval;
         if (isEnabledButton) {

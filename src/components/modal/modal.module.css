@@ -1,5 +1,4 @@
 .modalContainer {
-    background-color: red;
     background: linear-gradient(#999696, #dbdbe2);
     width: 50vw;
     height: 50vh;
@@ -29,7 +28,8 @@
 @media screen and (max-width: 800px) {
     .modalContainer {
         width: 90vw;
-        height: 30vh;
-        top: 60%;
+        height: 20vh;
+        top: 50%;
+        position: absolute;
     }
 }

@@ -43,6 +43,7 @@
     float: left;
 }
 
+/* Preventing clicks on disabled buttons */
 .disabledButton {
     pointer-events: none;
 }

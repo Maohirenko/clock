@@ -1,0 +1,14 @@
+/* Gradient segment styling */
+
+.stop1 {
+    stop-color: #1d1e1d;
+}
+
+.stop2 {
+    stop-color: #525450;
+    stop-opacity: 1;
+}
+
+.stop3 {
+    stop-color: #2a2a29;
+}

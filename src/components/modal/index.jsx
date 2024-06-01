@@ -4,7 +4,7 @@ import classes from './modal.module.css';
 import { GlobalContext } from '../context';
 import useOutsideClick from '../../logic/outsideClick';
 
-
+// Display message about misuse
 export default function ModalMessage({ messageText, onClose }) {
 
     const [closeButtonHover, setCloseButtonHover] = useState(false);
@@ -16,6 +16,7 @@ export default function ModalMessage({ messageText, onClose }) {
         setCloseButtonHover(!closeButtonHover)
     }
 
+    // Displaying modal
     useEffect(() => {
         setiSModalShown(true);
         return () => {
@@ -31,6 +32,7 @@ export default function ModalMessage({ messageText, onClose }) {
             >
                 <FaRectangleXmark size={30} color={closeButtonHover ? 'red' : 'black'} />
             </div>
+            {/* Displaying misuse message */}
             {
                 messageText !== null ?
                     <p>{messageText}</p>

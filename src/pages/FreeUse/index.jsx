@@ -6,7 +6,7 @@ import ModalMessage from "../../components/modal";
 import { useTranslation } from "react-i18next";
 import SEO from "../../logic/SEO";
 
-
+// Special component to allow independent run of two clocks
 export default function FreeUseComponent() {
 
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
@@ -30,6 +30,7 @@ export default function FreeUseComponent() {
 
     const { t } = useTranslation();
 
+    // Starting from current time
     useEffect(() => {
         let currentTime = new Date();
         setStartHourAnalogue(currentTime.getHours());
@@ -46,6 +47,7 @@ export default function FreeUseComponent() {
 
     return (
         <div className={classes.pageContainer}>
+            {/* Inset meta data */}
             <SEO
                 title={t('freeUseTitle')}
                 description={t('descriptionMeta')}

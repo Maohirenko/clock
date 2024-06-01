@@ -4,15 +4,21 @@ import classes from './digital-clock.module.css';
 import useClock from '../../logic/useClock'
 import LongPressButton from "../button-long-press";
 import { GlobalContext } from "../context";
+import ClockBodyGradients from "./digit-component/gradients/clock-body-gradient/";
 
 
 export default function DigitalClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
 
+    // Interval to tick clock separator
     let tickInterval;
-    const [firstClockLauch, setFirstClockLaunch] = useState(false);
+    const [tick, setTick] = useState(false);
     const [isRunningIndependently, setIsRunningIndependently] = useState(null)
 
+    const [firstClockLauch, setFirstClockLaunch] = useState(false);
+    const { isModalShown } = useContext(GlobalContext);
+
+    // Functions to maintain clock run
     const clockFunctions = useClock();
     const { setStartFromCurrentTime,
         secondsCount, setSecondsCount,
@@ -25,16 +31,11 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         substractMinutes,
         setClock } = clockFunctions;
 
-    const { isModalShown } = useContext(GlobalContext);
-    const [tick, setTick] = useState(false);
-
-    // eslint-disable-next-line
+    // Handle tick
     useEffect(() => {
-
         if (isIndependent) {
             setIsRunningIndependently(true);
         }
-
         if (runClock) {
             // eslint-disable-next-line
             tickInterval = setInterval(function () {
@@ -42,7 +43,6 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
             }, 500)
         }
         else {
-
             clearInterval(tickInterval);
             setTick(false);
 
@@ -53,48 +53,8 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         }
     }, [runClock])
 
+    // Handle tick for independent run
     useEffect(() => {
-        setHoursCount(hourIncoming);
-        setMinutesCount(minIncoming);
-        setSecondsCount(secondsIncoming);
-        // eslint-disable-next-line
-    }, [minIncoming, hourIncoming, secondsIncoming]);
-
-    useEffect(() => {
-        setHoursDigital(hoursCount);
-        // eslint-disable-next-line
-    }, [hoursCount])
-
-    useEffect(() => {
-        setMinsDigital(minutesCount);
-        // eslint-disable-next-line
-    }, [minutesCount])
-
-    useEffect(() => {
-        setStartFromCurrentTime(isStartFromCurrentTime)
-        // eslint-disable-next-line
-    }, [isStartFromCurrentTime])
-
-    useEffect(() => {
-        if (!firstClockLauch) {
-            if (runClock) {
-                setFirstClockLaunch(true);
-                setClock();
-            }
-        }
-        else {
-            setClock();
-        }
-        if (!runClock && isEnabled) {
-            setHoursCount(0);
-            setMinutesCount(0);
-        }
-        // eslint-disable-next-line
-    }, [runClock]);
-
-
-    useEffect(() => {
-
         if (isIndependent) {
             if (isRunningIndependently === true) {
                 setClock();
@@ -115,7 +75,51 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         }
     }, [isRunningIndependently])
 
+    // Setting clock
+    useEffect(() => {
+        setHoursCount(hourIncoming);
+        setMinutesCount(minIncoming);
+        setSecondsCount(secondsIncoming);
+        // eslint-disable-next-line
+    }, [minIncoming, hourIncoming, secondsIncoming]);
 
+    // Modify hours for comparison
+    useEffect(() => {
+        setHoursDigital(hoursCount);
+        // eslint-disable-next-line
+    }, [hoursCount])
+
+    // Modify minutes for comparison
+    useEffect(() => {
+        setMinsDigital(minutesCount);
+        // eslint-disable-next-line
+    }, [minutesCount])
+
+    // Check if runnin separately to run from non-zero seconds
+    useEffect(() => {
+        setStartFromCurrentTime(isStartFromCurrentTime)
+        // eslint-disable-next-line
+    }, [isStartFromCurrentTime])
+
+    // Start / stop
+    useEffect(() => {
+        if (!firstClockLauch) {
+            if (runClock) {
+                setFirstClockLaunch(true);
+                setClock();
+            }
+        }
+        else {
+            setClock();
+        }
+        if (!runClock && isEnabled) {
+            setHoursCount(0);
+            setMinutesCount(0);
+        }
+        // eslint-disable-next-line
+    }, [runClock]);
+
+    // Check start possibility
     function timeSetting() {
         if (isIndependent) {
             setIsRunningIndependently(prev => !prev);
@@ -127,47 +131,12 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
 
     return (
         <div className={classes.digitalClockContainer}>
-            <div className={classes.roundedBorder}>
-
-                <svg className={classes.svgAlign} height="250" width="360" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="clockStandLeftGradient">
-                            <stop className={classes.clockStndLeftGradStop1} offset="0%" />
-                            <stop className={classes.clockStndLeftGradStop2} offset="50%" />
-                            <stop className={classes.clockStndLeftGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockStandRightGradient">
-                            <stop className={classes.clockStndRightGradStop1} offset="0%" />
-                            <stop className={classes.clockStndRightGradStop2} offset="50%" />
-                            <stop className={classes.clockStndRightGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockFrontFaceLeftGradient">
-                            <stop className={classes.clockFrontLeftFaceGradStop1} offset="0%" />
-                            <stop className={classes.clockFrontLeftFaceGradStop2} offset="50%" />
-                            <stop className={classes.clockFrontLeftFaceGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockFrontFaceCenterGradient">
-                            <stop className={classes.clockFrontCenterFaceGradStop1} offset="0%" />
-                            <stop className={classes.clockFrontCenterFaceGradStop2} offset="50%" />
-                            <stop className={classes.clockFrontCenterFaceGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockFrontFaceRightGradient">
-                            <stop className={classes.clockFrontRightFaceGradStop1} offset="0%" />
-                            <stop className={classes.clockFrontRightFaceGradStop2} offset="50%" />
-                            <stop className={classes.clockFrontRightFaceGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockBezelGradient">
-                            <stop className={classes.clockBezelGradStop1} offset="0%" />
-                            <stop className={classes.clockBezelGradStop2} offset="50%" />
-                            <stop className={classes.clockBezelGradStop3} offset="100%" />
-                        </linearGradient>
-                        <linearGradient id="clockBezelHorizontalGradient">
-                            <stop className={classes.clockBezelHorizontalGradStop1} offset="0%" />
-                            <stop className={classes.clockBezelHorizontalGradStop2} offset="50%" />
-                            <stop className={classes.clockBezelHorizontalGradStop3} offset="100%" />
-                        </linearGradient>
-                    </defs>
-
+            <div className={classes.svgContainer}>
+                {/* Drawing svg clock body */}
+                <svg className={classes.clockBody} height="250" width="360" xmlns="http://www.w3.org/2000/svg">
+                    {/* Defining gradients for svg */}
+                    <ClockBodyGradients />
+                    {/* Drawing parts of clock */}
                     <path className={classes.clockFrontLeftFace} d="M 50 180 q -90 -130 0 -140" strokeWidth="10" />
                     <path className={classes.clockFrontRightFace} d="M 310 180 q 90 -130 0 -140" strokeWidth="10" />
                     <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="44" rx="0" ry="0" />
@@ -178,6 +147,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
                     <use href="#leftStand" x="210" fill="white" stroke="red" />
                     <use href="#rightStand" x="210" fill="white" stroke="red" />
                 </svg>
+                {/* Controllers */}
                 <div className={classes.controlButtons}>
                     <div>
                         <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
@@ -195,10 +165,11 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
                         <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : null}>SET</button>
                     </div>
                 </div>
+                {/* Display time */}
                 <div className={classes.clockContainer}>
                     <DigitComponent digit={hoursCount < 10 ? "0" : ("" + hoursCount)[0]} />
                     <DigitComponent digit={hoursCount < 10 ? ("" + hoursCount)[0] : ("" + hoursCount)[1]} />
-                    <span className={classes.separator} style={{ marginTop: "-8px", marginBottom: "", backgroundColor: "", fontSize: "72px", visibility: `${tick ? "visible" : "hidden"}` }}>:</span>
+                    <span className={classes.separator} style={{ visibility: `${tick ? "visible" : "hidden"}` }}>:</span>
                     <DigitComponent digit={minutesCount < 10 ? "0" : ("" + minutesCount)[0]} />
                     <DigitComponent digit={minutesCount < 10 ? ("" + minutesCount)[0] : ("" + minutesCount)[1]} />
                     <DigitComponent digit={secondsCount < 10 ? "0" : ("" + secondsCount)[0]} isSeconds={true} />

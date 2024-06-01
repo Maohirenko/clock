@@ -1,0 +1,92 @@
+/* Gradients for parts of clock */
+
+.clockStndLeftGradStop1 {
+    stop-color: #242423;
+}
+
+.clockStndLeftGradStop2 {
+    stop-color: #575a55;
+}
+
+.clockStndLeftGradStop3 {
+    stop-color: #0c0d0b;
+}
+
+.clockStndRightGradStop1 {
+    stop-color: #0c0d0b;
+}
+
+.clockStndRightGradStop2 {
+    stop-color: #575a55;
+}
+
+.clockStndRightGradStop3 {
+    stop-color: #242423;
+}
+
+.clockFrontLeftFaceGradStop1 {
+    stop-color: #0c0c0b;
+}
+
+.clockFrontLeftFaceGradStop2 {
+    stop-color: #131311;
+}
+
+.clockFrontLeftFaceGradStop3 {
+    stop-color: #080907;
+}
+
+.clockFrontCenterFaceGradStop1 {
+    stop-color: #080907;
+}
+
+.clockFrontCenterFaceGradStop2 {
+    stop-color: #131311;
+    stop-opacity: 0.7;
+}
+
+.clockFrontCenterFaceGradStop3 {
+    stop-color: #080907;
+}
+
+.clockFrontRightFaceGradStop1 {
+    stop-color: #080907;
+}
+
+.clockFrontRightFaceGradStop2 {
+    stop-color: #131311;
+}
+
+.clockFrontRightFaceGradStop3 {
+    stop-color: #0c0c0b;
+}
+
+.clockBezelGradStop1 {
+    stop-color: #0c0c0b;
+}
+
+.clockBezelGradStop2 {
+    stop-color: #30302d;
+    stop-opacity: 1;
+}
+
+.clockBezelGradStop3 {
+    stop-color: #0c0c0b;
+}
+
+.clockBezelHorizontal {
+    fill: url(#clockBezelHorizontalGradient);
+}
+
+.clockBezelHorizontalGradStop1 {
+    stop-color: #080907;
+}
+
+.clockBezelHorizontalGradStop2 {
+    stop-color: #000000;
+    stop-opacity: 0.7;
+}
+
+.clockBezelHorizontalGradStop3 {
+    stop-color: #080907;
+}

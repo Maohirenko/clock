@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-
+// Providing SEO information
 export default function SEO({ title, description, name, type, keywords = "React, JavaScript, clock, html" }) {
     return (
         <Helmet>

@@ -30,7 +30,9 @@ const options = {
   cookieOptions: { path: '/', sameSite: 'strict' },
 
   // optional conversion function used to modify the detected language code
+  // eslint-disable-next-line
   convertDetectedLanguage: 'Iso15897',
+  // eslint-disable-next-line
   convertDetectedLanguage: (lng) => lng.replace('-', '_')
 }
 

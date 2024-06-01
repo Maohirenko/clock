@@ -5,6 +5,7 @@
   footer {
     padding-left: min(0vmin, env(safe-area-inset-left));
     padding-right: min(10vmin, env(safe-area-inset-right));
+    background: linear-gradient(#37b6e4, #65b2ae);
   }
 }
 
@@ -23,10 +24,11 @@ code {
 }
 
 .mainContainer {
-  background: linear-gradient(#37b6e4, #65b2ae);
+  /* background: linear-gradient(#37b6e4, #65b2ae); */
   min-height: 100vh;
+  min-width: 100vw;
   padding-bottom: 1rem;
-  width: 100vw;
+  /* width: 124vw; */
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }

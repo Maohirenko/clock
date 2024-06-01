@@ -10,6 +10,8 @@ import SEO from "../../logic/SEO";
 
 export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
 
+    const SUCCESS_MESSAGE_DISPLAY_TIME = 7000;
+
     const [hoursAnalogue, setHoursAnalogue] = useState(0);
     const [minsAnalogue, setMinsAnalogue] = useState(0);
     const [hoursDigital, setHoursDigital] = useState(0);
@@ -22,15 +24,13 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [startMinuteAnalogue, setStartMinuteAnalogue] = useState(null);
     const [startHourDigital, setStartHourDigital] = useState(null);
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
-    const [showMistakeMessage, setShowMistakeMessage] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-    const SUCCESS_MESSAGE_DISPLAY_TIME = 7000;
-
     const { t } = useTranslation();
 
+    // Initial set of time and availability of clocks
     useEffect(() => {
         setRandomTime();
         setIsAnalogueEnabled(anaglogueEnable);
@@ -38,6 +38,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         // eslint-disable-next-line
     }, []);
 
+    // Compare time to start, if running - show a message about misuse
     useEffect(() => {
         if (!runClock) {
             if (allowRun) {
@@ -46,15 +47,13 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
                 }
-                else {
-                    setShowMistakeMessage(true);
-                }
             }
         }
         setAllowRun(false);
         // eslint-disable-next-line
     }, [allowRun])
 
+    // Notify about right answer
     useEffect(() => {
         setShowSuccessMessage(true);
         setTimeout(() => {
@@ -66,9 +65,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         setShowWarning(false);
     }
 
-    function closeMistakeMessage() {
-        setShowMistakeMessage(false);
-    }
     function resetTask() {
         setRunClock(false);
         setAllowRun(false);
@@ -102,10 +98,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                 name="Mykhailo Ohirenko"
                 keywords={t('keyWordsMeta')}
             />
-            {showMistakeMessage ?
-                <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
-                : null
-            }
             {
                 showWarning ?
                     <ModalMessage onClose={closeModal} messageText={warningOperation} />

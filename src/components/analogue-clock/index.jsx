@@ -8,6 +8,23 @@ import { GlobalContext } from '../context';
 export default function AnalogueClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
 
+    const [firstClockLauch, setFirstClockLaunch] = useState(false);
+    const { isModalShown } = useContext(GlobalContext)
+
+    // Functions to maintain clock run
+    const clockFunctions = useClock();
+    const { setStartFromCurrentTime,
+        secondsCount, setSecondsCount,
+        minutesCount, setMinutesCount,
+        hoursCount, setHoursCount,
+        clockRunning,
+        addHours,
+        substractHours,
+        addMinutes,
+        substractMinutes,
+        setClock } = clockFunctions;
+
+    // Setting clock
     useEffect(() => {
         setHoursCount(hourIncoming);
         setMinutesCount(minIncoming);
@@ -15,6 +32,7 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         // eslint-disable-next-line
     }, [minIncoming, hourIncoming, secondsIncoming]);
 
+    // Start / stop
     useEffect(() => {
         if (!firstClockLauch) {
             if (runClock) {
@@ -32,40 +50,27 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         // eslint-disable-next-line
     }, [runClock]);
 
-
-    const [firstClockLauch, setFirstClockLaunch] = useState(false);
-
-    const clockFunctions = useClock();
-    const { setStartFromCurrentTime,
-        secondsCount, setSecondsCount,
-        minutesCount, setMinutesCount,
-        hoursCount, setHoursCount,
-        clockRunning,
-        addHours,
-        substractHours,
-        addMinutes,
-        substractMinutes,
-        setClock } = clockFunctions;
-
-    const { isModalShown } = useContext(GlobalContext)
-
+    // Modify hours for comparison
     useEffect(() => {
         setHoursAnalogue(hoursCount);
         // eslint-disable-next-line
     }, [hoursCount])
 
 
+    // Modify minutes for comparison
     useEffect(() => {
         setMinsAnalogue(minutesCount);
         // eslint-disable-next-line
     }, [minutesCount])
 
+    // Check if runnin separately to run from non-zero seconds
     useEffect(() => {
         setStartFromCurrentTime(isStartFromCurrentTime)
         // eslint-disable-next-line
     }, [isStartFromCurrentTime])
 
 
+    // Check start possibility
     function timeSetting() {
         if (isIndependent) {
             setClock();
@@ -77,22 +82,22 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
 
     return (
         <div className={classes.mainContainer}>
-
-
             <div className={classes.clockBody}>
-                <div className={classes.outerRound}>
-
-                    <div className={classes.dials}>
+                <div className={classes.innerRound}>
+                    {/* Creating minutes marks */}
+                    <div className={classes.dialsContainer}>
                         {
                             Array.from({ length: 60 }, ((v_, i) => (
                                 <Dial key={`dialKey${i}`} digit={i + 1} />
                             )))
                         }
+                        {/* Needles */}
                         <div className={classes.digitsContainer}>
                             <span style={{ transform: `rotateZ(${((hoursCount % 12 + minutesCount / 60 + secondsCount / 3600) * 30) + "deg"})` }} className={classes.hourNeedle}></span>
                             <span style={{ transform: `rotateZ(${(minutesCount + secondsCount / 60) * 6 + "deg"})` }} className={classes.minuteNeedle}></span>
                             <span style={{ transform: `rotateZ(${parseInt(secondsCount) * 6 + "deg"})` }} className={classes.secondNeedle}></span>
                             <div className={classes.dot}></div>
+                            {/* Hours marks */}
                             {
                                 Array.from({ length: 12 }, ((_, i) => (
                                     <span key={`dials${i}`}
@@ -105,6 +110,7 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
 
                 </div>
             </div>
+            {/* Controllers */}
             <div className={classes.controlButtons}>
                 <div className={classes.buttonHPlus}>
                     <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />

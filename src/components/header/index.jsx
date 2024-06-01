@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { GlobalContext } from '../context/index';
 import LanguageSwticherComponent from "../language Switcher";
 
-
+// Navigation throughout the app
 export default function Header() {
     const { isModalShown } = useContext(GlobalContext)
     const { t } = useTranslation();

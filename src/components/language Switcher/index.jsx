@@ -10,6 +10,7 @@ export default function LanguageSwticherComponent() {
     const { i18n } = useTranslation();
     const { isModalShown } = useContext(GlobalContext);
 
+    // Hinding/Showing other languages
     function hoverCurrentLanguage() {
         setDisplayOtherLanguages(true);
     }
@@ -27,8 +28,8 @@ export default function LanguageSwticherComponent() {
         <div className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
             <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
                 {
+                    // Displaying current language first
                     Object.keys(lngs).map((lng) => (
-
                         <div key={lng} className={`${classes.currentLanguage}  ${displayOtherLanguages ? classes.currentSelectionLanguage : null}`}>
                             {lng === i18n.resolvedLanguage ? <button
                                 className={`${isModalShown ? classes.disabledButton : null}`}
@@ -41,6 +42,7 @@ export default function LanguageSwticherComponent() {
                     ))
                 }
                 {
+                    // Displaying others languages then
                     Object.keys(lngs).map((lng) => (
                         displayOtherLanguages ? <div key={lng} className={classes.otherLanguages}>
                             {lng !== i18n.resolvedLanguage ? <button

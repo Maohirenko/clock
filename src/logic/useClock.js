@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-
+// Entities count update
 export default function useClock() {
-
 
     const [secondsCount, setSecondsCount] = useState(0);
     const [minutesCount, setMinutesCount] = useState(0);
@@ -11,6 +10,7 @@ export default function useClock() {
     const [firstLaunchIndependent, setFirstLaunchIndependent] = useState(false);
     const [startFromCurrentTime, setStartFromCurrentTime] = useState(false);
 
+    // Start/stop clock
     useEffect(() => {
         let clockItnerval;
         if (clockRunning) {
@@ -35,10 +35,6 @@ export default function useClock() {
         setHoursCount((prev) => prev >= 23 ? prev = 0 : prev + 1)
     }
 
-    function substractHours() {
-        setHoursCount((prev) => prev <= 0 ? prev = 23 : prev - 1)
-    }
-
     function addMinutes() {
         if (clockRunning) {
             setMinutesCount((prev) => prev >= 59 ? (addHours(), prev = 0) : prev + 1)
@@ -48,10 +44,16 @@ export default function useClock() {
         }
     }
 
+    // Substracting to allow adjustment
+    function substractHours() {
+        setHoursCount((prev) => prev <= 0 ? prev = 23 : prev - 1)
+    }
+
     function substractMinutes() {
         setMinutesCount((prev) => prev <= 0 ? prev = 59 : prev - 1)
     }
 
+    // Setting seconds to 0 for start if it's not initial independent launch
     function setClock() {
         setClockRunning(!clockRunning);
         if (startFromCurrentTime) {
@@ -67,6 +69,7 @@ export default function useClock() {
         }
     }
 
+    // Export time management functions
     return {
         setStartFromCurrentTime,
         secondsCount, setSecondsCount,

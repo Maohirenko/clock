@@ -1,3 +1,4 @@
+/* Styling to place segments in form of digit */
 .digitsContainer {
     display: flex;
     height: 84px;
@@ -36,7 +37,6 @@
     margin-top: 0.8em;
 }
 
-
 .rightSegmentsSeconds {
     margin-left: -2px;
 }
@@ -52,17 +52,4 @@
 .activeSegment {
     fill: url(#Gradient1);
     stroke: url(#Gradient1);
-}
-
-.stop1 {
-    stop-color: #1d1e1d;
-}
-
-.stop2 {
-    stop-color: #525450;
-    stop-opacity: 1;
-}
-
-.stop3 {
-    stop-color: #2a2a29;
 }
