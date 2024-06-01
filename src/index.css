@@ -24,20 +24,11 @@ code {
 }
 
 .mainContainer {
-  /* background: linear-gradient(#37b6e4, #65b2ae); */
   min-height: 100vh;
   min-width: 100vw;
   padding-bottom: 1rem;
-  /* width: 124vw; */
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: local("Monserrat"),
-    url("./fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
-  font-weight: bold;
 }
 
 @media screen and (max-width: 900px) {

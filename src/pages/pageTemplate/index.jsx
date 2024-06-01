@@ -89,6 +89,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             setStartMinuteDigital(initalVal);
         }
     }
+    
     return (
         <div className={classes.pageContainer}>
             <SEO
@@ -111,7 +112,6 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     </Trans>
                 </p>
             </div>
-
             <div className={classes.clockPageContainer}>
                 {
                     hoursAnalogue !== null && minsAnalogue !== null && isAnalogueEnabled !== null ?

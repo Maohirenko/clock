@@ -1,3 +1,8 @@
+# This app dedicated to kids and their education 
+In modern world kids aren't used to using analogue clock, according to widespreaded and convinient digital interfaces.
+But ability to cope with analogue is still useful so this app purposing to foster learning analogue clock by kids.
+You can try to use it by visiting this address
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
