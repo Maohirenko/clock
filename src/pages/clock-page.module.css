@@ -85,4 +85,8 @@
   .rightAnswerContainer {
     top: 94%;
   }
+  
+  .resetButton {
+    width: 80vw;
+  }
 }

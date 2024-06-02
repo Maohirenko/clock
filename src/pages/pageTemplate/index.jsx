@@ -47,6 +47,10 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
                 }
+                else {
+                    setShowWarning(true);
+                    // setWarningOperation
+                }
             }
         }
         setAllowRun(false);
@@ -89,7 +93,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             setStartMinuteDigital(initalVal);
         }
     }
-    
+
     return (
         <div className={classes.pageContainer}>
             <SEO

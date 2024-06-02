@@ -1,7 +1,7 @@
 .modalContainer {
     background: linear-gradient(#999696, #dbdbe2);
     width: 50vw;
-    height: 50vh;
+    height: 40vh;
     position: absolute;
     z-index: 3;
     left: 0;
@@ -29,7 +29,7 @@
     .modalContainer {
         width: 90vw;
         height: 20vh;
-        top: 50%;
-        position: absolute;
+        top: 60%;
+        /* position: absolute; */
     }
 }
