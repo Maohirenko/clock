@@ -23,9 +23,8 @@
     margin-left: -2px;
 }
 
-.centralSegment {
-    margin-top: -0.03em;
-    ;
+.centralSegmentSeconds {
+    margin-top: 0.5pt;
 }
 
 .leftSegmentsSeconds {
@@ -34,7 +33,7 @@
 
 .leftSegmentsSeconds,
 .rightSegmentsSeconds {
-    margin-top: 0.8em;
+    margin-top: 9.5pt;
 }
 
 .rightSegmentsSeconds {

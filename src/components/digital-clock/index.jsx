@@ -137,9 +137,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
                     {/* Defining gradients for svg */}
                     <ClockBodyGradients />
                     {/* Drawing parts of clock */}
-                    {/* <path className={classes.clockFrontLeftFace} d="M 50 180 q -90 -130 0 -140" strokeWidth="10" /> */}
                     <path className={classes.clockFrontLeftFace} d="M 50 184 Q 10 165, 5 105 T 50 40" strokeWidth="10" />
-                    {/* <path className={classes.clockFrontRightFace} d="M 270 180 q 90 -130 0 -140" strokeWidth="10" /> */}
                     <path className={classes.clockFrontRightFace} d="M 270 184 Q 310 165, 315 105 T 270 40" strokeWidth="10" />
                     <rect className={classes.clockFrontCenterFace} width="222" height="136" x="49" y="44" rx="0" ry="0" />
                     <rect className={classes.clockFrontCenterFace} width="222" height="10" x="49" y="35" rx="0" ry="0" />

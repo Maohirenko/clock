@@ -29,7 +29,7 @@
 }
 
 .clockFrontLeftFaceGradStop2 {
-    stop-color: #131311;
+    stop-color: #4b4b48;
 }
 
 .clockFrontLeftFaceGradStop3 {
@@ -41,8 +41,8 @@
 }
 
 .clockFrontCenterFaceGradStop2 {
-    stop-color: #131311;
-    stop-opacity: 0.7;
+    stop-color: #4b4b48;
+    stop-opacity: 1;
 }
 
 .clockFrontCenterFaceGradStop3 {
@@ -54,7 +54,7 @@
 }
 
 .clockFrontRightFaceGradStop2 {
-    stop-color: #131311;
+    stop-color: #4b4b48;
 }
 
 .clockFrontRightFaceGradStop3 {
@@ -84,7 +84,7 @@
 
 .clockBezelHorizontalGradStop2 {
     stop-color: #000000;
-    stop-opacity: 0.7;
+    stop-opacity: 1;
 }
 
 .clockBezelHorizontalGradStop3 {
