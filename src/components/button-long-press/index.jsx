@@ -121,7 +121,6 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         // eslint-disable-next-line
     }, [longTouch, isEnabledButton])
 
-    console.log(isEnabledButton)
     return (
         <div>
             <button style={isModalShown || !isEnabledButton ? { pointerEvents: "none" } : null} ref={ref}>{buttonText}</button>

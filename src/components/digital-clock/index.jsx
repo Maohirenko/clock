@@ -133,19 +133,21 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         <div className={classes.digitalClockContainer}>
             <div className={classes.svgContainer}>
                 {/* Drawing svg clock body */}
-                <svg className={classes.clockBody} height="250" width="360" xmlns="http://www.w3.org/2000/svg">
+                <svg className={classes.clockBody} height="250" width="320" xmlns="http://www.w3.org/2000/svg">
                     {/* Defining gradients for svg */}
                     <ClockBodyGradients />
                     {/* Drawing parts of clock */}
-                    <path className={classes.clockFrontLeftFace} d="M 50 180 q -90 -130 0 -140" strokeWidth="10" />
-                    <path className={classes.clockFrontRightFace} d="M 310 180 q 90 -130 0 -140" strokeWidth="10" />
-                    <rect className={classes.clockFrontCenterFace} width="262" height="136" x="49" y="44" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="262" height="10" x="49" y="35" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFace} width="272" height="10" x="44" y="179" rx="0" ry="0" />
+                    {/* <path className={classes.clockFrontLeftFace} d="M 50 180 q -90 -130 0 -140" strokeWidth="10" /> */}
+                    <path className={classes.clockFrontLeftFace} d="M 50 184 Q 10 165, 5 105 T 50 40" strokeWidth="10" />
+                    {/* <path className={classes.clockFrontRightFace} d="M 270 180 q 90 -130 0 -140" strokeWidth="10" /> */}
+                    <path className={classes.clockFrontRightFace} d="M 270 184 Q 310 165, 315 105 T 270 40" strokeWidth="10" />
+                    <rect className={classes.clockFrontCenterFace} width="222" height="136" x="49" y="44" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="222" height="10" x="49" y="35" rx="0" ry="0" />
+                    <rect className={classes.clockFrontCenterFace} width="232" height="12" x="44" y="179" rx="0" ry="0" />
                     <path id="leftStand" className={classes.clockStandLeft} d="M 76 190 q -140 30 0 10" strokeWidth="4" />
                     <path id="rightStand" className={classes.clockStandRight} d="M 74 190 q 140 30 0 10" strokeWidth="4" />
-                    <use href="#leftStand" x="210" fill="white" stroke="red" />
-                    <use href="#rightStand" x="210" fill="white" stroke="red" />
+                    <use href="#leftStand" x="170" />
+                    <use href="#rightStand" x="170" />
                 </svg>
                 {/* Controllers */}
                 <div className={classes.controlButtons}>

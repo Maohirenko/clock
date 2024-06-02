@@ -12,9 +12,9 @@
     left: 0;
     right: 0;
     margin: auto;
-    width: 240px;
-    padding: 0px 24px;
-    height: 90px;
+    width: 228px;
+    padding: 0px 24px 4px 24px;
+    height: 84px;
     justify-content: center;
     align-items: center;
     user-select: none;
