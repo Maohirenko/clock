@@ -29,7 +29,6 @@
     .modalContainer {
         width: 90vw;
         height: 20vh;
-        top: 60%;
-        /* position: absolute; */
+        top: 70%;;
     }
 }

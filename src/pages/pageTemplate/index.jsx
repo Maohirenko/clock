@@ -26,6 +26,7 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
     const [startMinuteDigital, setStartMinuteDigital] = useState(null);
     const [showWarning, setShowWarning] = useState(false);
     const [warningOperation, setWarningOperation] = useState(null);
+    const [showMistakeMessage, setShowMistakeMessage] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const { t } = useTranslation();
@@ -47,9 +48,9 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                     setIsAnalogueEnabled(false);
                     setIsDigitalEnabled(false);
                 }
+                // In case of wrong answer
                 else {
-                    setShowWarning(true);
-                    // setWarningOperation
+                    setShowMistakeMessage(true);
                 }
             }
         }
@@ -65,8 +66,8 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         }, SUCCESS_MESSAGE_DISPLAY_TIME)
     }, [runClock])
 
-    function closeModal() {
-        setShowWarning(false);
+    function closeMistakeMessage() {
+        setShowMistakeMessage(false);
     }
 
     function resetTask() {
@@ -103,10 +104,9 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
                 name="Mykhailo Ohirenko"
                 keywords={t('keyWordsMeta')}
             />
-            {
-                showWarning ?
-                    <ModalMessage onClose={closeModal} messageText={warningOperation} />
-                    : null
+            {showMistakeMessage ?
+                <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
+                : null
             }
             <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>
                 <h2>{t('usageTitle')}</h2>

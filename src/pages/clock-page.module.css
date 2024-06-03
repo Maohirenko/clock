@@ -46,6 +46,8 @@
   border-radius: 4px;
   border: 1px solid black;
   font-size: 28pt;
+  position: absolute;
+  top: 0%;
 }
 
 .resetButton:hover {
@@ -58,7 +60,7 @@
   justify-content: flex-start;
   height: 60px;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .visibleElement {
@@ -79,7 +81,7 @@
 
   .usageExplanation {
     min-height: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
 
   .rightAnswerContainer {
