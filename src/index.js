@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import LanguageState from './components/context';
-
 import './i18n';
+import Loading from './components/lodading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +15,7 @@ root.render(
   <BrowserRouter>
   <HelmetProvider>
     <LanguageState>
-      <Suspense fallback={"loading"}>
+      <Suspense fallback={<Loading />}>
       <App />
       </Suspense>
     </LanguageState>

@@ -1,0 +1,15 @@
+.loadingContainer {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #EEDDAA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.loadingText {
+    font-weight: bold;
+    font-size: 30pt;
+    color: #114422;
+}

@@ -6,6 +6,7 @@
   width: 100vw;
   min-height: 60vh;
   position: relative;
+  padding-bottom: 1rem;
 }
 
 .resetButton {
@@ -35,6 +36,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .rightAnswerMessage {
@@ -81,14 +83,18 @@
 
   .usageExplanation {
     min-height: 200px;
-    margin-bottom: 28px;
+    /* padding-bottom: 28px; */
   }
 
   .rightAnswerContainer {
     top: 94%;
   }
-  
+
   .resetButton {
+    width: 80vw;
+  }
+
+  .rightAnswerMessage {
     width: 80vw;
   }
 }
