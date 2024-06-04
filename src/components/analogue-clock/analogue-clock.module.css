@@ -58,7 +58,6 @@
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     background-color: rgb(10, 36, 34);
-
 }
 
 /* Additional styling for hours marks */
@@ -172,7 +171,6 @@
     bottom: 50%;
     background: linear-gradient(#171616, #797472);
     position: absolute;
-
 }
 
 .secondNeedle {
@@ -189,8 +187,6 @@
     bottom: 50%;
     background: linear-gradient(#fc2003, #e8640b);
     position: absolute;
-    /* z-index: 1; */
-
 }
 
 /* Needl's dot */
@@ -270,11 +266,6 @@
     margin-top: -88px;
     margin-left: -20px;
     transform: rotateZ(-30deg);
-}
-
-.buttonMPlus>button span,
-.buttonMMinus>button span {
-    margin-left: -1px;
 }
 
 .buttonMMinus {

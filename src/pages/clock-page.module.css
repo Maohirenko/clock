@@ -1,3 +1,7 @@
+.pageContainer {
+  position: relative;
+}
+
 .clockPageContainer {
   display: flex;
   flex-direction: row;
@@ -87,7 +91,7 @@
   }
 
   .rightAnswerContainer {
-    top: 94%;
+    top: 55%;
   }
 
   .resetButton {

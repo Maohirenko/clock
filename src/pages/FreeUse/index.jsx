@@ -47,7 +47,7 @@ export default function FreeUseComponent() {
 
     return (
         <div className={classes.pageContainer}>
-            {/* Inset meta data */}
+            {/* Insert meta data */}
             <SEO
                 title={t('freeUseTitle')}
                 description={t('descriptionMeta')}
