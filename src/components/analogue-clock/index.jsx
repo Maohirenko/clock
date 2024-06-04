@@ -56,7 +56,6 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         // eslint-disable-next-line
     }, [hoursCount])
 
-
     // Modify minutes for comparison
     useEffect(() => {
         setMinsAnalogue(minutesCount);
@@ -68,7 +67,6 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         setStartFromCurrentTime(isStartFromCurrentTime)
         // eslint-disable-next-line
     }, [isStartFromCurrentTime])
-
 
     // Check start possibility
     function timeSetting() {
@@ -107,23 +105,22 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
                             }
                         </div>
                     </div>
-
                 </div>
             </div>
             {/* Controllers */}
             <div className={classes.controlButtons}>
-                <div className={classes.buttonHPlus}>
+                <div className={`${classes.buttonHPlus} ${classes.modifiers}`}>
                     <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
-                <div className={classes.buttonHMinus}>
+                <div className={`${classes.buttonHMinus} ${classes.modifiers}`}>
                     <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
             </div>
             <div className={classes.controlButtons}>
-                <div className={classes.buttonMPlus}>
+                <div className={`${classes.buttonMPlus} ${classes.modifiers}`}>
                     <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
-                <div className={classes.buttonMMinus}>
+                <div className={`${classes.buttonMMinus} ${classes.modifiers}`}>
                     <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
                 </div>
                 <div className={classes.buttonSet}>
