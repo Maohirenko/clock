@@ -4,6 +4,7 @@ import AnalogueAdjustmentComponent from './pages/AnalogueAdjustment/index';
 import DigitalAdjustmentComponent from './pages/DigitalAdjustment/index';
 import FreeUseComponent from './pages/FreeUse/index';
 import { Helmet } from 'react-helmet-async';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/time' element={<FreeUseComponent />} />
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,28 @@
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    max-height: 8vh;
+    justify-content: flex-end;
+    padding: 4px 20px;
+    border-top: 1px solid;
+    font-size: 14pt;
+}
+
+.copyright {
+    margin-right: 20px;
+    /* background-color: thistle; */
+}
+
+@media screen and (max-width: 800px) {
+    .footerContainer {
+        max-height: 15vh;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 8px 20px;
+    }
+
+    .copyright {
+        margin-right: 0;
+    }
+}
