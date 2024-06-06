@@ -3,8 +3,6 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 
-import HttpBackend from "i18next-http-backend";
-import resourcesToBackend from "i18next-resources-to-backend";
 
 const options = {
   // order and from where user language should be detected
@@ -42,14 +40,9 @@ i18next.use(initReactI18next).use(LanguageDetector).use(Backend).init({
   fallbackLng: 'en',
   supportedLngs: ['en', 'uk'],
   detection: options,
-  backend: {
-    backends: [
-      HttpBackend,
-      resourcesToBackend((lng, ns) => import(`./locales/${lng}/${ns}.json`))
-    ],
-    backendOptions: [{
-      loadPath: '/locales/{{lng}}/{{ns}}.json'
-    }]
+
+      backend: {
+    loadPath: '/locales/{{lng}}/{{ns}}.json',
   }
 });
 
