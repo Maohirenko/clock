@@ -41,5 +41,11 @@ i18next.use(initReactI18next).use(LanguageDetector).use(Backend).init({
   fallbackLng: 'en',
   supportedLngs: ['en', 'uk'],
   detection: options,
+  // backend: {
+  //   // loadPath: '/clock/public/locales/{{lng}}/translation.json',
+  //   // loadPath: '/clock/locales/{{lng}}/translation.json',
+  //   // loadPath: '/public/locales/{{lng}}/translation.json',
+  //   loadPath: '/clock/public/locales/{{lng}}/{{ns}}.json',
+  // }
 });
 
