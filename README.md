@@ -4,6 +4,10 @@ But ability to cope with analogue is still useful in life, even for pointing dir
 So this app purposing to foster learning analogue clock by kids.
 You can try to use it by visiting this address
 
+## LICENSE
+
+[MIT LICENSE](LICENSE)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
