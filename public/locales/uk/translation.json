@@ -6,7 +6,7 @@
     "freeUsageDescription": "Ви можете налаштовувати обидва годинники за власним бажанням",
     "digitalLabel": "цифр",
     "analogueLabel": "аналог",
-    "freUseButtonText": "Довільне використання",
+    "freeUseButtonText": "Довільне використання",
     "runningWarningMessage": "Для {{operation}} {{entity}} ви маєте зупинити годинник натиснувши кнопку 'SET'!",
     "minutes": "хвилин",
     "hours": "годин",
