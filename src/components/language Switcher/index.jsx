@@ -25,38 +25,36 @@ export default function LanguageSwticherComponent() {
     }
 
     return (
-        <div className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
-            <div className={classes.test} onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
-                {
-                    // Displaying current language first
-                    Object.keys(lngs).map((lng) => (
-                        <div key={lng} className={`${classes.currentLanguage}  ${displayOtherLanguages ? classes.currentSelectionLanguage : null}`}>
-                            {lng === i18n.resolvedLanguage ? <button
-                                className={`${isModalShown ? classes.disabledButton : null}`}
-                                onClick={() => i18n.changeLanguage(lng)}
-                            >
-                                <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
-                                {displayOtherLanguages ? <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span> : null}</button>
-                                : null}
-                        </div>
-                    ))
-                }
-                {
-                    // Displaying others languages then
-                    Object.keys(lngs).map((lng) => (
-                        displayOtherLanguages ? <div key={lng} className={classes.otherLanguages}>
-                            {lng !== i18n.resolvedLanguage ? <button
-                                className={isModalShown ? classes.disabledButton : null}
-                                onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
-                                <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
-                                <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
-                            </button>
-                                : null}
-                        </div>
-                            : null
-                    ))
-                }
-            </div>
+        <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage} className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
+            {
+                // Displaying current language first
+                Object.keys(lngs).map((lng) => (
+                    <div key={lng} className={`${classes.currentLanguage}  ${displayOtherLanguages ? classes.currentSelectionLanguage : null}`}>
+                        {lng === i18n.resolvedLanguage ? <button
+                            className={`${isModalShown ? classes.disabledButton : null}`}
+                            onClick={() => i18n.changeLanguage(lng)}
+                        >
+                            <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            {displayOtherLanguages ? <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span> : null}</button>
+                            : null}
+                    </div>
+                ))
+            }
+            {
+                // Displaying others languages then
+                Object.keys(lngs).map((lng) => (
+                    displayOtherLanguages ? <div key={lng} className={classes.otherLanguages}>
+                        {lng !== i18n.resolvedLanguage ? <button
+                            className={isModalShown ? classes.disabledButton : null}
+                            onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
+                            <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
+                        </button>
+                            : null}
+                    </div>
+                        : null
+                ))
+            }
         </div>
     )
 }
