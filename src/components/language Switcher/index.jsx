@@ -1,16 +1,8 @@
 import { useState, useContext } from 'react';
-// import { lngs } from "../../languages"
+import { lngs } from "../../languages"
 import { useTranslation } from "react-i18next";
 import classes from './language-switcher.module.css'
 import { GlobalContext } from '../context';
-
-// App languages
-const lngs = {
-    en: { nativeName: 'English', emoji: '\u{1F1EC}\u{1F1E7}'},
-    uk: { nativeName: 'Українська', emoji: '\u{1F1FA}\u{1F1E6}' },
-    // fr: { nativeName: 'Francais', emoji: '\u{1F1EB}\u{1F1F7}' },
-    // de: { nativeName: 'Deutsch', emoji: '\u{1f1e9}\u{1f1ea}' }
-}
 
 export default function LanguageSwticherComponent() {
 
@@ -34,7 +26,7 @@ export default function LanguageSwticherComponent() {
 
     return (
         <div className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
-            <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
+            <div className={classes.test} onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage}>
                 {
                     // Displaying current language first
                     Object.keys(lngs).map((lng) => (
