@@ -20,7 +20,7 @@ function App() {
           <Route path='/digital' element={<DigitalAdjustmentComponent />} />
           <Route path='/analogue' element={<AnalogueAdjustmentComponent />} />
           <Route path='/time' element={<FreeUseComponent />} />
-          {/* <Route path="*" element={<Navigate to="/digital" replace />} /> */}
+          <Route path="*" element={<Navigate to="/digital" replace />} />
         </Route>
       </Routes>
       <Footer />

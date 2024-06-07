@@ -11,17 +11,15 @@ import Loading from './components/lodading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
   <BrowserRouter basename="/clock">
-  <HelmetProvider>
-    <LanguageState>
-      <Suspense fallback={<Loading />}>
-      <App />
-      </Suspense>
-    </LanguageState>
+    <HelmetProvider>
+      <LanguageState>
+        <Suspense fallback={<Loading />}>
+          <App />
+        </Suspense>
+      </LanguageState>
     </HelmetProvider>
   </BrowserRouter>
-  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
