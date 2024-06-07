@@ -2,11 +2,12 @@
 In modern world kids aren't used to using analogue clock, according to widespreaded and convinient digital interfaces.
 But ability to cope with analogue is still useful in life, even for pointing directions or other covert purposes. 
 So this app purposing to foster learning analogue clock by kids.
-You can try to use it by visiting this address
+You can try to use it by visiting this address [Clock](https://maohirenko.github.io/clock/time)
 
 ## LICENSE
 
 [MIT LICENSE](LICENSE)
+
 
 # Getting Started with Create React App
 
