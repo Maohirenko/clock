@@ -6,7 +6,7 @@
     "freeUsageDescription": "You can adust both clocks as you wish",
     "digitalLabel": "digital",
     "analogueLabel": "analogue",
-    "freUseButtonText": "Free use",
+    "freeUseButtonText": "Free use",
     "runningWarningMessage": "To {{operation}} {{entity}} you need to stop a clock by pressing 'SET' button!",
     "minutes": "minutes",
     "hours": "hours",
