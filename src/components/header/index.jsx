@@ -22,13 +22,13 @@ export default function Header() {
                 <h1 className={classes.appHeadingText}>{t('headerTitle')}</h1>
             </div>
             <div className={classes.navLinks}>
-                <Link className={`${pathname === '/clock/analogue' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/clock/analogue'}>
+                <Link className={`${pathname === '/analogue' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/analogue'}>
                     <p>{t('adjustButtonText', { toSync: t('analogueLabel') })}</p>
                 </Link>
-                <Link className={`${pathname === '/clock/digital' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/clock/digital'}>
+                <Link className={`${pathname === '/digital' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/digital'}>
                     <p>{t('adjustButtonText', { toSync: t('digitalLabel') })}</p>
                 </Link>
-                <Link className={`${pathname === '/clock/time' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/clock/time'}>
+                <Link className={`${pathname === '/time' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/time'}>
                     <p>{t('freeUseButtonText')}</p>
                 </Link>
             </div>

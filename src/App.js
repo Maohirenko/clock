@@ -16,11 +16,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/">
-          <Route index element={<Navigate to="/clock/digital" replace />} />
-          <Route path='/clock/digital' element={<DigitalAdjustmentComponent />} />
-          <Route path='/clock/analogue' element={<AnalogueAdjustmentComponent />} />
-          <Route path='/clock/time' element={<FreeUseComponent />} />
-          <Route path="*" element={<Navigate to="/clock/digital" replace />} />
+          <Route index element={<Navigate to="/digital" replace />} />
+          <Route path='/digital' element={<DigitalAdjustmentComponent />} />
+          <Route path='/analogue' element={<AnalogueAdjustmentComponent />} />
+          <Route path='/time' element={<FreeUseComponent />} />
+          {/* <Route path="*" element={<Navigate to="/digital" replace />} /> */}
         </Route>
       </Routes>
       <Footer />
