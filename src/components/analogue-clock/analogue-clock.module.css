@@ -330,25 +330,25 @@
 .buttonHPlus:active {
     margin-left: -300px;
     margin-top: -84px;
-    z-index: -2;
+    z-index: -6;
 }
 
 .buttonHMinus:active {
     margin-left: -300px;
     margin-top: 60px;
-    z-index: -2;
+    z-index: -6;
 }
 
 .buttonMPlus:active {
     margin-top: -84px;
     margin-left: -28px;
-    z-index: -2;
+    z-index: -6;
 }
 
 .buttonMMinus:active {
     margin-top: 60px;
     margin-left: -28px;
-    z-index: -2;
+    z-index: -6;
 }
 
 .buttonSet:active {
