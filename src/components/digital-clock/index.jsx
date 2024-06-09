@@ -5,6 +5,7 @@ import useClock from '../../logic/useClock'
 import LongPressButton from "../button-long-press";
 import { GlobalContext } from "../context";
 import ClockBodyGradients from "./digit-component/gradients/clock-body-gradient/";
+import { t } from "i18next";
 
 
 export default function DigitalClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsDigital, setHoursDigital, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
@@ -129,6 +130,13 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         }
     }
 
+    // Notify if set pressed on wrong clock
+    function wrongClockWarningShow() {
+        setShowWarning(true);
+        setWarningOperation(t('wrongClock', { wrong: t('digitalLabel'), right: t('analogueLabel') }));
+    }
+
+
     return (
         <div className={classes.digitalClockContainer}>
             <div className={classes.svgContainer}>
@@ -150,19 +158,19 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
                 {/* Controllers */}
                 <div className={classes.controlButtons}>
                     <div>
-                        <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"digital"} />
                     </div>
                     <div>
-                        <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"digital"} />
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"digital"} />
                     </div>
                     <div>
-                        <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                        <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"digital"} />
                     </div>
                     <div>
-                        <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : null}>SET</button>
+                        <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : wrongClockWarningShow}>SET</button>
                     </div>
                 </div>
                 {/* Display time */}

@@ -4,6 +4,7 @@ import Dial from './dial';
 import useClock from '../../logic/useClock'
 import LongPressButton from '../button-long-press';
 import { GlobalContext } from '../context';
+import { t } from 'i18next';
 
 export default function AnalogueClock({ isStartFromCurrentTime = false, secondsIncoming = 0, minIncoming = 0, hourIncoming = 0, setMinsAnalogue, setHoursAnalogue, runClock, setAllowRun, isEnabled, isIndependent = false, setShowWarning, setWarningOperation
 }) {
@@ -78,6 +79,12 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
         }
     }
 
+    // Notify if set pressed on wrong clock
+    function wrongClockWarningShow() {
+        setShowWarning(true);
+        setWarningOperation(t('wrongClock', { wrong: t('analogueLabel'), right: t('digitalLabel') }));
+    }
+
     return (
         <div className={classes.mainContainer}>
             <div className={classes.clockBody}>
@@ -110,21 +117,21 @@ export default function AnalogueClock({ isStartFromCurrentTime = false, secondsI
             {/* Controllers */}
             <div className={classes.controlButtons}>
                 <div className={`${classes.buttonHPlus} ${classes.modifiers}`}>
-                    <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                    <LongPressButton buttonText={'H+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"analogue"} />
                 </div>
                 <div className={`${classes.buttonHMinus} ${classes.modifiers}`}>
-                    <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                    <LongPressButton buttonText={'H-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractHours} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"analogue"} />
                 </div>
             </div>
             <div className={classes.controlButtons}>
                 <div className={`${classes.buttonMPlus} ${classes.modifiers}`}>
-                    <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                    <LongPressButton buttonText={'M+'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={addMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"analogue"} />
                 </div>
                 <div className={`${classes.buttonMMinus} ${classes.modifiers}`}>
-                    <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} />
+                    <LongPressButton buttonText={'M-'} setShowWarning={setShowWarning} setWarningOperation={setWarningOperation} clockModifier={substractMinutes} isClockRunning={clockRunning} isEnabledButton={isEnabled} componentCall={"analogue"} />
                 </div>
                 <div className={classes.buttonSet}>
-                    <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : null}>
+                    <button style={isModalShown ? { pointerEvents: "none" } : null} onClick={isEnabled ? timeSetting : wrongClockWarningShow}>
                         <span>SET</span>
                     </button>
                 </div>

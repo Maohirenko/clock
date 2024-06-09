@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { GlobalContext } from "../context";
 
 
-export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation, isEnabledButton }) {
+export default function LongPressButton({ buttonText, clockModifier, isClockRunning, setShowWarning, setWarningOperation, isEnabledButton, componentCall }) {
 
     // Time of longpress detection
     const LONG_TOUCH_TIME = 200;
@@ -39,15 +39,23 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
         setLongClick(false);
     }
 
+    // Treating mouse click
     function mouseDownHandle(event) {
         event.preventDefault();
         // Show warning if user is trying to modyfy clock before stopping it
-        if (isClockRunning) {
-            setShowWarning(true);
-            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
+        if (isEnabledButton) {
+            if (isClockRunning) {
+                setShowWarning(true);
+                setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
+            }
+            else {
+                setLongClick(true);
+            }
         }
+        // Showing wrong attempt of adjustment of wrong clock
         else {
-            setLongClick(true);
+            setShowWarning(true);
+            setWarningOperation(t('wrongClock', { wrong: componentCall === "analogue" ? t('analogueLabel') : t('digitalLabel'), right: componentCall === "digital" ? t('analogueLabel') : t('digitalLabel') }));
         }
     }
 
@@ -58,12 +66,20 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     // Treating mobile press
     function touchDownHandle(event) {
         event.preventDefault();
-        if (isClockRunning) {
-            setShowWarning(true);
-            setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
+        // Show warning if user is trying to modyfy clock before stopping it
+        if (isEnabledButton) {
+            if (isClockRunning) {
+                setShowWarning(true);
+                setWarningOperation(t('runningWarningMessage', { operation: buttonText[1] === '-' ? t('substract') : t('add'), entity: buttonText[0] === 'M' ? t('minutes') : t('hours') }));
+            }
+            else {
+                setLongTouch(true);
+            }
         }
+        // Showing wrong attempt of adjustment of wrong clock
         else {
-            setLongTouch(true);
+            setShowWarning(true);
+            setWarningOperation(t('wrongClock', { wrong: componentCall === "digital" ? t('analogueLabel') : t('digitalLabel'), right: componentCall === "analogue" ? t('analogueLabel') : t('digitalLabel') }));
         }
     }
 
@@ -122,6 +138,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
     }, [longTouch, isEnabledButton])
 
     return (
-        <button style={isModalShown || !isEnabledButton ? { pointerEvents: "none" } : null} ref={ref}>{buttonText}</button>
+        <button
+            style={isModalShown ? { pointerEvents: "none" } : null} ref={ref}>{buttonText}</button>
     )
 }

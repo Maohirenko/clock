@@ -70,6 +70,10 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
         setShowMistakeMessage(false);
     }
 
+    function closeModal() {
+        setShowWarning(false);
+    }
+
     function resetTask() {
         setRunClock(false);
         setAllowRun(false);
@@ -106,6 +110,10 @@ export default function PageTemplate({ anaglogueEnable, digitalEnable }) {
             />
             {showMistakeMessage ?
                 <ModalMessage onClose={closeMistakeMessage} messageText={t('wrongAdjustmentMessage')} />
+                : null
+            }
+            {showWarning ?
+                <ModalMessage onClose={closeModal} messageText={warningOperation} />
                 : null
             }
             <div className={`${runClock ? classes.invisibleElement : classes.visibleElement} ${classes.usageExplanation}`}>

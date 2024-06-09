@@ -3,6 +3,7 @@ import { FaRectangleXmark } from 'react-icons/fa6';
 import classes from './modal.module.css';
 import { GlobalContext } from '../context';
 import useOutsideClick from '../../logic/outsideClick';
+import { Trans } from 'react-i18next';
 
 // Display message about misuse
 export default function ModalMessage({ messageText, onClose }) {
@@ -35,7 +36,10 @@ export default function ModalMessage({ messageText, onClose }) {
             {/* Displaying misuse message */}
             {
                 messageText !== null ?
-                    <p>{messageText}</p>
+                    <Trans>
+                        <p>{messageText}</p>
+                    </Trans>
+
                     : null
             }
         </div>
