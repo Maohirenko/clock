@@ -46,6 +46,7 @@
 .languageEmoji {
     font-size: 16pt;
     float: left;
+    /* font-weight: 200; */
 }
 
 /* Preventing clicks on disabled buttons */

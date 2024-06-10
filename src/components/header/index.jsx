@@ -13,6 +13,8 @@ export default function Header() {
     const { pathname } = location;
     return (
         <div className={classes.headerContainer}>
+            
+<p>{window.navigator.platform}</p>
             <div className={classes.languageSwitch}>
                 <div className={classes.languageSwitchContainer}>
                     <LanguageSwticherComponent />

@@ -4,11 +4,15 @@ import { useTranslation } from "react-i18next";
 import classes from './language-switcher.module.css'
 import { GlobalContext } from '../context';
 
+const osType = new RegExp(/win/i);
+
 export default function LanguageSwticherComponent() {
 
     const [displayOtherLanguages, setDisplayOtherLanguages] = useState(false);
     const { i18n } = useTranslation();
     const { isModalShown } = useContext(GlobalContext);
+
+    const currentDevice = navigator?.userAgentData?.platform || navigator?.platform;
 
     // Hinding/Showing other languages
     function hoverCurrentLanguage() {
@@ -23,7 +27,8 @@ export default function LanguageSwticherComponent() {
         i18n.changeLanguage(lng);
         unHoverCurrentLanguage();
     }
-
+    // console.log(navigator?.userAgentData?.platform || navigator?.platform)
+    console.log(window.navigator?.userAgent)
     return (
         <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage} className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
             {
@@ -34,7 +39,11 @@ export default function LanguageSwticherComponent() {
                             className={`${isModalShown ? classes.disabledButton : ""}`}
                             onClick={() => i18n.changeLanguage(lng)}
                         >
-                            <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            {osType.test(currentDevice) ?
+                                <span className={classes.languageEmoji}>{lngs[lng].nativeNameShort}</span> :
+                                <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            }
+
                             {displayOtherLanguages ? <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span> : null}</button>
                             : null}
                     </div>
@@ -47,7 +56,10 @@ export default function LanguageSwticherComponent() {
                         {lng !== i18n.resolvedLanguage ? <button
                             className={isModalShown ? classes.disabledButton : null}
                             onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
-                            <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            {osType.test(currentDevice) ?
+                                <span className={classes.languageEmoji}>{lngs[lng].nativeNameShort}</span> :
+                                <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                            }
                             <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
                         </button>
                             : null}
