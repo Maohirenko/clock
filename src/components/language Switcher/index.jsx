@@ -28,7 +28,7 @@ export default function LanguageSwticherComponent() {
         unHoverCurrentLanguage();
     }
     // console.log(navigator?.userAgentData?.platform || navigator?.platform)
-    console.log(window.navigator?.userAgent)
+    // console.log(navigator.userAgent)
     return (
         <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage} className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
             {
@@ -39,12 +39,29 @@ export default function LanguageSwticherComponent() {
                             className={`${isModalShown ? classes.disabledButton : ""}`}
                             onClick={() => i18n.changeLanguage(lng)}
                         >
-                            {osType.test(currentDevice) ?
-                                <span className={classes.languageEmoji}>{lngs[lng].nativeNameShort}</span> :
+                            {/* {osType.test(currentDevice) ?
+                                <span className={classes.winLangMark}>{lngs[lng].nativeNameShort}</span> :
                                 <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
-                            }
+                            } */}
 
-                            {displayOtherLanguages ? <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span> : null}</button>
+
+                            {!displayOtherLanguages ?
+                                <>
+                                    {osType.test(currentDevice) ?
+                                        <span className={classes.winLangMark}>{lngs[lng].nativeNameShort}</span> :
+                                        <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                                    }
+                                </>
+                                :
+                                <>
+                                    {osType.test(currentDevice) ?
+                                        null :
+                                        <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
+                                    }
+                                    <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
+                                </>
+                            }
+                        </button>
                             : null}
                     </div>
                 ))
@@ -57,7 +74,7 @@ export default function LanguageSwticherComponent() {
                             className={isModalShown ? classes.disabledButton : null}
                             onClick={() => languageButtonPress(lng)} disabled={i18n.resolvedLanguage === lng}>
                             {osType.test(currentDevice) ?
-                                <span className={classes.languageEmoji}>{lngs[lng].nativeNameShort}</span> :
+                                null :
                                 <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
                             }
                             <span className={classes.nativeNameText}>{lngs[lng].nativeName}</span>
