@@ -26,10 +26,6 @@
     background-color: rgb(245, 245, 245);
 }
 
-.languagesButtonsHover {
-    height: 200px;
-}
-
 .languagesButtonsHover button {
     width: 120px;
     border: 1px solid black;
@@ -38,7 +34,7 @@
 
 .nativeNameText {
     font-size: 12pt;
-    line-height: 20pt;
+    line-height: 16pt;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -46,7 +42,13 @@
 .languageEmoji {
     font-size: 16pt;
     float: left;
-    /* font-weight: 200; */
+    line-height: 16pt;
+}
+
+/* Windows doesn't have native support of coupling emojies to flags, so showing short name of language */
+.winLangMark {
+    line-height: 16pt;
+    font-size: 12pt;
 }
 
 /* Preventing clicks on disabled buttons */

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import classes from './language-switcher.module.css'
 import { GlobalContext } from '../context';
 
+// Check of Windows os
 const osType = new RegExp(/win/i);
 
 export default function LanguageSwticherComponent() {
@@ -12,6 +13,7 @@ export default function LanguageSwticherComponent() {
     const { i18n } = useTranslation();
     const { isModalShown } = useContext(GlobalContext);
 
+    // Get current device
     const currentDevice = navigator?.userAgentData?.platform || navigator?.platform;
 
     // Hinding/Showing other languages
@@ -27,8 +29,7 @@ export default function LanguageSwticherComponent() {
         i18n.changeLanguage(lng);
         unHoverCurrentLanguage();
     }
-    // console.log(navigator?.userAgentData?.platform || navigator?.platform)
-    // console.log(navigator.userAgent)
+
     return (
         <div onMouseEnter={hoverCurrentLanguage} onMouseLeave={unHoverCurrentLanguage} className={`${classes.languagesButtons} ${displayOtherLanguages ? classes.languagesButtonsHover : null}`}>
             {
@@ -39,14 +40,9 @@ export default function LanguageSwticherComponent() {
                             className={`${isModalShown ? classes.disabledButton : ""}`}
                             onClick={() => i18n.changeLanguage(lng)}
                         >
-                            {/* {osType.test(currentDevice) ?
-                                <span className={classes.winLangMark}>{lngs[lng].nativeNameShort}</span> :
-                                <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
-                            } */}
-
-
                             {!displayOtherLanguages ?
                                 <>
+                                    {/* Windows doesn't have native support of coupling emojies to flags, so showing short name of language */}
                                     {osType.test(currentDevice) ?
                                         <span className={classes.winLangMark}>{lngs[lng].nativeNameShort}</span> :
                                         <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
@@ -54,6 +50,7 @@ export default function LanguageSwticherComponent() {
                                 </>
                                 :
                                 <>
+                                    {/* Windows doesn't have native support of coupling emojies to flags, so showing short name of language */}
                                     {osType.test(currentDevice) ?
                                         null :
                                         <span className={classes.languageEmoji}>{lngs[lng].emoji}</span>
@@ -66,8 +63,8 @@ export default function LanguageSwticherComponent() {
                     </div>
                 ))
             }
+            {/* Displaying others languages then */}
             {
-                // Displaying others languages then
                 Object.keys(lngs).map((lng) => (
                     displayOtherLanguages ? <div key={lng} className={classes.otherLanguages}>
                         {lng !== i18n.resolvedLanguage ? <button
