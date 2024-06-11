@@ -280,21 +280,22 @@
 
 .buttonSet>button {
     margin-top: -19px;
-    margin-left: -10px;
+    margin-left: -9px;
     max-height: 40px;
     height: 40px;
     width: 16px;
     min-height: 100%;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
+    padding: 0;
 }
 
 .buttonSet>button>span {
-    margin-top: 0px;
-    text-align: center;
     writing-mode: vertical-rl;
     text-orientation: upright;
-    font-size: 8px;
+    font-size: 7pt;
+    margin-right: -2px;
 }
 
 /* Clock's body (bezel around face) */
