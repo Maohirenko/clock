@@ -10,7 +10,7 @@
   width: 100vw;
   min-height: 60vh;
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .resetButton {
@@ -87,7 +87,6 @@
 
   .usageExplanation {
     min-height: 200px;
-    /* padding-bottom: 28px; */
   }
 
   .rightAnswerContainer {
