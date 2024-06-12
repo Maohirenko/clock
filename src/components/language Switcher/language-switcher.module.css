@@ -45,6 +45,13 @@
     line-height: 16pt;
 }
 
+
+.singleLangIcon .languageEmoji {
+    margin-top: -4px;
+    margin-left: 1px;
+    line-height: 20px;
+}
+
 /* Windows doesn't have native support of coupling emojies to flags, so showing short name of language */
 .winLangMark {
     line-height: 16pt;

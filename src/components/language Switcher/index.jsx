@@ -35,7 +35,7 @@ export default function LanguageSwticherComponent() {
             {
                 // Displaying current language first
                 Object.keys(lngs).map((lng) => (
-                    <div key={lng} className={`${displayOtherLanguages ? classes.currentSelectionLanguage : ""}`}>
+                    <div key={lng} className={`${displayOtherLanguages ? classes.currentSelectionLanguage : classes.singleLangIcon}`}>
                         {lng === i18n.resolvedLanguage ? <button
                             className={`${isModalShown ? classes.disabledButton : ""}`}
                             onClick={() => i18n.changeLanguage(lng)}

@@ -1,23 +1,36 @@
 .headerContainer {
     display: grid;
     padding: 4px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     text-align: center;
     grid-template-columns: 4% 39% 57%;
     grid-template-rows: 1fr;
+    /* background-color: blue; */
 }
 
 .appHeading {
     grid-column: 2/3;
     margin-top: auto;
     margin-bottom: auto;
+    /* background-color: bisque; */
+    
 }
 
 .appHeadingText {
     font-size: 20pt;
     line-height: 20pt;
     padding: 0;
+    padding-bottom: 4px;
     margin: 0;
+    /* background-color: red; */
+    grid-column: 2/3;
+    text-align: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* background-color: bisque; */
 }
 
 .languageSwitch {
