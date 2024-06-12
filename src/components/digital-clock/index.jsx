@@ -148,7 +148,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
                     <path className={classes.clockFrontLeftFace} d="M 50 180 Q 10 165, 5 105 T 50 43" strokeWidth="8" />
                     <path className={classes.clockFrontRightFace} d="M 270 180 Q 310 165, 315 105 T 270 43" strokeWidth="8" />
                     <rect className={classes.clockFrontCenterFace} width="222" height="136" x="49" y="44" rx="0" ry="0" />
-                    <rect className={classes.clockFrontCenterFaceBezel} width="222" height="8" x="49" y="39" rx="1" ry="1" />
+                    <rect className={classes.clockFrontCenterFaceBezel} width="222" height="8" x="49" y="39" rx="1" ry="2" />
                     <rect className={classes.clockFrontCenterFaceBezel} width="224" height="11" x="48" y="174" rx="10" ry="2"/>
                     <path id="leftStand" className={classes.clockStandLeft} d="M 76 186 q -140 30 0 10" strokeWidth="4" />
                     <path id="rightStand" className={classes.clockStandRight} d="M 74 186 q 140 30 0 10" strokeWidth="4" />
