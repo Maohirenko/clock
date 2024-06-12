@@ -13,6 +13,7 @@ export default function Header() {
     const { pathname } = location;
     return (
         <div className={classes.headerContainer}>
+            {/* <link href='https://fonts.googleapis.com/css?family=Courier Prime' rel='stylesheet'></link> */}
             <div className={classes.languageSwitch}>
                 <div className={classes.languageSwitchContainer}>
                     <LanguageSwticherComponent />
