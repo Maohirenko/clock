@@ -7,7 +7,7 @@ export default function VerticalSegment({ active, isSeconds = false }) {
             {
                 isSeconds ?
                     // Vertical segment for seconds
-                    <svg style={{ marginBottom: "-4pt" }} height="20" width="4" xmlns="http://www.w3.org/2000/svg">
+                    <svg className={classes.verticalSegmentSec} height="20" width="4" xmlns="http://www.w3.org/2000/svg">
                         <SegmentGradient />
                         <polygon points="2,1 3,7 3,13 2,19 1,13 1,7"
                             className={active ? classes.activeSegment : classes.inActiveSegment}
@@ -17,12 +17,12 @@ export default function VerticalSegment({ active, isSeconds = false }) {
                     </svg>
                     :
                     // Vertical segment for minutes and hours
-                    <svg style={{ marginTop: "-2.15pt" }} height="32" width="8" xmlns="http://www.w3.org/2000/svg">
+                    <svg className={classes.verticalSegmentHM} height="32" width="8" xmlns="http://www.w3.org/2000/svg">
                         <SegmentGradient />
                         <polygon points="4,1 7,11 7,21 4,31 1,21 1,11"
                             className={active ? classes.activeSegment : classes.inActiveSegment}
                             style={{
-                                strokeWidth: "3"
+                                strokeWidth: "2"
                             }} />
                     </svg>
             }

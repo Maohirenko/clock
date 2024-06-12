@@ -24,7 +24,7 @@
 }
 
 .centralSegmentSeconds {
-    margin-top: 0.5pt;
+    margin-top: 0;
 }
 
 .leftSegmentsSeconds {
@@ -33,7 +33,8 @@
 
 .leftSegmentsSeconds,
 .rightSegmentsSeconds {
-    margin-top: 9.5pt;
+    /* margin-top: 9.5pt; */
+    margin-top: 12px;
 }
 
 .rightSegmentsSeconds {
@@ -51,4 +52,18 @@
 .activeSegment {
     fill: url(#Gradient1);
     stroke: url(#Gradient1);
+}
+
+.verticalSegmentHM {
+    margin-top: -2px;
+}
+
+.verticalSegmentSec {
+    margin-bottom: -6px;
+}
+
+@media screen and (max-width: 800px) {
+    .verticalSegmentHM {
+        margin-top: -3px;
+    }
 }
