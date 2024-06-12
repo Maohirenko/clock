@@ -30,3 +30,8 @@ code {
   padding-right: env(safe-area-inset-right);
   position: relative;
 }
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url('./fonts/Courier_Prime/CourierPrime-Regular.ttf') format("truetype");;
+  }
