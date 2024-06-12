@@ -25,12 +25,9 @@
     height: 280px;
     border-radius: 280px;
     position: relative;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 24pt;
-    /* font-family: ui-monospace; */
-    /* font-family: 'Courier New', Courier, monospace; */
-     font-family: 'Courier Prime', 'Courier New', Courier, monospace;
-
+    font-family: 'Courier Prime', 'Courier New', Courier, monospace;
 }
 
 .hourNeedle,
