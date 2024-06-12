@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <div className={classes.footerContainer}>
             <span className={classes.copyright}>Copyright &#169;</span>
-            <span>Mykhailo Ohirenko 2024</span>
+            <span className={classes.author}>Mykhailo Ohirenko 2024</span>
         </div>
     )
 }

@@ -15,6 +15,10 @@
     margin-right: 20px;
 }
 
+.author {
+    margin-right: 40px;
+}
+
 @media screen and (max-width: 800px) {
     .footerContainer {
         max-height: 15vh;
@@ -24,7 +28,8 @@
         padding: 8px 20px;
     }
 
-    .copyright {
+    .copyright,
+    .author {
         margin-right: 0;
     }
 }
