@@ -233,6 +233,12 @@
     align-items: center;
 }
 
+.modifiers > div {
+    height: 24px;
+    width: 24px;
+    background-color: red;
+}
+
 .controlButtons button {
     max-height: 24px;
     max-width: 24px;
@@ -250,28 +256,40 @@
     width: 100vw;
 }
 
-.buttonHPlus {
+.buttonHPlus div {
     margin-top: -88px;
     margin-left: -308px;
     transform: rotateZ(30deg);
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
 }
 
-.buttonHMinus {
+.buttonHMinus div {
     margin-top: 64px;
     margin-left: -308px;
     transform: rotateZ(-30deg);
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
 }
 
-.buttonMPlus {
+.buttonMPlus div {
     margin-top: -88px;
     margin-left: -20px;
     transform: rotateZ(-30deg);
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
 }
 
-.buttonMMinus {
+.buttonMMinus div {
     margin-top: 64px;
     margin-left: -20px;
     transform: rotateZ(30deg);
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
 }
 
 .buttonSet {
@@ -328,27 +346,14 @@
     }
 }
 
-.buttonHPlus:active {
-    margin-left: -300px;
-    margin-top: -84px;
-    z-index: -6;
+.buttonHPlus:active button, .buttonHMinus:active button  {
+    margin-right: -4px;
+}
+.buttonMPlus:active button, .buttonMMinus:active button {
+    margin-left: -4px;
 }
 
-.buttonHMinus:active {
-    margin-left: -304px;
-    margin-top: 62px;
-    z-index: -6;
-}
-
-.buttonMPlus:active {
-    margin-top: -84px;
-    margin-left: -28px;
-    z-index: -6;
-}
-
-.buttonMMinus:active {
-    margin-top: 60px;
-    margin-left: -28px;
+.modifiers:active {
     z-index: -6;
 }
 
