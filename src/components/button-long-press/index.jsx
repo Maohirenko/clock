@@ -140,7 +140,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
 
     return (
         <div ref={ref}>
-            <button style={isModalShown ? { pointerEvents: "none" } : null} ref={ref}>{buttonText}</button>
+            <button style={isModalShown ? { pointerEvents: "none" } : null}>{buttonText}</button>
         </div>
     )
 }
