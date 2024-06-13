@@ -234,20 +234,21 @@
 }
 
 .modifiers>div {
-    background-color: red;
+    /* background-color: red; */
     height: 24px;
-    width: 24px;
+    width: 28px;
 }
 
 .controlButtons button {
+    position: absolute;
     max-height: 24px;
-    max-width: 24px;
+    max-width: 28px;
     color: #c7c1c1;
-    /* background: linear-gradient(rgb(51, 50, 50) 0%, rgb(122, 121, 118) 10% 30%, rgb(36, 36, 34) 50% 70%, rgb(22, 23, 22) 90% 100%); */
+    background: linear-gradient(rgb(51, 50, 50) 0%, rgb(122, 121, 118) 10% 30%, rgb(36, 36, 34) 50% 70%, rgb(22, 23, 22) 90% 100%);
     border-radius: 8px;
     border: 1px solid black;
     font-weight: 600;
-    box-shadow: 1px 2px 1px #595959bb;
+    /* box-shadow: 1px 2px 1px #595959bb; */
     cursor: pointer;
     font-size: 11px;
     display: flex;
@@ -257,36 +258,46 @@
 }
 
 .buttonHPlus div {
-    margin-top: -88px;
-    margin-left: -308px;
-    transform: rotateZ(30deg);
+    margin-top: -91px;
+    margin-left: -304px;
+    transform: rotateZ(31deg);
     display: flex;
     align-self: center;
     justify-content: flex-end;
 }
 
 .buttonHMinus div {
-    margin-top: 64px;
-    margin-left: -308px;
-    transform: rotateZ(-30deg);
+    margin-top: 67px;
+    margin-left: -304px;
+    transform: rotateZ(-31deg);
     display: flex;
     align-self: center;
     justify-content: flex-end;
 }
 
+.buttonHMinus button, .buttonHPlus button {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.buttonMMinus button, .buttonMPlus button {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
 .buttonMPlus div {
-    margin-top: -88px;
-    margin-left: -20px;
-    transform: rotateZ(-30deg);
+    margin-top: -91px;
+    margin-left: -28px;
+    transform: rotateZ(-31deg);
     display: flex;
     align-self: center;
     justify-content: flex-start;
 }
 
 .buttonMMinus div {
-    margin-top: 64px;
-    margin-left: -20px;
-    transform: rotateZ(30deg);
+    margin-top: 67px;
+    margin-left: -28px;
+    transform: rotateZ(31deg);
     display: flex;
     align-self: center;
     justify-content: flex-start;
@@ -342,23 +353,30 @@
     }
 
     .controlButtons button:active {
-        transform: scale(99%);
+        /* transform: scale(99%); */
     }
 }
 
-.buttonHPlus:active button,
-.buttonHMinus:active button {
-    margin-right: -4px;
+.buttonHPlus:active span,
+.buttonHMinus:active span {
+    /* margin-right: -4px; */
+    margin-left: 4px;
 }
 
-.buttonMPlus:active button,
-.buttonMMinus:active button {
-    margin-left: -4px;
+.buttonMPlus:active span,
+.buttonMMinus:active span {
+    margin-right: 4px;
 }
 
-.modifiers:active {
-    /* z-index: -6; */
+.modifiers:active button {
+    width: 24px;
+
 }
+
+/* .modifiers:active span {
+    margin-left: 4px;
+    
+} */
 
 .buttonSet:active {
     margin-left: -2px;
