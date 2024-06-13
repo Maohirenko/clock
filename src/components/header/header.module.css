@@ -68,7 +68,7 @@
 
 @media screen and (max-width: 800px) {
     .headerContainer {
-        grid-template-rows: 1fr;
+        grid-template-rows: 1fr 2fr;
         grid-template-columns: 50px 1fr 50px;
     }
 
@@ -83,10 +83,9 @@
     }
 
     .navLinks {
-        margin-top: 20px;
         flex-direction: column;
         grid-column: 1/4;
-        grid-row: 2/3;
+        grid-row: 2/4;
         gap: 8px;
     }
 
