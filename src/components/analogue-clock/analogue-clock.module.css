@@ -234,7 +234,6 @@
 }
 
 .modifiers>div {
-    /* background-color: red; */
     height: 24px;
     width: 28px;
 }
@@ -248,7 +247,6 @@
     border-radius: 8px;
     border: 1px solid black;
     font-weight: 600;
-    /* box-shadow: 1px 2px 1px #595959bb; */
     cursor: pointer;
     font-size: 11px;
     display: flex;
@@ -275,19 +273,24 @@
     justify-content: flex-end;
 }
 
-.buttonHMinus button, .buttonHPlus button {
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+.buttonHMinus button,
+.buttonHPlus button {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: -2px 2px 1px #595959bb;
 }
 
-.buttonMMinus button, .buttonMPlus button {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
+.buttonMMinus button,
+.buttonMPlus button,
+.buttonSet>button {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 2px 2px 1px #595959bb;
 }
 
 .buttonMPlus div {
     margin-top: -91px;
-    margin-left: -28px;
+    margin-left: -27px;
     transform: rotateZ(-31deg);
     display: flex;
     align-self: center;
@@ -296,27 +299,22 @@
 
 .buttonMMinus div {
     margin-top: 67px;
-    margin-left: -28px;
+    margin-left: -27px;
     transform: rotateZ(31deg);
     display: flex;
     align-self: center;
     justify-content: flex-start;
 }
 
-.buttonSet {
-    z-index: -6;
-}
-
 .buttonSet>button {
     margin-top: -19px;
-    margin-left: -9px;
+    margin-left: -6px;
     max-height: 40px;
     height: 40px;
     width: 16px;
     min-height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
     padding: 0;
 }
 
@@ -324,7 +322,8 @@
     writing-mode: vertical-rl;
     text-orientation: upright;
     font-size: 7pt;
-    margin-right: -2px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 /* Clock's body (bezel around face) */
@@ -351,15 +350,10 @@
     .controlButtons button:hover {
         transform: scale(105%);
     }
-
-    .controlButtons button:active {
-        /* transform: scale(99%); */
-    }
 }
 
 .buttonHPlus:active span,
 .buttonHMinus:active span {
-    /* margin-right: -4px; */
     margin-left: 4px;
 }
 
@@ -370,14 +364,16 @@
 
 .modifiers:active button {
     width: 24px;
-
 }
 
-/* .modifiers:active span {
-    margin-left: 4px;
-    
-} */
+.buttonSet:active button {
+    width: 12px;
+    align-items: flex-end;
+}
 
-.buttonSet:active {
-    margin-left: -2px;
+@media screen and (max-width: 800px) {
+    .buttonSet>button>span {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
 }
