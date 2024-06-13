@@ -8,6 +8,7 @@
     "analogueLabel": "analogue",
     "freeUseButtonText": "Free use",
     "runningWarningMessage": "To {{operation}} {{entity}} you need to stop a clock by pressing 'SET' button!",
+    "wrongClock": "You are trying to adjust {{wrong}} clock, but need to modify <strong>{{right}}</strong> clock!",
     "minutes": "minutes",
     "hours": "hours",
     "substract": "substract",
