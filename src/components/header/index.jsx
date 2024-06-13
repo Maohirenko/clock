@@ -14,9 +14,7 @@ export default function Header() {
     return (
         <div className={classes.headerContainer}>
             <div className={classes.languageSwitch}>
-                <div className={classes.languageSwitchContainer}>
-                    <LanguageSwticherComponent />
-                </div>
+                <LanguageSwticherComponent />
             </div>
             <h1 className={classes.appHeadingText}>{t('headerTitle')}</h1>
             <div className={classes.navLinks}>

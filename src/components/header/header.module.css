@@ -1,36 +1,26 @@
 .headerContainer {
     display: grid;
     padding: 4px;
-    /* border-radius: 8px; */
     text-align: center;
     grid-template-columns: 4% 39% 57%;
     grid-template-rows: 1fr;
-    /* background-color: blue; */
-}
-
-.appHeading {
-    grid-column: 2/3;
-    margin-top: auto;
-    margin-bottom: auto;
-    /* background-color: bisque; */
-    
 }
 
 .appHeadingText {
+    grid-column: 2/3;
+    margin-top: auto;
+    margin-bottom: auto;
     font-size: 20pt;
     line-height: 20pt;
     padding: 0;
     padding-bottom: 0px;
+    margin-bottom: 2px;
     margin: 0;
-    /* background-color: red; */
     grid-column: 2/3;
     text-align: center;
     display: flex;
     align-self: center;
     justify-content: center;
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
-    /* background-color: bisque; */
 }
 
 .languageSwitch {
@@ -78,11 +68,11 @@
 
 @media screen and (max-width: 800px) {
     .headerContainer {
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr;
         grid-template-columns: 50px 1fr 50px;
     }
 
-    .appHeading {
+    .appHeadingText {
         grid-column: 2/3;
         grid-row: 1/2;
     }
@@ -93,6 +83,7 @@
     }
 
     .navLinks {
+        margin-top: 20px;
         flex-direction: column;
         grid-column: 1/4;
         grid-row: 2/3;
