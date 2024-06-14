@@ -4,23 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import LanguageState from './components/context';
 import './i18n';
 import Loading from './components/lodading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter basename="/clock">
-    {/* // <HashRouter> */}
-    <HelmetProvider>
-      <LanguageState>
-        <Suspense fallback={<Loading />}>
+
+  <HelmetProvider>
+    <LanguageState>
+      <Suspense fallback={<Loading />}>
+        <BrowserRouter basename="/clock">
           <App />
-        </Suspense>
-      </LanguageState>
-    </HelmetProvider>
-  </HashRouter>
+        </BrowserRouter>
+      </Suspense>
+    </LanguageState>
+  </HelmetProvider>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
