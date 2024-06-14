@@ -11,16 +11,15 @@ import Loading from './components/lodading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
+  <HashRouter >
   <HelmetProvider>
     <LanguageState>
       <Suspense fallback={<Loading />}>
-        <HashRouter >
           <App />
-        </HashRouter>
       </Suspense>
     </LanguageState>
   </HelmetProvider>
+  </HashRouter>
 
 );
 
