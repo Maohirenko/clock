@@ -1,11 +1,13 @@
 .loadingContainer {
     min-height: 100vh;
     min-width: 100vw;
-    background-color: #EEDDAA;
+    background: linear-gradient(#37b6e4, #65b2ae);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 20px;
 }
 
 .loadingText {
