@@ -1,9 +1,9 @@
 {
-  "homepage": ".",
+  "homepage": "https://maohirenko.github.io/clock/",
   "name": "clock",
   "licence": "MIT",
   "version": "0.1.0",
-  "private": true,  
+  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
