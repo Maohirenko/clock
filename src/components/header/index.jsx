@@ -24,7 +24,7 @@ export default function Header() {
                 <Link className={`${pathname === '/digital' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/digital'}>
                     <p>{t('adjustButtonText', { toSync: t('digitalLabel') })}</p>
                 </Link>
-                <Link className={`${pathname === '/' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/'}>
+                <Link className={`${pathname === '/time' ? classes.activeLink : classes.link} ${isModalShown ? classes.disabledButton : null}`} to={'/time'}>
                     <p>{t('freeUseButtonText')}</p>
                 </Link>
             </div>

@@ -12,6 +12,7 @@ import Loading from './components/lodading';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter basename="/clock">
+    {/* // <BrowserRouter> */}
     <HelmetProvider>
       <LanguageState>
         <Suspense fallback={<Loading />}>

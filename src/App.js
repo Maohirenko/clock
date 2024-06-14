@@ -15,13 +15,13 @@ function App() {
       </Helmet>
       <Header />
       <Routes>
-        {/* <Route path="/"> */}
-          {/* <Route index element={<Navigate to="/digital" replace />} /> */}
-          <Route path='/digital' element={<DigitalAdjustmentComponent />} />
-          <Route path='/analogue' element={<AnalogueAdjustmentComponent />} />
+        <Route path="/">
+          <Route index element={<Navigate to="digital" replace />} />
+          <Route path='digital' element={<DigitalAdjustmentComponent />} />
+          <Route path='analogue' element={<AnalogueAdjustmentComponent />} />
           <Route path='/' element={<FreeUseComponent />} />
-          <Route path="*" element={<Navigate to="/clock/digital" replace />} />
-        {/* </Route> */}
+          <Route path="*" element={<Navigate to="/digital" replace />} />
+        </Route>
       </Routes>
       <Footer />
     </div>
