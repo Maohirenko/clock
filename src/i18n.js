@@ -42,7 +42,7 @@ i18next.use(initReactI18next).use(LanguageDetector).use(Backend).init({
   detection: options,
 
       backend: {
-    loadPath: '/clock/locales/{{lng}}/{{ns}}.json',
+    loadPath: '/locales/{{lng}}/{{ns}}.json',
   }
 });
 
