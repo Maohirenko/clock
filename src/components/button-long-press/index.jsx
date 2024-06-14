@@ -123,7 +123,7 @@ export default function LongPressButton({ buttonText, clockModifier, isClockRunn
                 clockModifier();
                 longTouchInterval = setInterval(() => {
                     clockModifier();
-                }, buttonText[0] === 'M' ?  LONG_TOUCH_TIME_MINUTES :LONG_TOUCH_TIME_HOURS )
+                }, buttonText[0] === 'M' ? LONG_TOUCH_TIME_MINUTES : LONG_TOUCH_TIME_HOURS)
             }
             else {
                 clearInterval(longTouchInterval);
