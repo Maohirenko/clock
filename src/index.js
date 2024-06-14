@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import LanguageState from './components/context';
 import './i18n';
 import Loading from './components/lodading';
