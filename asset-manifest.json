@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/clock/static/css/main.df7cbbf3.css",
-    "main.js": "/clock/static/js/main.7b9500b8.js",
+    "main.css": "/clock/static/css/main.82eeeec6.css",
+    "main.js": "/clock/static/js/main.f6dded0a.js",
     "static/js/453.c54be771.chunk.js": "/clock/static/js/453.c54be771.chunk.js",
     "static/media/CourierPrime-Regular.ttf": "/clock/static/media/CourierPrime-Regular.7503a2e9660bb6f608fb.ttf",
     "index.html": "/clock/index.html",
     "static/media/getFetch.cjs": "/clock/static/media/getFetch.c4cca45e22bc1b2c7d0d.cjs",
-    "main.df7cbbf3.css.map": "/clock/static/css/main.df7cbbf3.css.map",
-    "main.7b9500b8.js.map": "/clock/static/js/main.7b9500b8.js.map",
+    "main.82eeeec6.css.map": "/clock/static/css/main.82eeeec6.css.map",
+    "main.f6dded0a.js.map": "/clock/static/js/main.f6dded0a.js.map",
     "453.c54be771.chunk.js.map": "/clock/static/js/453.c54be771.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df7cbbf3.css",
-    "static/js/main.7b9500b8.js"
+    "static/css/main.82eeeec6.css",
+    "static/js/main.f6dded0a.js"
   ]
 }
