@@ -141,7 +141,7 @@ export default function DigitalClock({ isStartFromCurrentTime = false, secondsIn
         <div className={classes.digitalClockContainer}>
             <div className={classes.svgContainer}>
                 {/* Drawing svg clock body */}
-                <svg className={classes.clockBody} height="250" width="320" xmlns="http://www.w3.org/2000/svg">
+                <svg className={classes.clockBody} height="250" width="320" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
                     {/* Defining gradients for svg */}
                     <ClockBodyGradients />
                     {/* Drawing parts of clock */}
